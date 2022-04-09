@@ -21,6 +21,9 @@ import Register from "views/Register.js";
 import Login from "views/Login.js";
 import Designers from "views/designers/Designers";
 import Orders from "views/orders/Orders";
+import Quotes from "views/quotes/Quotes";
+import Catalogs from "views/catalogs/Catalogs";
+import Articles from "views/articles/Articles";
 
 var routes = [
   {
@@ -31,31 +34,45 @@ var routes = [
     layout: "/admin",
   },
   {
+    path: "/articles",
+    name: "Articles",
+    icon: "ni ni-single-copy-04 text-red",
+    component: Articles,
+    layout: "/admin",
+  },
+  {
     path: "/clients",
-    name: "All Clients",
+    name: "Clients",
     icon: "ni ni-single-02 text-primary",
     component: Clients,
     layout: "/admin",
   },
   {
     path: "/designers",
-    name: "All Designers",
-    icon: "ni ni-single-02 text-primary",
+    name: "Designers",
+    icon: "ni ni-palette text-orange",
     component: Designers,
     layout: "/admin",
   },
   {
     path: "/orders",
-    name: "All Orders",
-    icon: "ni ni-single-02 text-primary",
+    name: "Orders",
+    icon: "ni ni-shop text-green",
     component: Orders,
     layout: "/admin",
   },
   {
     path: "/quotes",
-    name: "All quotes",
-    icon: "ni ni-single-02 text-primary",
-    component: Orders,
+    name: "Quotes",
+    icon: "ni ni-paper-diploma text-yellow",
+    component: Quotes,
+    layout: "/admin",
+  },
+  {
+    path: "/catalogs",
+    name: "Catalogs",
+    icon: "ni ni-collection text-red",
+    component: Catalogs,
     layout: "/admin",
   },
 

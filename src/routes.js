@@ -16,7 +16,7 @@
 
 */
 import Index from "views/Index.js";
-import Users from "views/users/Users";
+import Clients from "views/clients/Clients";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
 
@@ -29,10 +29,10 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/users",
-    name: "All Users",
+    path: "/clients",
+    name: "All Clients",
     icon: "ni ni-single-02 text-primary",
-    component: Users,
+    component: Clients,
     layout: "/admin",
   },
 

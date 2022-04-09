@@ -1,31 +1,30 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  Button,
-  FormGroup,
-  Form,
-  Input,
-  Row,
-  Col,
-} from "reactstrap";
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button, FormGroup, Form, Input, Row, Col, Label } from "reactstrap";
 // core components
 
 const { Option } = Select;
 
-const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
+const AddUser = ({ openModal, handleModal, getUsers }) => {
+  let [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    verification: true,
+    address: "",
+    number: "",
+    country: "",
+    city: "",
+  });
+
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (user.name == "") {
       return toast.error("Please enter user's name");
     }
@@ -36,17 +35,18 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     if (!(user.email.includes(".") && user.email.includes("@"))) {
       return toast.error("Please enter a valid email");
     }
-
-    if (user.password && user.password.length < 8) {
+    if (user.password == "") {
+      return toast.error("Password is required");
+    }
+    if (user.password.length < 8) {
       return toast.error("Passwords should be of atleast 8 letters");
     }
-
     if (user.number == "") {
       return toast.error("Contact no. is required");
     }
 
-    api("put", `/users/${user._id}`, user).then((res) => {
-      toast.success("user edited successfully");
+    api("post", "/users", user).then((res) => {
+      toast.success("User added successfully");
       getUsers();
       handleModal();
     });
@@ -56,7 +56,7 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          Edit a user
+          Add a client
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -66,10 +66,11 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.name ? "" : "*"}{" "}
-                        </span>
-                        <label className="form-control-label">Name</label>
+                        <label className="form-control-label">
+                          {" "}
+                          <span style={{ color: "red" }}>{user.name ? "" : "*"} </span>
+                          Name
+                        </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
@@ -83,10 +84,11 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.email ? "" : "*"}{" "}
-                        </span>
-                        <label className="form-control-label">Email</label>
+                        <label className="form-control-label">
+                          {" "}
+                          <span style={{ color: "red" }}>{user.email ? "" : "*"} </span>
+                          Email
+                        </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
@@ -102,10 +104,8 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-password"
-                        >
+                        <label className="form-control-label" htmlFor="input-password">
+                          <span style={{ color: "red" }}>{user.password ? "" : "*"} </span>
                           Password
                         </label>
                         <Input
@@ -121,11 +121,8 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.number ? "" : "*"}{" "}
-                        </span>
                         <label className="form-control-label">
-                          Contact no.
+                          <span style={{ color: "red" }}>{user.number ? "" : "*"} </span> Contact no.
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -193,7 +190,7 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSubmit}>
-            Update
+            Save
           </Button>
 
           <Button onClick={handleModal}>Cancel</Button>
@@ -203,4 +200,4 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
   );
 };
 
-export default EditUser;
+export default AddUser;

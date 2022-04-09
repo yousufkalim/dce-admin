@@ -20,6 +20,7 @@ import Clients from "views/clients/Clients";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
 import Designers from "views/designers/Designers";
+import Orders from "views/orders/Orders";
 
 var routes = [
   {
@@ -37,10 +38,24 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/designer",
+    path: "/designers",
     name: "All Designers",
     icon: "ni ni-single-02 text-primary",
     component: Designers,
+    layout: "/admin",
+  },
+  {
+    path: "/orders",
+    name: "All Orders",
+    icon: "ni ni-single-02 text-primary",
+    component: Orders,
+    layout: "/admin",
+  },
+  {
+    path: "/quotes",
+    name: "All quotes",
+    icon: "ni ni-single-02 text-primary",
+    component: Orders,
     layout: "/admin",
   },
 

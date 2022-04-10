@@ -27,21 +27,11 @@ const Footer = () => {
         <Col xl="6">
           <div className="copyright text-center text-xl-left text-muted">
             © {new Date().getFullYear()}{" "}
-            <a
-              className="font-weight-bold ml-1"
-              href="https://www.passtotrip.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Admin Panel
+            <a className="font-weight-bold ml-1" href="#" rel="noopener noreferrer" target="_blank">
+              Design Confections
             </a>
             &nbsp;Developed by{" "}
-            <a
-              className="font-weight-bold ml-1"
-              href="https://www.falconconsulting.fr"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <a className="font-weight-bold ml-1" href="https://www.falconconsulting.fr" rel="noopener noreferrer" target="_blank">
               Falcon Consulting
             </a>{" "}
             - All rights reserved.

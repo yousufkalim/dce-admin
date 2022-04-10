@@ -44,7 +44,7 @@ import { toast } from "react-toastify";
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const { users } = Store();
+  const { clients } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
   const [user, setUser] = useState({
@@ -53,7 +53,7 @@ const Users = () => {
     email: "",
     password: "",
     address: "",
-    number: "",
+    phone: "",
     country: "",
     city: "",
   });
@@ -65,7 +65,7 @@ const Users = () => {
   const getUsers = async () => {
     const data = await api("get", "/clients");
 
-    updateStore({ users: data.users });
+    updateStore({ clients: data.users });
   };
 
   const handleModal = () => {
@@ -80,7 +80,7 @@ const Users = () => {
         name: item.name,
         email: item.email,
         address: item.address,
-        number: item.number,
+        phone: item.phone,
         country: item.country,
         city: item.city,
       });
@@ -91,7 +91,7 @@ const Users = () => {
   };
 
   const handleDelete = (id) => {
-    api("delete", `/users/${id}`).then(() => {
+    api("delete", `/clients/${id}`).then(() => {
       toast.success("User deleted successfully");
       getUsers();
     });
@@ -122,12 +122,13 @@ const Users = () => {
                     <th scope="col">Email</th>
                     <th scope="col">Contact no</th>
                     <th scope="col">City</th>
+                    <th scope="col">Country</th>
                     <th scope="col">Created At</th>
                     <th scope="col" />
                   </tr>
                 </thead>
                 <tbody>
-                  {users?.map((item) => {
+                  {clients?.map((item) => {
                     return (
                       <tr>
                         <th scope="row">
@@ -143,6 +144,7 @@ const Users = () => {
 
                         <td>{item.phone}</td>
                         <td>{item.city}</td>
+                        <td>{item.country}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
                         <td className="text-right">

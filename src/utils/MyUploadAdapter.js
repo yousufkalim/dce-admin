@@ -12,15 +12,12 @@ class MyUploadAdapter {
           const formData = new FormData();
           formData.append("image", file);
 
-          axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/images`, formData)
-            .then((res) => {
-              console.log(res);
-              resolve({
-                default:
-                  process.env.REACT_APP_SERVER_MEDIA_URL + res.data.image,
-              });
+          axios.post(`${process.env.REACT_APP_SERVER_URL}/images`, formData).then((res) => {
+            console.log(res);
+            resolve({
+              default: process.env.REACT_APP_SERVER_MEDIA_URL + res.data.image,
             });
+          });
         })
     );
   }

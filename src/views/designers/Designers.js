@@ -44,7 +44,7 @@ import { toast } from "react-toastify";
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const { users } = Store();
+  const { designers } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
   const [user, setUser] = useState({
@@ -53,7 +53,7 @@ const Users = () => {
     email: "",
     password: "",
     address: "",
-    number: "",
+    phone: "",
     country: "",
     city: "",
   });
@@ -65,7 +65,7 @@ const Users = () => {
   const getUsers = async () => {
     const data = await api("get", "/tailors");
 
-    updateStore({ users: data.users });
+    updateStore({ designers: data.users });
   };
 
   const handleModal = () => {
@@ -80,7 +80,7 @@ const Users = () => {
         name: item.name,
         email: item.email,
         address: item.address,
-        number: item.number,
+        phone: item.phone,
         country: item.country,
         city: item.city,
       });
@@ -91,8 +91,8 @@ const Users = () => {
   };
 
   const handleDelete = (id) => {
-    api("delete", `/users/${id}`).then(() => {
-      toast.success("User deleted successfully");
+    api("delete", `/tailors/${id}`).then(() => {
+      toast.success("Tailor deleted successfully");
       getUsers();
     });
   };
@@ -120,6 +120,7 @@ const Users = () => {
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Experience</th>
                     <th scope="col">Contact no</th>
                     <th scope="col">City</th>
                     <th scope="col">Created At</th>
@@ -127,7 +128,7 @@ const Users = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {users?.map((item) => {
+                  {designers?.map((item) => {
                     return (
                       <tr>
                         <th scope="row">
@@ -141,6 +142,7 @@ const Users = () => {
                         </th>
                         <td title={item.email}>{item.email?.length > 30 ? item.email?.substring(0, 30) + "..." : item.email}</td>
 
+                        <td>{item.experience}</td>
                         <td>{item.phone}</td>
                         <td>{item.city}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>

@@ -118,10 +118,11 @@ const Users = () => {
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Client</th>
                     <th scope="col">Designer</th>
                     <th scope="col">Created At</th>
-                    <th scope="col" />
                   </tr>
                 </thead>
                 <tbody>
@@ -138,12 +139,14 @@ const Users = () => {
                           </Media>
                         </th>
                         <td title={item.category}>{item.category}</td>
+                        <td title={item.status}>{item.status}</td>
+                        <td title={item.type}>{item.type}</td>
 
                         <td>{item.client?.name}</td>
                         <td>{item.tailor?.name}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
-                        <td className="text-right">
+                        {/* <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle
                               className="btn-icon-only text-light"
@@ -156,15 +159,15 @@ const Users = () => {
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                              {/* <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
+                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
                                 Edit
-                              </DropdownItem> */}
+                              </DropdownItem>
                               <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
                                 Delete
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
-                        </td>
+                        </td> */}
                       </tr>
                     );
                   })}

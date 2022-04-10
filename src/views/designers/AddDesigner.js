@@ -12,9 +12,8 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     name: "",
     email: "",
     password: "",
-    verification: true,
     address: "",
-    number: "",
+    phone: "",
     country: "",
     city: "",
   });
@@ -41,12 +40,12 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     if (user.password.length < 8) {
       return toast.error("Passwords should be of atleast 8 letters");
     }
-    if (user.number == "") {
+    if (user.phone == "") {
       return toast.error("Contact no. is required");
     }
 
-    api("post", "/users", user).then((res) => {
-      toast.success("User added successfully");
+    api("post", "/tailors/createByAdmin", user).then((res) => {
+      toast.success("Tailor added successfully");
       getUsers();
       handleModal();
     });
@@ -122,15 +121,15 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          <span style={{ color: "red" }}>{user.number ? "" : "*"} </span> Contact no.
+                          <span style={{ color: "red" }}>{user.phone ? "" : "*"} </span> Contact no.
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
                           placeholder="Enter user's contact here"
                           type="phone"
-                          value={user.number}
-                          name="number"
+                          value={user.phone}
+                          name="phone"
                           onChange={handleInput}
                           maxLength="11"
                         />

@@ -30,11 +30,11 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
       return toast.error("Passwords should be of atleast 8 letters");
     }
 
-    if (user.number == "") {
+    if (user.phone == "") {
       return toast.error("Contact no. is required");
     }
 
-    api("put", `/users/${user._id}`, user).then((res) => {
+    api("put", `/clients/updateByAdmin/${user._id}`, user).then((res) => {
       toast.success("user edited successfully");
       getUsers();
       handleModal();
@@ -103,15 +103,15 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>{user.number ? "" : "*"} </span>
+                        <span style={{ color: "red" }}>{user.phone ? "" : "*"} </span>
                         <label className="form-control-label">Contact no.</label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
                           placeholder="Enter user's contact here"
                           type="phone"
-                          value={user.number}
-                          name="number"
+                          value={user.phone}
+                          name="phone"
                           onChange={handleInput}
                           maxLength="11"
                         />

@@ -16,9 +16,14 @@
 
 */
 import Index from "views/Index.js";
-import Users from "views/users/Users";
+import Clients from "views/clients/Clients";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
+import Designers from "views/designers/Designers";
+import Orders from "views/orders/Orders";
+import Quotes from "views/quotes/Quotes";
+import Catalogs from "views/catalogs/Catalogs";
+import Articles from "views/articles/Articles";
 
 var routes = [
   {
@@ -29,10 +34,45 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/users",
-    name: "All Users",
+    path: "/articles",
+    name: "Articles",
+    icon: "ni ni-single-copy-04 text-red",
+    component: Articles,
+    layout: "/admin",
+  },
+  {
+    path: "/clients",
+    name: "Clients",
     icon: "ni ni-single-02 text-primary",
-    component: Users,
+    component: Clients,
+    layout: "/admin",
+  },
+  {
+    path: "/designers",
+    name: "Designers",
+    icon: "ni ni-palette text-orange",
+    component: Designers,
+    layout: "/admin",
+  },
+  {
+    path: "/orders",
+    name: "Orders",
+    icon: "ni ni-shop text-green",
+    component: Orders,
+    layout: "/admin",
+  },
+  {
+    path: "/quotes",
+    name: "Quotes",
+    icon: "ni ni-paper-diploma text-yellow",
+    component: Quotes,
+    layout: "/admin",
+  },
+  {
+    path: "/catalogs",
+    name: "Catalogs",
+    icon: "ni ni-collection text-red",
+    component: Catalogs,
     layout: "/admin",
   },
 

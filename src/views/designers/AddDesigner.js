@@ -2,19 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  Button,
-  FormGroup,
-  Form,
-  Input,
-  Row,
-  Col,
-  Label,
-} from "reactstrap";
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button, FormGroup, Form, Input, Row, Col, Label } from "reactstrap";
 // core components
 
 const { Option } = Select;
@@ -24,9 +12,8 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     name: "",
     email: "",
     password: "",
-    verification: true,
     address: "",
-    number: "",
+    phone: "",
     country: "",
     city: "",
   });
@@ -53,12 +40,12 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     if (user.password.length < 8) {
       return toast.error("Passwords should be of atleast 8 letters");
     }
-    if (user.number == "") {
+    if (user.phone == "") {
       return toast.error("Contact no. is required");
     }
 
-    api("post", "/users", user).then((res) => {
-      toast.success("User added successfully");
+    api("post", "/tailors/createByAdmin", user).then((res) => {
+      toast.success("Tailor added successfully");
       getUsers();
       handleModal();
     });
@@ -68,7 +55,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          Add a user
+          Add a designer
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -80,9 +67,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                       <FormGroup>
                         <label className="form-control-label">
                           {" "}
-                          <span style={{ color: "red" }}>
-                            {user.name ? "" : "*"}{" "}
-                          </span>
+                          <span style={{ color: "red" }}>{user.name ? "" : "*"} </span>
                           Name
                         </label>{" "}
                         <Input
@@ -100,9 +85,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                       <FormGroup>
                         <label className="form-control-label">
                           {" "}
-                          <span style={{ color: "red" }}>
-                            {user.email ? "" : "*"}{" "}
-                          </span>
+                          <span style={{ color: "red" }}>{user.email ? "" : "*"} </span>
                           Email
                         </label>{" "}
                         <Input
@@ -120,13 +103,8 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-password"
-                        >
-                          <span style={{ color: "red" }}>
-                            {user.password ? "" : "*"}{" "}
-                          </span>
+                        <label className="form-control-label" htmlFor="input-password">
+                          <span style={{ color: "red" }}>{user.password ? "" : "*"} </span>
                           Password
                         </label>
                         <Input
@@ -143,18 +121,15 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          <span style={{ color: "red" }}>
-                            {user.number ? "" : "*"}{" "}
-                          </span>{" "}
-                          Contact no.
+                          <span style={{ color: "red" }}>{user.phone ? "" : "*"} </span> Contact no.
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
                           placeholder="Enter user's contact here"
                           type="phone"
-                          value={user.number}
-                          name="number"
+                          value={user.phone}
+                          name="phone"
                           onChange={handleInput}
                           maxLength="11"
                         />

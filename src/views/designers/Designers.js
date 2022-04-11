@@ -36,15 +36,15 @@ import {
 } from "reactstrap";
 
 // core components
-import AddUser from "./AddUser";
-import EditUser from "./EditUser";
+import AddUser from "./AddDesigner";
+import EditUser from "./EditDesigner";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const { users } = Store();
+  const { designers } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
   const [user, setUser] = useState({
@@ -53,7 +53,7 @@ const Users = () => {
     email: "",
     password: "",
     address: "",
-    number: "",
+    phone: "",
     country: "",
     city: "",
   });
@@ -63,9 +63,9 @@ const Users = () => {
   }, []);
 
   const getUsers = async () => {
-    const data = await api("get", "/users");
+    const data = await api("get", "/tailors");
 
-    updateStore({ users: data.users });
+    updateStore({ designers: data.users });
   };
 
   const handleModal = () => {
@@ -80,7 +80,7 @@ const Users = () => {
         name: item.name,
         email: item.email,
         address: item.address,
-        number: item.number,
+        phone: item.phone,
         country: item.country,
         city: item.city,
       });
@@ -91,8 +91,8 @@ const Users = () => {
   };
 
   const handleDelete = (id) => {
-    api("delete", `/users/${id}`).then(() => {
-      toast.success("User deleted successfully");
+    api("delete", `/tailors/${id}`).then(() => {
+      toast.success("Tailor deleted successfully");
       getUsers();
     });
   };
@@ -108,15 +108,10 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Users</h3>
-                  <Button
-                    color="primary"
-                    href="#pablo"
-                    onClick={handleModal}
-                    size="md"
-                  >
+                  <h3 className="mb-0">Designers</h3>
+                  <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
-                    Add user
+                    Add designer
                   </Button>
                 </div>
               </CardHeader>
@@ -125,6 +120,7 @@ const Users = () => {
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Experience</th>
                     <th scope="col">Contact no</th>
                     <th scope="col">City</th>
                     <th scope="col">Created At</th>
@@ -132,27 +128,22 @@ const Users = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {users?.map((item) => {
+                  {designers?.map((item) => {
                     return (
                       <tr>
                         <th scope="row">
                           <Media className="align-items-center">
                             <Media>
                               <span className="mb-0 text-sm" title={item.name}>
-                                {item.name?.length > 30
-                                  ? item.name?.substring(0, 30) + "..."
-                                  : item.name}
+                                {item.name?.length > 30 ? item.name?.substring(0, 30) + "..." : item.name}
                               </span>
                             </Media>
                           </Media>
                         </th>
-                        <td title={item.email}>
-                          {item.email?.length > 30
-                            ? item.email?.substring(0, 30) + "..."
-                            : item.email}
-                        </td>
+                        <td title={item.email}>{item.email?.length > 30 ? item.email?.substring(0, 30) + "..." : item.email}</td>
 
-                        <td>{item.number}</td>
+                        <td>{item.experience}</td>
+                        <td>{item.phone}</td>
                         <td>{item.city}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
@@ -170,25 +161,12 @@ const Users = () => {
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-arrow" right>
                               {item.test_conducted && (
-                                <DropdownItem
-                                  onClick={() =>
-                                    history.push(`/admin/users/${item._id}`)
-                                  }
-                                >
-                                  View
-                                </DropdownItem>
+                                <DropdownItem onClick={() => history.push(`/admin/users/${item._id}`)}>View</DropdownItem>
                               )}
-                              <DropdownItem
-                                href="#pablo"
-                                onClick={() => handleEditModal(item)}
-                              >
+                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
                                 Edit
                               </DropdownItem>
-                              <DropdownItem
-                                href="#pablo"
-                                className="text-danger"
-                                onClick={() => handleDelete(item._id)}
-                              >
+                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
                                 Delete
                               </DropdownItem>
                             </DropdownMenu>
@@ -257,21 +235,9 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {openModal && (
-          <AddUser
-            openModal={openModal}
-            handleModal={handleModal}
-            getUsers={getUsers}
-          />
-        )}
+        {openModal && <AddUser openModal={openModal} handleModal={handleModal} getUsers={getUsers} />}
         {editModal && (
-          <EditUser
-            openModal={editModal}
-            handleModal={handleEditModal}
-            user={user}
-            setUser={setUser}
-            getUsers={getUsers}
-          />
+          <EditUser openModal={editModal} handleModal={handleEditModal} user={user} setUser={setUser} getUsers={getUsers} />
         )}
       </Container>
     </>

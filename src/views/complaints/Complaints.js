@@ -84,23 +84,6 @@ const Complaints = () => {
     });
   };
 
-  //   const handleDelete = () => {
-  //     let method = "delete";
-  //     let uri = "/complaints";
-
-  //     uri = uri + `/${complaints._id}`;
-
-  //     api(method, uri).then((res) => {
-  //       // eslint-disable-next-line eqeqeq
-  //       if (res.status == 200) {
-  //         toast.success("Delete Successfully");
-  //         handleModal();
-  //       } else {
-  //         toast.error("Delete Error", res.data.message);
-  //       }
-  //     });
-  //   };
-
   return (
     <>
       <Header />
@@ -150,7 +133,10 @@ const Complaints = () => {
 
                         <td>{new Date(item.createdAt).toDateString()}</td>
                         <td>
-                          <Button color="danger" onClick={handleDelete}>
+                          <Button
+                            color="danger"
+                            onClick={() => handleDelete(item._id)}
+                          >
                             Delete
                           </Button>
                         </td>

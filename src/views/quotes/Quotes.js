@@ -38,10 +38,13 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import ViewQuote from "./ViewQuote";
 
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+
   const { quotes } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
@@ -71,20 +74,12 @@ const Users = () => {
     return openModal;
   };
 
-  const handleEditModal = (item) => {
+  const handleViewModal = (item) => {
     if (item) {
-      setUser({
-        _id: item._id,
-        name: item.name,
-        email: item.email,
-        address: item.address,
-        number: item.number,
-        country: item.country,
-        city: item.city,
-      });
+      setUser(item);
     }
 
-    setEditModal((open) => !open);
+    setViewModal((open) => !open);
     return openModal;
   };
 
@@ -122,6 +117,7 @@ const Users = () => {
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
                     <th scope="col">Created At</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -131,7 +127,10 @@ const Users = () => {
                         <th scope="row">
                           <Media className="align-items-center">
                             <Media>
-                              <span className="mb-0 text-sm" title={item.tailor?.name}>
+                              <span
+                                className="mb-0 text-sm"
+                                title={item.tailor?.name}
+                              >
                                 {item.tailor?.name || "N/A"}
                               </span>
                             </Media>
@@ -141,33 +140,20 @@ const Users = () => {
 
                         <td>{item.price}</td>
                         <td title={item.description}>
-                          {item.description?.length > 30 ? item.description?.substring(0, 30) + "..." : item.description}
+                          {item.description?.length > 30
+                            ? item.description?.substring(0, 30) + "..."
+                            : item.description}
                         </td>
                         <td title={item.status}>{item.status}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
-                        {/* <td className="text-right">
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className="btn-icon-only text-light"
-                              href="#pablo"
-                              role="button"
-                              size="sm"
-                              color=""
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className="fas fa-ellipsis-v" />
-                            </DropdownToggle>
-                            <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td> */}
+                        <td className="text-right">
+                          <i
+                            className="fa fa-eye"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleViewModal(item)}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -176,10 +162,13 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {/* {openModal && <AddUser openModal={openModal} handleModal={handleModal} getUsers={getUsers} />}
-        {editModal && (
-          <EditUser openModal={editModal} handleModal={handleEditModal} user={user} setUser={setUser} getUsers={getUsers} />
-        )} */}
+        {viewModal && (
+          <ViewQuote
+            openModal={viewModal}
+            handleModal={handleViewModal}
+            quote={user}
+          />
+        )}
       </Container>
     </>
   );

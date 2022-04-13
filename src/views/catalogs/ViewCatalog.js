@@ -85,7 +85,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         <label className="form-control-label">Attachment</label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={catalog.attachment}
+                          value={catalog.attachment || "N/A"}
                           disabled
                         />
                       </FormGroup>

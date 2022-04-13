@@ -36,7 +36,7 @@ const ViewComplaint = ({ openModal, handleModal, complaint }) => {
                         <label className="form-control-label">Reason</label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={complaint.reason}
+                          value={complaint.reason || "N/A"}
                           disabled
                         />
                       </FormGroup>
@@ -48,7 +48,7 @@ const ViewComplaint = ({ openModal, handleModal, complaint }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={complaint.attachment}
+                          value={complaint.attachment || "N/A"}
                           disabled
                         />
                       </FormGroup>
@@ -60,7 +60,7 @@ const ViewComplaint = ({ openModal, handleModal, complaint }) => {
                         <label className="form-control-label">Details</label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={complaint.details}
+                          value={complaint.details || "N/A"}
                           name="note"
                           disabled
                         />

@@ -250,7 +250,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.budget.note}
+                          value={order.budget.note || "N/A"}
                           disabled
                         />
                       </FormGroup>
@@ -312,7 +312,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         <label className="form-control-label">Attachment</label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.attachment}
+                          value={order.attachment || "N/A"}
                           disabled
                         />
                       </FormGroup>

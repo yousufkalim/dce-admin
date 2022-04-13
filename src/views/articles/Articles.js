@@ -42,12 +42,10 @@ import AddArticle from "./AddArticle";
 import EditArticle from "./EditArticle";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
-import ViewArticle from "./ViewArticle";
 
 const Articles = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const [viewModal, setViewModal] = useState(false);
 
   const [blog, setBlog] = useState({});
   const { articles } = Store();
@@ -68,11 +66,6 @@ const Articles = () => {
 
   const handleModal = () => {
     setOpenModal((open) => !open);
-    return openModal;
-  };
-  const handleViewModal = (article) => {
-    setBlog(article || blog);
-    setViewModal((open) => !open);
     return openModal;
   };
 
@@ -196,11 +189,7 @@ const Articles = () => {
                               // }
                               > */}
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem
-                                onClick={() => handleViewModal(article)}
-                              >
-                                View
-                              </DropdownItem>
+                              <DropdownItem>View</DropdownItem>
 
                               <DropdownItem
                                 href="#pablo"
@@ -281,13 +270,7 @@ const Articles = () => {
             </Card>
           </div>
         </Row>
-        {viewModal && (
-          <ViewArticle
-            openModal={viewModal}
-            handleModal={handleViewModal}
-            blog={blog}
-          />
-        )}
+
         {openModal && (
           <AddArticle
             openModal={openModal}

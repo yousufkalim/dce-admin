@@ -38,10 +38,13 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import ViewOrder from "./ViewOrder";
 
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+
   const { orders } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
@@ -71,20 +74,12 @@ const Users = () => {
     return openModal;
   };
 
-  const handleEditModal = (item) => {
+  const handleViewModal = (item) => {
     if (item) {
-      setUser({
-        _id: item._id,
-        name: item.name,
-        email: item.email,
-        address: item.address,
-        number: item.number,
-        country: item.country,
-        city: item.city,
-      });
+      setUser(item);
     }
 
-    setEditModal((open) => !open);
+    setViewModal((open) => !open);
     return openModal;
   };
 
@@ -153,7 +148,7 @@ const Users = () => {
                           <i
                             className="fa fa-eye"
                             style={{ cursor: "pointer" }}
-                            onClick={() => handleEditModal(item)}
+                            onClick={() => handleViewModal(item)}
                           />
                         </td>
                       </tr>
@@ -164,10 +159,13 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {/* {openModal && <AddUser openModal={openModal} handleModal={handleModal} getUsers={getUsers} />}
-        {editModal && (
-          <EditUser openModal={editModal} handleModal={handleEditModal} user={user} setUser={setUser} getUsers={getUsers} />
-        )} */}
+        {viewModal && (
+          <ViewOrder
+            openModal={viewModal}
+            handleModal={handleViewModal}
+            order={user}
+          />
+        )}
       </Container>
     </>
   );

@@ -33,9 +33,6 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.name ? "" : "*"}{" "}
-                        </span>
                         <label className="form-control-label">Name</label>
                         <Input
                           className="form-control-alternative text-default"
@@ -47,9 +44,6 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.email ? "" : "*"}{" "}
-                        </span>
                         <label className="form-control-label">Email</label>
                         <Input
                           className="form-control-alternative text-default"
@@ -63,9 +57,6 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.phone ? "" : "*"}{" "}
-                        </span>
                         <label className="form-control-label">
                           Contact no.
                         </label>

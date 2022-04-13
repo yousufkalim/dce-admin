@@ -106,7 +106,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Designers</h3>
+                  <h3 className="mb-0">Orders</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -133,7 +133,9 @@ const Users = () => {
                           <Media className="align-items-center">
                             <Media>
                               <span className="mb-0 text-sm" title={item.name}>
-                                {item.name?.length > 30 ? item.name?.substring(0, 30) + "..." : item.name}
+                                {item.name?.length > 30
+                                  ? item.name?.substring(0, 30) + "..."
+                                  : item.name}
                               </span>
                             </Media>
                           </Media>

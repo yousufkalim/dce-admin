@@ -24,6 +24,7 @@ import Orders from "views/orders/Orders";
 import Quotes from "views/quotes/Quotes";
 import Catalogs from "views/catalogs/Catalogs";
 import Articles from "views/articles/Articles";
+import Complaints from "views/complaints/Complaints";
 
 var routes = [
   {
@@ -71,8 +72,15 @@ var routes = [
   {
     path: "/catalogs",
     name: "Catalogs",
-    icon: "ni ni-collection text-red",
+    icon: "ni ni-collection text-teal",
     component: Catalogs,
+    layout: "/admin",
+  },
+  {
+    path: "/complaints",
+    name: "Complaints",
+    icon: "ni ni-folder-17 text-red",
+    component: Complaints,
     layout: "/admin",
   },
 

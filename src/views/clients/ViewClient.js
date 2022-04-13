@@ -18,45 +18,12 @@ import {
 
 const { Option } = Select;
 
-const ViewClient = ({ openModal, handleModal, user, setUser, getUsers }) => {
-  const handleInput = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (user.name == "") {
-      return toast.error("Please enter user's name");
-    }
-
-    if (user.email == "") {
-      return toast.error("Please enter email");
-    }
-    if (!(user.email.includes(".") && user.email.includes("@"))) {
-      return toast.error("Please enter a valid email");
-    }
-
-    if (user.password && user.password.length < 8) {
-      return toast.error("Passwords should be of atleast 8 letters");
-    }
-
-    if (user.phone == "") {
-      return toast.error("Contact no. is required");
-    }
-
-    api("put", `/clients/updateByAdmin/${user._id}`, user).then((res) => {
-      toast.success("user edited successfully");
-      getUsers();
-      handleModal();
-    });
-  };
-
+const ViewClient = ({ openModal, handleModal, user }) => {
   return (
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          Edit a client
+          View client
         </ModalHeader>
         <ModalBody>
           <Row>

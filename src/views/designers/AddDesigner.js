@@ -2,7 +2,19 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button, FormGroup, Form, Input, Row, Col, Label } from "reactstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  Button,
+  FormGroup,
+  Form,
+  Input,
+  Row,
+  Col,
+  Label,
+} from "reactstrap";
 // core components
 
 const { Option } = Select;
@@ -67,7 +79,9 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                       <FormGroup>
                         <label className="form-control-label">
                           {" "}
-                          <span style={{ color: "red" }}>{user.name ? "" : "*"} </span>
+                          <span style={{ color: "red" }}>
+                            {user.name ? "" : "*"}{" "}
+                          </span>
                           Name
                         </label>{" "}
                         <Input
@@ -85,7 +99,9 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                       <FormGroup>
                         <label className="form-control-label">
                           {" "}
-                          <span style={{ color: "red" }}>{user.email ? "" : "*"} </span>
+                          <span style={{ color: "red" }}>
+                            {user.email ? "" : "*"}{" "}
+                          </span>
                           Email
                         </label>{" "}
                         <Input
@@ -103,8 +119,13 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label" htmlFor="input-password">
-                          <span style={{ color: "red" }}>{user.password ? "" : "*"} </span>
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-password"
+                        >
+                          <span style={{ color: "red" }}>
+                            {user.password ? "" : "*"}{" "}
+                          </span>
                           Password
                         </label>
                         <Input
@@ -121,7 +142,10 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          <span style={{ color: "red" }}>{user.phone ? "" : "*"} </span> Contact no.
+                          <span style={{ color: "red" }}>
+                            {user.phone ? "" : "*"}{" "}
+                          </span>{" "}
+                          Contact no.
                         </label>
                         <Input
                           className="form-control-alternative text-default"

@@ -123,6 +123,7 @@ const Users = () => {
                     <th scope="col">Client</th>
                     <th scope="col">Designer</th>
                     <th scope="col">Created At</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -148,28 +149,13 @@ const Users = () => {
                         <td>{item.tailor?.name}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
-                        {/* <td className="text-right">
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className="btn-icon-only text-light"
-                              href="#pablo"
-                              role="button"
-                              size="sm"
-                              color=""
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className="fas fa-ellipsis-v" />
-                            </DropdownToggle>
-                            <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td> */}
+                        <td className="text-right">
+                          <i
+                            className="fa fa-eye"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleEditModal(item)}
+                          />
+                        </td>
                       </tr>
                     );
                   })}

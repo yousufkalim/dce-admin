@@ -40,10 +40,13 @@ import AddUser from "./AddClient";
 import EditUser from "./EditClient";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import ViewClient from "./ViewClient";
 
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+
   const { clients } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
@@ -90,6 +93,21 @@ const Users = () => {
     return openModal;
   };
 
+  const handleViewModal = (item) => {
+    if (item) {
+      setUser({
+        _id: item._id,
+        name: item.name,
+        email: item.email,
+        address: item.address,
+        phone: item.phone,
+        country: item.country,
+        city: item.city,
+      });
+    }
+    setViewModal((open) => !open);
+    return openModal;
+  };
   const handleDelete = (id) => {
     api("delete", `/clients/${id}`).then(() => {
       toast.success("User deleted successfully");
@@ -109,7 +127,12 @@ const Users = () => {
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
                   <h3 className="mb-0">Clients</h3>
-                  <Button color="primary" href="#pablo" onClick={handleModal} size="md">
+                  <Button
+                    color="primary"
+                    href="#pablo"
+                    onClick={handleModal}
+                    size="md"
+                  >
                     <i className="ni ni-fat-add"></i>
                     Add client
                   </Button>
@@ -135,12 +158,18 @@ const Users = () => {
                           <Media className="align-items-center">
                             <Media>
                               <span className="mb-0 text-sm" title={item.name}>
-                                {item.name?.length > 30 ? item.name?.substring(0, 30) + "..." : item.name}
+                                {item.name?.length > 30
+                                  ? item.name?.substring(0, 30) + "..."
+                                  : item.name}
                               </span>
                             </Media>
                           </Media>
                         </th>
-                        <td title={item.email}>{item.email?.length > 30 ? item.email?.substring(0, 30) + "..." : item.email}</td>
+                        <td title={item.email}>
+                          {item.email?.length > 30
+                            ? item.email?.substring(0, 30) + "..."
+                            : item.email}
+                        </td>
 
                         <td>{item.phone}</td>
                         <td>{item.city}</td>
@@ -160,13 +189,23 @@ const Users = () => {
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                              {item.test_conducted && (
-                                <DropdownItem onClick={() => history.push(`/admin/users/${item._id}`)}>View</DropdownItem>
-                              )}
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
+                              <DropdownItem
+                                onClick={() => handleViewModal(item)}
+                              >
+                                View
+                              </DropdownItem>
+
+                              <DropdownItem
+                                href="#pablo"
+                                onClick={() => handleEditModal(item)}
+                              >
                                 Edit
                               </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
+                              <DropdownItem
+                                href="#pablo"
+                                className="text-danger"
+                                onClick={() => handleDelete(item._id)}
+                              >
                                 Delete
                               </DropdownItem>
                             </DropdownMenu>
@@ -235,9 +274,28 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {openModal && <AddUser openModal={openModal} handleModal={handleModal} getUsers={getUsers} />}
+        {viewModal && (
+          <ViewClient
+            openModal={viewModal}
+            handleModal={handleViewModal}
+            user={user}
+          />
+        )}
+        {openModal && (
+          <AddUser
+            openModal={openModal}
+            handleModal={handleModal}
+            getUsers={getUsers}
+          />
+        )}
         {editModal && (
-          <EditUser openModal={editModal} handleModal={handleEditModal} user={user} setUser={setUser} getUsers={getUsers} />
+          <EditUser
+            openModal={editModal}
+            handleModal={handleEditModal}
+            user={user}
+            setUser={setUser}
+            getUsers={getUsers}
+          />
         )}
       </Container>
     </>

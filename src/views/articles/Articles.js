@@ -18,6 +18,8 @@
 // reactstrap components
 import { useState, useEffect } from "react";
 import api from "api";
+import { useHistory } from "react-router-dom";
+
 import { Store, UpdateStore } from "StoreContext";
 import {
   Badge,
@@ -40,12 +42,16 @@ import AddArticle from "./AddArticle";
 import EditArticle from "./EditArticle";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import ViewArticle from "./ViewArticle";
 
 const Articles = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+
   const [blog, setBlog] = useState({});
   const { articles } = Store();
+  const history = useHistory();
   const updateStore = UpdateStore();
 
   useEffect(() => {
@@ -62,6 +68,11 @@ const Articles = () => {
 
   const handleModal = () => {
     setOpenModal((open) => !open);
+    return openModal;
+  };
+  const handleViewModal = (article) => {
+    setBlog(article || blog);
+    setViewModal((open) => !open);
     return openModal;
   };
 
@@ -94,7 +105,12 @@ const Articles = () => {
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
                   <h3 className="mb-0">Articles</h3>
-                  <Button color="primary" href="#pablo" onClick={handleModal} size="md">
+                  <Button
+                    color="primary"
+                    href="#pablo"
+                    onClick={handleModal}
+                    size="md"
+                  >
                     <i className="ni ni-fat-add"></i>
                     Add Article
                   </Button>
@@ -117,11 +133,24 @@ const Articles = () => {
                       <tr>
                         <th scope="row">
                           <Media className="align-items-center">
-                            <a className="avatar rounded-circle mr-3" href="#pablo" onClick={(e) => e.preventDefault()}>
-                              <img alt="Article" src={process.env.REACT_APP_SERVER_MEDIA_URL + article.blog_images} />
+                            <a
+                              className="avatar rounded-circle mr-3"
+                              href="#pablo"
+                              onClick={(e) => e.preventDefault()}
+                            >
+                              <img
+                                alt="Article"
+                                src={
+                                  process.env.REACT_APP_SERVER_MEDIA_URL +
+                                  article.blog_images
+                                }
+                              />
                             </a>
                             <Media>
-                              <span className="mb-0 text-sm" title={article.blog_title}>
+                              <span
+                                className="mb-0 text-sm"
+                                title={article.blog_title}
+                              >
                                 {article.blog_title?.length > 30
                                   ? article.blog_title?.substring(0, 30) + "..."
                                   : article.blog_title}
@@ -130,7 +159,9 @@ const Articles = () => {
                           </Media>
                         </th>
                         <td title={article.blog_desc}>
-                          {article.blog_desc?.length > 30 ? article.blog_desc?.substring(0, 30) + "..." : article.blog_desc}
+                          {article.blog_desc?.length > 30
+                            ? article.blog_desc?.substring(0, 30) + "..."
+                            : article.blog_desc}
                         </td>
                         <td>
                           <Badge color="" className="badge-dot mr-4">
@@ -153,7 +184,7 @@ const Articles = () => {
                             >
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
-                            <DropdownMenu className="dropdown-menu-arrow" right>
+                            {/* <DropdownMenu className="dropdown-menu-arrow" right>
                               <DropdownItem
                               // onClick={() =>
                               //   window
@@ -163,13 +194,25 @@ const Articles = () => {
                               //     )
                               //     .focus()
                               // }
+                              > */}
+                            <DropdownMenu className="dropdown-menu-arrow" right>
+                              <DropdownItem
+                                onClick={() => handleViewModal(article)}
                               >
                                 View
                               </DropdownItem>
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(article)}>
+
+                              <DropdownItem
+                                href="#pablo"
+                                onClick={() => handleEditModal(article)}
+                              >
                                 Edit
                               </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(article._id)}>
+                              <DropdownItem
+                                href="#pablo"
+                                className="text-danger"
+                                onClick={() => handleDelete(article._id)}
+                              >
                                 Delete
                               </DropdownItem>
                             </DropdownMenu>
@@ -238,7 +281,20 @@ const Articles = () => {
             </Card>
           </div>
         </Row>
-        {openModal && <AddArticle openModal={openModal} handleModal={handleModal} getArticles={getArticles} />}
+        {viewModal && (
+          <ViewArticle
+            openModal={viewModal}
+            handleModal={handleViewModal}
+            blog={blog}
+          />
+        )}
+        {openModal && (
+          <AddArticle
+            openModal={openModal}
+            handleModal={handleModal}
+            getArticles={getArticles}
+          />
+        )}
         {editModal && (
           <EditArticle
             openModal={editModal}

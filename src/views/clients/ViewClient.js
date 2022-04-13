@@ -1,0 +1,163 @@
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import api from "../../api";
+import { Select } from "antd";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  Button,
+  FormGroup,
+  Form,
+  Input,
+  Row,
+  Col,
+} from "reactstrap";
+// core components
+
+const { Option } = Select;
+
+const ViewClient = ({ openModal, handleModal, user, setUser, getUsers }) => {
+  const handleInput = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (user.name == "") {
+      return toast.error("Please enter user's name");
+    }
+
+    if (user.email == "") {
+      return toast.error("Please enter email");
+    }
+    if (!(user.email.includes(".") && user.email.includes("@"))) {
+      return toast.error("Please enter a valid email");
+    }
+
+    if (user.password && user.password.length < 8) {
+      return toast.error("Passwords should be of atleast 8 letters");
+    }
+
+    if (user.phone == "") {
+      return toast.error("Contact no. is required");
+    }
+
+    api("put", `/clients/updateByAdmin/${user._id}`, user).then((res) => {
+      toast.success("user edited successfully");
+      getUsers();
+      handleModal();
+    });
+  };
+
+  return (
+    <>
+      <Modal isOpen={openModal} size="xl" centered>
+        <ModalHeader charCode="X" toggle={handleModal}>
+          Edit a client
+        </ModalHeader>
+        <ModalBody>
+          <Row>
+            <Col>
+              <Form>
+                <div className="pl-lg-4">
+                  <Row>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <span style={{ color: "red" }}>
+                          {user.name ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">Name</label>
+                        <Input
+                          className="form-control-alternative text-default"
+                          value={user.name}
+                          name="name"
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <span style={{ color: "red" }}>
+                          {user.email ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">Email</label>
+                        <Input
+                          className="form-control-alternative text-default"
+                          value={user.email}
+                          name="email"
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <span style={{ color: "red" }}>
+                          {user.phone ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">
+                          Contact no.
+                        </label>
+                        <Input
+                          className="form-control-alternative text-default"
+                          value={user.phone}
+                          name="phone"
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <label className="form-control-label">Address</label>
+                        <Input
+                          className="form-control-alternative text-default"
+                          value={user.address}
+                          name="address"
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <label className="form-control-label">City</label>
+                        <Input
+                          className="form-control-alternative text-default"
+                          value={user.city}
+                          name="city"
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <label className="form-control-label">Country</label>
+                        <Input
+                          className="form-control-alternative text-default"
+                          value={user.country}
+                          name="country"
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </div>
+              </Form>
+            </Col>
+          </Row>
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={handleModal}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};
+
+export default ViewClient;

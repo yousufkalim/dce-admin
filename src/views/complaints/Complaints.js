@@ -25,6 +25,10 @@ import {
   Card,
   CardHeader,
   Media,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  DropdownToggle,
   Button,
   Table,
   Container,
@@ -34,14 +38,15 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import ViewComplaint from "./ViewComplaint";
 
 const Complaints = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
   const { complaints } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
-  const [complaint, setCompliant] = useState({
+  const [complaint, setComplaint] = useState({
     _id: "",
     reason: "",
     details: "",
@@ -63,17 +68,12 @@ const Complaints = () => {
     return openModal;
   };
 
-  const handleEditModal = (item) => {
+  const handleViewModal = (item) => {
     if (item) {
-      setCompliant({
-        _id: item._id,
-        reason: item.reason,
-        details: item.details,
-        attachment: item.attachment,
-      });
+      setComplaint(item);
     }
 
-    setEditModal((open) => !open);
+    setViewModal((open) => !open);
     return openModal;
   };
 
@@ -132,16 +132,8 @@ const Complaints = () => {
                         <td title={item.attachment}>{item.attachment}</td>
 
                         <td>{new Date(item.createdAt).toDateString()}</td>
-                        <td>
-                          <Button
-                            color="danger"
-                            onClick={() => handleDelete(item._id)}
-                          >
-                            Delete
-                          </Button>
-                        </td>
 
-                        {/* <td className="text-right">
+                        <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle
                               className="btn-icon-only text-light"
@@ -154,15 +146,22 @@ const Complaints = () => {
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
-                                Edit
+                              <DropdownItem
+                                href="#pablo"
+                                onClick={() => handleViewModal(item)}
+                              >
+                                View
                               </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
+                              <DropdownItem
+                                href="#pablo"
+                                className="text-danger"
+                                onClick={() => handleDelete(item._id)}
+                              >
                                 Delete
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
-                        </td> */}
+                        </td>
                       </tr>
                     );
                   })}
@@ -171,10 +170,13 @@ const Complaints = () => {
             </Card>
           </div>
         </Row>
-        {/* {openModal && <AddUser openModal={openModal} handleModal={handleModal} getComplaints={getComplaints} />}
-        {editModal && (
-          <EditUser openModal={editModal} handleModal={handleEditModal} user={user} setCompliant={setCompliant} getComplaints={getComplaints} />
-        )} */}
+        {viewModal && (
+          <ViewComplaint
+            openModal={viewModal}
+            handleModal={handleViewModal}
+            complaint={complaint}
+          />
+        )}
       </Container>
     </>
   );

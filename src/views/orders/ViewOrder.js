@@ -81,7 +81,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">category</label>
+                        <label className="form-control-label">Category</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.category}

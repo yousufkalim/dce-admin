@@ -44,7 +44,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">category</label>
+                        <label className="form-control-label">Category</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.category}

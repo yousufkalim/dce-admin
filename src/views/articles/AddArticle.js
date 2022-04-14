@@ -4,7 +4,19 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import MyUploadAdapter from "utils/MyUploadAdapter";
 import api from "../../api";
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button, FormGroup, Form, Input, Row, Col, Label } from "reactstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  Button,
+  FormGroup,
+  Form,
+  Input,
+  Row,
+  Col,
+  Label,
+} from "reactstrap";
 // core components
 
 const AddArticle = ({ openModal, handleModal, getArticles }) => {
@@ -55,13 +67,16 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label" htmlFor="input-fname">
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-fname"
+                        >
                           Title
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter tile here"
+                          placeholder="Enter title here"
                           type="text"
                           value={blog.blog_title}
                           name="blog_title"
@@ -73,7 +88,10 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label" htmlFor="input-lname">
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-lname"
+                        >
                           Description
                         </label>
                         <Input
@@ -92,10 +110,18 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label" htmlFor="input-image">
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-image"
+                        >
                           Featured image <i className="ni ni-album-2" />
                         </label>
-                        <Input className="form-control-file form" id="input-image" type="file" onChange={handleFileChange} />
+                        <Input
+                          className="form-control-file form"
+                          id="input-image"
+                          type="file"
+                          onChange={handleFileChange}
+                        />
                       </FormGroup>
                     </Col>
                   </Row>
@@ -103,14 +129,19 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label" htmlFor="input-lname">
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-lname"
+                        >
                           Article
                         </label>
                         <CKEditor
                           editor={ClassicEditor}
                           data={blog.blog_content}
                           onReady={(editor) => {
-                            editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+                            editor.plugins.get(
+                              "FileRepository"
+                            ).createUploadAdapter = (loader) => {
                               return new MyUploadAdapter(loader);
                             };
                           }}
@@ -139,7 +170,10 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                             checked={blog.is_featured}
                             onChange={handleFeatured}
                           />
-                          <label className="custom-control-label" htmlFor="customCheck5">
+                          <label
+                            className="custom-control-label"
+                            htmlFor="customCheck5"
+                          >
                             Featured
                           </label>
                         </div>

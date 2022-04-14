@@ -143,8 +143,8 @@ i18n
           Details: "Details",
 
           // footer
-          "© 2022 Design Confections Developed by Falcon Consulting - All rights reserved.":
-            "© 2022 Design Confections Developed by Falcon Consulting - All rights reserved.",
+          "Developed by": "Developed by",
+          "- All rights reserved.": "- All rights reserved.",
         },
       },
       fr: {
@@ -281,8 +281,8 @@ i18n
           Details: "Des détails",
 
           // footer
-          "© 2022 Design Confections Developed by Falcon Consulting - All rights reserved.":
-            "© 2022 Design Confections Développé par Falcon Consulting - Tous droits réservés.",
+          "Developed by": "Développé par",
+          "- All rights reserved.": "- Tous droits réservés.",
         },
       },
     },

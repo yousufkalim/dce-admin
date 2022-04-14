@@ -15,15 +15,17 @@ import {
   Col,
 } from "reactstrap";
 // core components
-
+import { useTranslation, Trans } from "react-i18next";
 const { Option } = Select;
 
 const ViewClient = ({ openModal, handleModal, user }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          View client
+          {t("View client")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -33,7 +35,9 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Name</label>
+                        <label className="form-control-label">
+                          {t("Name")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={user.name}
@@ -44,7 +48,9 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Email</label>
+                        <label className="form-control-label">
+                          {t("Email")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={user.email}
@@ -58,11 +64,11 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Contact no.
+                          {t("Contact no.")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={user.phone}
+                          value={user.phone || "N/A"}
                           name="phone"
                           disabled
                         />
@@ -70,7 +76,9 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Address</label>
+                        <label className="form-control-label">
+                          {t("Address")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={user.address}
@@ -84,7 +92,9 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">City</label>
+                        <label className="form-control-label">
+                          {t("City")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={user.city}
@@ -95,7 +105,9 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Country</label>
+                        <label className="form-control-label">
+                          {t("Country")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={user.country}
@@ -111,7 +123,7 @@ const ViewClient = ({ openModal, handleModal, user }) => {
           </Row>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={handleModal}>Cancel</Button>
+          <Button onClick={handleModal}>{t("Cancel")}</Button>
         </ModalFooter>
       </Modal>
     </>

@@ -41,8 +41,11 @@ import EditUser from "./EditClient";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 import ViewClient from "./ViewClient";
+import { useTranslation, Trans } from "react-i18next";
 
 const Users = () => {
+  const { t } = useTranslation();
+
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -126,7 +129,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Clients</h3>
+                  <h3 className="mb-0">{t("Clients")}</h3>
                   <Button
                     color="primary"
                     href="#pablo"
@@ -134,19 +137,19 @@ const Users = () => {
                     size="md"
                   >
                     <i className="ni ni-fat-add"></i>
-                    Add client
+                    {t("Add client")}
                   </Button>
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contact no</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">{t("Name")}</th>
+                    <th scope="col">{t("Email")}</th>
+                    <th scope="col">{t("Contact no")}</th>
+                    <th scope="col">{t("City")}</th>
+                    <th scope="col">{t("Country")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -192,21 +195,21 @@ const Users = () => {
                               <DropdownItem
                                 onClick={() => handleViewModal(item)}
                               >
-                                View
+                                {t("View")}
                               </DropdownItem>
 
                               <DropdownItem
                                 href="#pablo"
                                 onClick={() => handleEditModal(item)}
                               >
-                                Edit
+                                {t("Edit")}
                               </DropdownItem>
                               <DropdownItem
                                 href="#pablo"
                                 className="text-danger"
                                 onClick={() => handleDelete(item._id)}
                               >
-                                Delete
+                                {t("Delete")}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>

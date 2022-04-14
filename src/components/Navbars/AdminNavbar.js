@@ -28,14 +28,20 @@ import {
   InputGroupAddon,
   InputGroupText,
   Input,
+  Button,
   InputGroup,
   Navbar,
   Nav,
   Container,
   Media,
 } from "reactstrap";
-
+import { useTranslation, Trans } from "react-i18next";
 const AdminNavbar = (props) => {
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   const { user } = Store();
   const handleLogout = () => {
     localStorage.setItem("token", "");
@@ -53,6 +59,15 @@ const AdminNavbar = (props) => {
             {props.brandText}
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
+            <Button
+              color="info"
+              className="languageButton"
+              onClick={() =>
+                changeLanguage(`${language == "en" ? "fr" : "en"}`)
+              }
+            >
+              {language == "fr" ? "English" : "French"}
+            </Button>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">

@@ -37,6 +37,8 @@ import {
   Row,
   UncontrolledTooltip,
 } from "reactstrap";
+import { useTranslation } from "react-i18next";
+
 // core components
 import AddArticle from "./AddArticle";
 import EditArticle from "./EditArticle";
@@ -44,6 +46,8 @@ import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 
 const Articles = () => {
+  const { t } = useTranslation();
+
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
 
@@ -97,7 +101,7 @@ const Articles = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Articles</h3>
+                  <h3 className="mb-0">{t("Articles")}</h3>
                   <Button
                     color="primary"
                     href="#pablo"
@@ -105,18 +109,18 @@ const Articles = () => {
                     size="md"
                   >
                     <i className="ni ni-fat-add"></i>
-                    Add Article
+                    {t("Add Article")}
                   </Button>
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Updated At</th>
+                    <th scope="col">{t("Title")}</th>
+                    <th scope="col">{t("Description")}</th>
+                    <th scope="col">{t("Status")}</th>
+                    <th scope="col">{t("Created At")}</th>
+                    <th scope="col">{t("Updated At")}</th>
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -189,20 +193,20 @@ const Articles = () => {
                               // }
                               > */}
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem>View</DropdownItem>
+                              <DropdownItem>{t("View")}</DropdownItem>
 
                               <DropdownItem
                                 href="#pablo"
                                 onClick={() => handleEditModal(article)}
                               >
-                                Edit
+                                {t("Edit")}
                               </DropdownItem>
                               <DropdownItem
                                 href="#pablo"
                                 className="text-danger"
                                 onClick={() => handleDelete(article._id)}
                               >
-                                Delete
+                                {"Delete"}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>

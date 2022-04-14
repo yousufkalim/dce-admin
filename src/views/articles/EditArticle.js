@@ -4,6 +4,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import MyUploadAdapter from "utils/MyUploadAdapter";
 import api from "../../api";
+import { useTranslation } from "react-i18next";
+
 import {
   Modal,
   ModalBody,
@@ -26,6 +28,8 @@ const EditArticle = ({
   setBlog,
   getArticles,
 }) => {
+  const { t } = useTranslation();
+
   const handleFileChange = (e) => {
     setBlog({ ...blog, blog_images: e.target.files[0] });
   };
@@ -61,7 +65,7 @@ const EditArticle = ({
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          Edit Article
+          {t("Edit Article")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -75,12 +79,12 @@ const EditArticle = ({
                           className="form-control-label"
                           htmlFor="input-fname"
                         >
-                          Title
+                          {t("Title")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter tile here"
+                          placeholder={t("Enter tile here")}
                           type="text"
                           value={blog.blog_title}
                           name="blog_title"
@@ -96,11 +100,11 @@ const EditArticle = ({
                           className="form-control-label"
                           htmlFor="input-lname"
                         >
-                          Description
+                          {t("Description")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          placeholder="Enter description here..."
+                          placeholder={t("Enter description here...")}
                           type="textarea"
                           value={blog.blog_desc}
                           name="blog_desc"
@@ -118,7 +122,7 @@ const EditArticle = ({
                           className="form-control-label"
                           htmlFor="input-image"
                         >
-                          Featured image <i className="ni ni-album-2" />
+                          {t("Featured image")} <i className="ni ni-album-2" />
                         </label>
                         <Input
                           className="form-control-file form"
@@ -137,7 +141,7 @@ const EditArticle = ({
                           className="form-control-label"
                           htmlFor="input-lname"
                         >
-                          Article
+                          {t("Article")}
                         </label>
                         <CKEditor
                           editor={ClassicEditor}
@@ -178,7 +182,7 @@ const EditArticle = ({
                             className="custom-control-label"
                             htmlFor="customCheck5"
                           >
-                            Featured
+                            {t("Featured")}
                           </label>
                         </div>
                       </FormGroup>

@@ -17,9 +17,12 @@ import {
   Col,
   Label,
 } from "reactstrap";
+import { useTranslation, Trans } from "react-i18next";
+
 // core components
 
 const AddArticle = ({ openModal, handleModal, getArticles }) => {
+  const { t } = useTranslation();
   let [blog, setBlog] = useState({ is_featured: false });
 
   const handleFileChange = (e) => {
@@ -56,8 +59,8 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
   return (
     <>
       <Modal isOpen={openModal} size="xl" centered>
-        <ModalHeader charCode="Y" toggle={handleModal}>
-          Create Article
+        <ModalHeader charCode="X" toggle={handleModal}>
+          {t("Create Article")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -71,12 +74,12 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                           className="form-control-label"
                           htmlFor="input-fname"
                         >
-                          Title
+                          {t("Title")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter title here"
+                          placeholder={t("Enter title here")}
                           type="text"
                           value={blog.blog_title}
                           name="blog_title"
@@ -92,11 +95,11 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                           className="form-control-label"
                           htmlFor="input-lname"
                         >
-                          Description
+                          {t("Description")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          placeholder="Enter description here..."
+                          placeholder={t("Enter description here...")}
                           type="textarea"
                           value={blog.blog_desc}
                           name="blog_desc"
@@ -114,7 +117,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                           className="form-control-label"
                           htmlFor="input-image"
                         >
-                          Featured image <i className="ni ni-album-2" />
+                          {t("Featured image")} <i className="ni ni-album-2" />
                         </label>
                         <Input
                           className="form-control-file form"
@@ -133,7 +136,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                           className="form-control-label"
                           htmlFor="input-lname"
                         >
-                          Article
+                          {t("Article")}
                         </label>
                         <CKEditor
                           editor={ClassicEditor}
@@ -174,7 +177,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                             className="custom-control-label"
                             htmlFor="customCheck5"
                           >
-                            Featured
+                            {t("Featured")}
                           </label>
                         </div>
                       </FormGroup>

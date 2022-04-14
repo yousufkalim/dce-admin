@@ -24,16 +24,12 @@ import {
   Badge,
   Card,
   CardHeader,
-  Button,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
   Media,
   Table,
   Container,
   Row,
 } from "reactstrap";
+import { useTranslation } from "react-i18next";
 
 // core components
 import Header from "components/Headers/Header.js";
@@ -41,6 +37,8 @@ import { toast } from "react-toastify";
 import ViewCatalog from "./ViewCatalog";
 
 const Users = () => {
+  const { t } = useTranslation();
+
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const { catalogs } = Store();
@@ -98,7 +96,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Catalogs</h3>
+                  <h3 className="mb-0">{t("Catalogs")}</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -108,12 +106,12 @@ const Users = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Designer</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">{t("Name")}</th>
+                    <th scope="col">{t("Category")}</th>
+                    <th scope="col">{t("Price")}</th>
+                    <th scope="col">{t("Description")}</th>
+                    <th scope="col">{t("Designer")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>

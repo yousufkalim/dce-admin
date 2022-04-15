@@ -60,13 +60,19 @@ const AdminNavbar = (props) => {
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <Button
-              color="info"
               className="languageButton"
               onClick={() =>
                 changeLanguage(`${language == "en" ? "fr" : "en"}`)
               }
+              style={{
+                backgroundColor: "inherit",
+                color: "white",
+                border: "none",
+                borderRadius: "30px",
+                boxShadow: "none",
+              }}
             >
-              {language == "fr" ? "English" : "French"}
+              {language == "fr" ? "French" : "English"}
             </Button>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>

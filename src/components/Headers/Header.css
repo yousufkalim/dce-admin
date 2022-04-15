@@ -1,3 +1,4 @@
 .bg-gradient-custom {
-    background: linear-gradient(87deg, #f7c9d0 0, #cc8e9c 100%) !important; 
+  background: linear-gradient(87deg, #f7c9d0 0, #cc8e9c 100%) !important;
+  /* background: linear-gradient(87deg, #f7c9d0 0, #ffa0b6 100%) !important; */
 }

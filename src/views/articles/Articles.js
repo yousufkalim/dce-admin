@@ -18,6 +18,8 @@
 // reactstrap components
 import { useState, useEffect } from "react";
 import api from "api";
+import { useHistory } from "react-router-dom";
+
 import { Store, UpdateStore } from "StoreContext";
 import {
   Badge,
@@ -35,6 +37,8 @@ import {
   Row,
   UncontrolledTooltip,
 } from "reactstrap";
+import { useTranslation } from "react-i18next";
+
 // core components
 import AddArticle from "./AddArticle";
 import EditArticle from "./EditArticle";
@@ -42,10 +46,14 @@ import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 
 const Articles = () => {
+  const { t } = useTranslation();
+
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+
   const [blog, setBlog] = useState({});
   const { articles } = Store();
+  const history = useHistory();
   const updateStore = UpdateStore();
 
   useEffect(() => {
@@ -93,21 +101,26 @@ const Articles = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Articles</h3>
-                  <Button color="primary" href="#pablo" onClick={handleModal} size="md">
+                  <h3 className="mb-0">{t("Articles")}</h3>
+                  <Button
+                    color="primary"
+                    href="#pablo"
+                    onClick={handleModal}
+                    size="md"
+                  >
                     <i className="ni ni-fat-add"></i>
-                    Add Article
+                    {t("Add Article")}
                   </Button>
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Updated At</th>
+                    <th scope="col">{t("Title")}</th>
+                    <th scope="col">{t("Description")}</th>
+                    <th scope="col">{t("Status")}</th>
+                    <th scope="col">{t("Created At")}</th>
+                    <th scope="col">{t("Updated At")}</th>
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -117,11 +130,24 @@ const Articles = () => {
                       <tr>
                         <th scope="row">
                           <Media className="align-items-center">
-                            <a className="avatar rounded-circle mr-3" href="#pablo" onClick={(e) => e.preventDefault()}>
-                              <img alt="Article" src={process.env.REACT_APP_SERVER_MEDIA_URL + article.blog_images} />
+                            <a
+                              className="avatar rounded-circle mr-3"
+                              href="#pablo"
+                              onClick={(e) => e.preventDefault()}
+                            >
+                              <img
+                                alt="Article"
+                                src={
+                                  process.env.REACT_APP_SERVER_MEDIA_URL +
+                                  article.blog_images
+                                }
+                              />
                             </a>
                             <Media>
-                              <span className="mb-0 text-sm" title={article.blog_title}>
+                              <span
+                                className="mb-0 text-sm"
+                                title={article.blog_title}
+                              >
                                 {article.blog_title?.length > 30
                                   ? article.blog_title?.substring(0, 30) + "..."
                                   : article.blog_title}
@@ -130,7 +156,9 @@ const Articles = () => {
                           </Media>
                         </th>
                         <td title={article.blog_desc}>
-                          {article.blog_desc?.length > 30 ? article.blog_desc?.substring(0, 30) + "..." : article.blog_desc}
+                          {article.blog_desc?.length > 30
+                            ? article.blog_desc?.substring(0, 30) + "..."
+                            : article.blog_desc}
                         </td>
                         <td>
                           <Badge color="" className="badge-dot mr-4">
@@ -153,7 +181,7 @@ const Articles = () => {
                             >
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
-                            <DropdownMenu className="dropdown-menu-arrow" right>
+                            {/* <DropdownMenu className="dropdown-menu-arrow" right>
                               <DropdownItem
                               // onClick={() =>
                               //   window
@@ -163,14 +191,22 @@ const Articles = () => {
                               //     )
                               //     .focus()
                               // }
+                              > */}
+                            <DropdownMenu className="dropdown-menu-arrow" right>
+                              <DropdownItem>{t("View")}</DropdownItem>
+
+                              <DropdownItem
+                                href="#pablo"
+                                onClick={() => handleEditModal(article)}
                               >
-                                View
+                                {t("Edit")}
                               </DropdownItem>
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(article)}>
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(article._id)}>
-                                Delete
+                              <DropdownItem
+                                href="#pablo"
+                                className="text-danger"
+                                onClick={() => handleDelete(article._id)}
+                              >
+                                {"Delete"}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
@@ -238,7 +274,14 @@ const Articles = () => {
             </Card>
           </div>
         </Row>
-        {openModal && <AddArticle openModal={openModal} handleModal={handleModal} getArticles={getArticles} />}
+
+        {openModal && (
+          <AddArticle
+            openModal={openModal}
+            handleModal={handleModal}
+            getArticles={getArticles}
+          />
+        )}
         {editModal && (
           <EditArticle
             openModal={editModal}

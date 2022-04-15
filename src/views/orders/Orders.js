@@ -38,10 +38,15 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import ViewOrder from "./ViewOrder";
+import { useTranslation } from "react-i18next";
 
 const Users = () => {
+  const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+
   const { orders } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
@@ -71,20 +76,12 @@ const Users = () => {
     return openModal;
   };
 
-  const handleEditModal = (item) => {
+  const handleViewModal = (item) => {
     if (item) {
-      setUser({
-        _id: item._id,
-        name: item.name,
-        email: item.email,
-        address: item.address,
-        number: item.number,
-        country: item.country,
-        city: item.city,
-      });
+      setUser(item);
     }
 
-    setEditModal((open) => !open);
+    setViewModal((open) => !open);
     return openModal;
   };
 
@@ -106,7 +103,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Orders</h3>
+                  <h3 className="mb-0">{t("Orders")}</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -116,13 +113,15 @@ const Users = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Designer</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">{t("Name")}</th>
+                    <th scope="col">{t("CATEGORY")}</th>
+                    <th scope="col">{t("Status")}</th>
+                    <th scope="col">{t("Type")}</th>
+                    <th scope="col">{t("Client")}</th>
+                    <th scope="col">{t("DESIGNER")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
+
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -148,28 +147,13 @@ const Users = () => {
                         <td>{item.tailor?.name}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
-                        {/* <td className="text-right">
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className="btn-icon-only text-light"
-                              href="#pablo"
-                              role="button"
-                              size="sm"
-                              color=""
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className="fas fa-ellipsis-v" />
-                            </DropdownToggle>
-                            <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td> */}
+                        <td className="text-right">
+                          <i
+                            className="fa fa-eye"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleViewModal(item)}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -178,10 +162,13 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {/* {openModal && <AddUser openModal={openModal} handleModal={handleModal} getUsers={getUsers} />}
-        {editModal && (
-          <EditUser openModal={editModal} handleModal={handleEditModal} user={user} setUser={setUser} getUsers={getUsers} />
-        )} */}
+        {viewModal && (
+          <ViewOrder
+            openModal={viewModal}
+            handleModal={handleViewModal}
+            order={user}
+          />
+        )}
       </Container>
     </>
   );

@@ -2,12 +2,25 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button, FormGroup, Form, Input, Row, Col } from "reactstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  Button,
+  FormGroup,
+  Form,
+  Input,
+  Row,
+  Col,
+} from "reactstrap";
 // core components
-
+import { useTranslation, Trans } from "react-i18next";
 const { Option } = Select;
 
 const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
+  const { t } = useTranslation();
+
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -55,7 +68,9 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>{user.name ? "" : "*"} </span>
+                        <span style={{ color: "red" }}>
+                          {user.name ? "" : "*"}{" "}
+                        </span>
                         <label className="form-control-label">Name</label>
                         <Input
                           className="form-control-alternative text-default"
@@ -70,7 +85,9 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>{user.email ? "" : "*"} </span>
+                        <span style={{ color: "red" }}>
+                          {user.email ? "" : "*"}{" "}
+                        </span>
                         <label className="form-control-label">Email</label>
                         <Input
                           className="form-control-alternative text-default"
@@ -87,7 +104,10 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label" htmlFor="input-password">
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-password"
+                        >
                           Password
                         </label>
                         <Input
@@ -103,8 +123,12 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>{user.phone ? "" : "*"} </span>
-                        <label className="form-control-label">Contact no.</label>
+                        <span style={{ color: "red" }}>
+                          {user.phone ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">
+                          Contact no.
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
@@ -171,10 +195,10 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSubmit}>
-            Update
+            {t("Update")}
           </Button>
 
-          <Button onClick={handleModal}>Cancel</Button>
+          <Button onClick={handleModal}>{t("Cancel")}</Button>
         </ModalFooter>
       </Modal>
     </>

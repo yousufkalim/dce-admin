@@ -20,6 +20,8 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import api from "api";
 import { Store, UpdateStore } from "StoreContext";
+import { useTranslation } from "react-i18next";
+
 import {
   Badge,
   Card,
@@ -38,10 +40,15 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import ViewQuote from "./ViewQuote";
 
 const Users = () => {
+  const { t } = useTranslation();
+
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+
   const { quotes } = Store();
   const updateStore = UpdateStore();
   const history = useHistory();
@@ -71,20 +78,12 @@ const Users = () => {
     return openModal;
   };
 
-  const handleEditModal = (item) => {
+  const handleViewModal = (item) => {
     if (item) {
-      setUser({
-        _id: item._id,
-        name: item.name,
-        email: item.email,
-        address: item.address,
-        number: item.number,
-        country: item.country,
-        city: item.city,
-      });
+      setUser(item);
     }
 
-    setEditModal((open) => !open);
+    setViewModal((open) => !open);
     return openModal;
   };
 
@@ -106,7 +105,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Quotes</h3>
+                  <h3 className="mb-0">{t("Quotes")}</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -116,12 +115,13 @@ const Users = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Designer</th>
-                    <th scope="col">Order</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">{t("Designer")}</th>
+                    <th scope="col">{t("ORDER")}</th>
+                    <th scope="col">{t("Price")}</th>
+                    <th scope="col">{t("Description")}</th>
+                    <th scope="col">{t("Status")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -131,7 +131,10 @@ const Users = () => {
                         <th scope="row">
                           <Media className="align-items-center">
                             <Media>
-                              <span className="mb-0 text-sm" title={item.tailor?.name}>
+                              <span
+                                className="mb-0 text-sm"
+                                title={item.tailor?.name}
+                              >
                                 {item.tailor?.name || "N/A"}
                               </span>
                             </Media>
@@ -141,33 +144,20 @@ const Users = () => {
 
                         <td>{item.price}</td>
                         <td title={item.description}>
-                          {item.description?.length > 30 ? item.description?.substring(0, 30) + "..." : item.description}
+                          {item.description?.length > 30
+                            ? item.description?.substring(0, 30) + "..."
+                            : item.description}
                         </td>
                         <td title={item.status}>{item.status}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
-                        {/* <td className="text-right">
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              className="btn-icon-only text-light"
-                              href="#pablo"
-                              role="button"
-                              size="sm"
-                              color=""
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <i className="fas fa-ellipsis-v" />
-                            </DropdownToggle>
-                            <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
-                                Edit
-                              </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(item._id)}>
-                                Delete
-                              </DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </td> */}
+                        <td className="text-right">
+                          <i
+                            className="fa fa-eye"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleViewModal(item)}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -176,10 +166,13 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {/* {openModal && <AddUser openModal={openModal} handleModal={handleModal} getUsers={getUsers} />}
-        {editModal && (
-          <EditUser openModal={editModal} handleModal={handleEditModal} user={user} setUser={setUser} getUsers={getUsers} />
-        )} */}
+        {viewModal && (
+          <ViewQuote
+            openModal={viewModal}
+            handleModal={handleViewModal}
+            quote={user}
+          />
+        )}
       </Container>
     </>
   );

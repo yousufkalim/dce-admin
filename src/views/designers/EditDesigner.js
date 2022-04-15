@@ -2,12 +2,25 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button, FormGroup, Form, Input, Row, Col } from "reactstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  Button,
+  FormGroup,
+  Form,
+  Input,
+  Row,
+  Col,
+} from "reactstrap";
 // core components
-
+import { useTranslation, Trans } from "react-i18next";
 const { Option } = Select;
 
 const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
+  const { t } = useTranslation();
+
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -45,7 +58,7 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          Edit a designer
+          {t("Edit a designer")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -55,12 +68,16 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>{user.name ? "" : "*"} </span>
-                        <label className="form-control-label">Name</label>
+                        <span style={{ color: "red" }}>
+                          {user.name ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">
+                          {t("Name")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's name here"
+                          placeholder={t("Enter user's name here")}
                           type="text"
                           value={user.name}
                           name="name"
@@ -70,12 +87,16 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>{user.email ? "" : "*"} </span>
-                        <label className="form-control-label">Email</label>
+                        <span style={{ color: "red" }}>
+                          {user.email ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">
+                          {t("Email")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's email here"
+                          placeholder={t("Enter user's email here")}
                           type="email"
                           value={user.email}
                           name="email"
@@ -87,13 +108,16 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label" htmlFor="input-password">
-                          Password
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-password"
+                        >
+                          {t("Password")}
                         </label>
                         <Input
                           className="form-control-alternative"
                           id="input-password"
-                          placeholder="Password"
+                          placeholder={t("Password")}
                           type="password"
                           value={user.password}
                           name="password"
@@ -103,12 +127,16 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>{user.phone ? "" : "*"} </span>
-                        <label className="form-control-label">Contact no.</label>
+                        <span style={{ color: "red" }}>
+                          {user.phone ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">
+                          {t("Contact no.")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's contact here"
+                          placeholder={t("Enter user's contact here")}
                           type="phone"
                           value={user.phone}
                           name="phone"
@@ -121,11 +149,13 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="12" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Address</label>
+                        <label className="form-control-label">
+                          {t("Address")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's address here"
+                          placeholder={t("Enter user's address here")}
                           type="text"
                           value={user.address}
                           name="address"
@@ -137,11 +167,13 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">City</label>
+                        <label className="form-control-label">
+                          {t("City")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's city here"
+                          placeholder={t("Enter user's city here")}
                           type="text"
                           value={user.city}
                           name="city"
@@ -151,11 +183,13 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Country</label>
+                        <label className="form-control-label">
+                          {t("Country")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's country here"
+                          placeholder={t("Enter user's country here")}
                           type="text"
                           value={user.country}
                           name="country"

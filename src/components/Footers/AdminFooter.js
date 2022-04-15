@@ -19,22 +19,35 @@
 
 // reactstrap components
 import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <Row className="align-items-center justify-content-xl-between">
-        <Col xl="6">
+        <Col xl="8">
           <div className="copyright text-center text-xl-left text-muted">
-            © {new Date().getFullYear()}{" "}
-            <a className="font-weight-bold ml-1" href="#" rel="noopener noreferrer" target="_blank">
+            © {new Date().getFullYear()}
+            <a
+              className="font-weight-bold ml-1"
+              href="#"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               Design Confections
             </a>
-            &nbsp;Developed by{" "}
-            <a className="font-weight-bold ml-1" href="https://www.falconconsulting.fr" rel="noopener noreferrer" target="_blank">
+            &nbsp;{t("Developed by")}
+            <a
+              className="font-weight-bold ml-1"
+              href="https://www.falconconsulting.fr"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               Falcon Consulting
-            </a>{" "}
-            - All rights reserved.
+            </a>
+            {t("- All rights reserved.")}
           </div>
         </Col>
 

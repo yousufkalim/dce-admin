@@ -16,10 +16,11 @@ import {
   Label,
 } from "reactstrap";
 // core components
-
+import { useTranslation, Trans } from "react-i18next";
 const { Option } = Select;
 
 const AddUser = ({ openModal, handleModal, getUsers }) => {
+  const { t } = useTranslation();
   let [user, setUser] = useState({
     name: "",
     email: "",
@@ -67,7 +68,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          Add a designer
+          {t("Add a designer")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -82,12 +83,12 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           <span style={{ color: "red" }}>
                             {user.name ? "" : "*"}{" "}
                           </span>
-                          Name
+                          {t("Name")}
                         </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's name here"
+                          placeholder={t("Enter user's name here")}
                           type="text"
                           value={user.name}
                           name="name"
@@ -102,12 +103,12 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           <span style={{ color: "red" }}>
                             {user.email ? "" : "*"}{" "}
                           </span>
-                          Email
+                          {t("Email")}
                         </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's email here"
+                          placeholder={t("Enter user's email here")}
                           type="email"
                           value={user.email}
                           name="email"
@@ -126,12 +127,12 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           <span style={{ color: "red" }}>
                             {user.password ? "" : "*"}{" "}
                           </span>
-                          Password
+                          {t("Password")}
                         </label>
                         <Input
                           className="form-control-alternative"
                           id="input-password"
-                          placeholder="Password"
+                          placeholder={t("Password")}
                           type="password"
                           value={user.password}
                           name="password"
@@ -145,12 +146,12 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           <span style={{ color: "red" }}>
                             {user.phone ? "" : "*"}{" "}
                           </span>{" "}
-                          Contact no.
+                          {t("Contact no.")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's contact here"
+                          placeholder={t("Enter user's contact here")}
                           type="phone"
                           value={user.phone}
                           name="phone"
@@ -163,11 +164,13 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                   <Row>
                     <Col lg="12" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Address</label>
+                        <label className="form-control-label">
+                          {t("Address")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's address here"
+                          placeholder={t("Enter user's address here")}
                           type="text"
                           value={user.address}
                           name="address"
@@ -179,11 +182,13 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">City</label>
+                        <label className="form-control-label">
+                          {t("City")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's city here"
+                          placeholder={t("Enter user's city here")}
                           type="text"
                           value={user.city}
                           name="city"
@@ -193,11 +198,13 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Country</label>
+                        <label className="form-control-label">
+                          {t("Country")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's country here"
+                          placeholder={t("Enter user's country here")}
                           type="text"
                           value={user.country}
                           name="country"
@@ -213,10 +220,10 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSubmit}>
-            Save
+            {t("Save")}
           </Button>
 
-          <Button onClick={handleModal}>Cancel</Button>
+          <Button onClick={handleModal}>{t("Cancel")}</Button>
         </ModalFooter>
       </Modal>
     </>

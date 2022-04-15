@@ -32,6 +32,7 @@ i18n
           COMPLAINTS: "COMPLAINTS",
           Save: "Save",
           Cancel: "Cancel",
+          Update: "Update",
 
           //dashboard/header data
           TRAFFIC: "TRAFFIC",
@@ -170,6 +171,7 @@ i18n
           COMPLAINTS: "PLAINTES",
           Save: "Sauver",
           Cancel: "Annuler",
+          Update: "Mise à jour",
 
           //dashboard/header data
           TRAFFIC: "CIRCULATION",

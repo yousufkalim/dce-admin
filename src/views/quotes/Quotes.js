@@ -20,6 +20,8 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import api from "api";
 import { Store, UpdateStore } from "StoreContext";
+import { useTranslation } from "react-i18next";
+
 import {
   Badge,
   Card,
@@ -41,6 +43,8 @@ import { toast } from "react-toastify";
 import ViewQuote from "./ViewQuote";
 
 const Users = () => {
+  const { t } = useTranslation();
+
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -101,7 +105,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Quotes</h3>
+                  <h3 className="mb-0">{t("Quotes")}</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -111,12 +115,12 @@ const Users = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Designer</th>
-                    <th scope="col">Order</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">{t("Designer")}</th>
+                    <th scope="col">{t("ORDER")}</th>
+                    <th scope="col">{t("Price")}</th>
+                    <th scope="col">{t("Description")}</th>
+                    <th scope="col">{t("Status")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>

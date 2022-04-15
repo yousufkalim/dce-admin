@@ -15,15 +15,18 @@ import {
   Col,
 } from "reactstrap";
 // core components
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
 const ViewQuote = ({ openModal, handleModal, quote }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          View Quote
+          {t("View Quote")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -33,7 +36,9 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Designer</label>
+                        <label className="form-control-label">
+                          {t("Designer")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={quote.tailor.name}
@@ -44,7 +49,9 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Name</label>
+                        <label className="form-control-label">
+                          {t("Name")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={quote.order.name}
@@ -56,7 +63,9 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Price</label>
+                        <label className="form-control-label">
+                          {t("Price")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={quote.price}
@@ -66,7 +75,9 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Status</label>
+                        <label className="form-control-label">
+                          {t("Status")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={quote.status}
@@ -82,7 +93,7 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
                     <Col lg="12" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Description
+                          {t("Description")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -99,7 +110,7 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
           </Row>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={handleModal}>Cancel</Button>
+          <Button onClick={handleModal}>{t("Cancel")}</Button>
         </ModalFooter>
       </Modal>
     </>

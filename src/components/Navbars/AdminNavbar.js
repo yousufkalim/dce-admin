@@ -56,7 +56,7 @@ const AdminNavbar = (props) => {
             className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
             to="/admin/index"
           >
-            {props.brandText}
+            {t(props.brandText)}
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <Button

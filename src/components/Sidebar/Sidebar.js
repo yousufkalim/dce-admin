@@ -20,6 +20,7 @@ import { useState } from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
+import { useTranslation } from "react-i18next";
 
 // reactstrap components
 import {
@@ -54,6 +55,8 @@ import {
 
 const Sidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
+  const { t } = useTranslation();
+
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
@@ -79,7 +82,7 @@ const Sidebar = (props) => {
               activeClassName="active"
             >
               <i className={prop.icon} />
-              {prop.name}
+              {t(prop.name)}
             </NavLink>
           </NavItem>
         );

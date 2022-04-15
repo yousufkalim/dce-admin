@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
+import { useTranslation } from "react-i18next";
+
 import {
   Modal,
   ModalBody,
@@ -19,11 +21,13 @@ import {
 const { Option } = Select;
 
 const ViewComplaint = ({ openModal, handleModal, complaint }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          View Complaint
+          {t("View Complaint")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -33,7 +37,9 @@ const ViewComplaint = ({ openModal, handleModal, complaint }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Reason</label>
+                        <label className="form-control-label">
+                          {t("Reason")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={complaint.reason || "N/A"}
@@ -44,7 +50,7 @@ const ViewComplaint = ({ openModal, handleModal, complaint }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Attachments
+                          {t("Attachments")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -57,7 +63,9 @@ const ViewComplaint = ({ openModal, handleModal, complaint }) => {
                   <Row>
                     <Col lg="12">
                       <FormGroup>
-                        <label className="form-control-label">Details</label>
+                        <label className="form-control-label">
+                          {t("Details")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={complaint.details || "N/A"}
@@ -73,7 +81,7 @@ const ViewComplaint = ({ openModal, handleModal, complaint }) => {
           </Row>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={handleModal}>Cancel</Button>
+          <Button onClick={handleModal}>{t("Cancel")}</Button>
         </ModalFooter>
       </Modal>
     </>

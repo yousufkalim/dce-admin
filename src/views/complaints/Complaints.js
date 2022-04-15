@@ -20,6 +20,8 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import api from "api";
 import { Store, UpdateStore } from "StoreContext";
+import { useTranslation } from "react-i18next";
+
 import {
   Badge,
   Card,
@@ -41,6 +43,8 @@ import { toast } from "react-toastify";
 import ViewComplaint from "./ViewComplaint";
 
 const Complaints = () => {
+  const { t } = useTranslation();
+
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const { complaints } = Store();
@@ -95,7 +99,7 @@ const Complaints = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Complaints</h3>
+                  <h3 className="mb-0">{t("Complaints")}</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -105,10 +109,11 @@ const Complaints = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Reason</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Attachment</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">{t("Reason")}</th>
+                    <th scope="col">{t("Details")}</th>
+                    <th scope="col">{t("Attachment")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
+
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -150,14 +155,14 @@ const Complaints = () => {
                                 href="#pablo"
                                 onClick={() => handleViewModal(item)}
                               >
-                                View
+                                {t("View")}
                               </DropdownItem>
                               <DropdownItem
                                 href="#pablo"
                                 className="text-danger"
                                 onClick={() => handleDelete(item._id)}
                               >
-                                Delete
+                                {t("Delete")}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>

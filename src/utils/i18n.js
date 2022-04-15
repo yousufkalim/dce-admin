@@ -101,6 +101,7 @@ i18n
           "View Order": "View Order",
           CATEGORY: "CATEGORY",
           TYPE: "TYPE",
+          Type: "Type",
           Client: "Client",
           Designer: "Designer",
           Gender: "Gender",
@@ -240,6 +241,8 @@ i18n
           "View Order": "Voir l'ordre",
           CATEGORY: "CATÉGORIE",
           TYPE: "TAPER",
+          Type: "Taper",
+
           Client: "Client",
           Designer: "Designer",
           Gender: "Le sexe",

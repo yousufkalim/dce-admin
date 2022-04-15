@@ -39,8 +39,10 @@ import {
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 import ViewOrder from "./ViewOrder";
+import { useTranslation } from "react-i18next";
 
 const Users = () => {
+  const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -101,7 +103,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">Orders</h3>
+                  <h3 className="mb-0">{t("Orders")}</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -111,13 +113,14 @@ const Users = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Designer</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">{t("Name")}</th>
+                    <th scope="col">{t("CATEGORY")}</th>
+                    <th scope="col">{t("Status")}</th>
+                    <th scope="col">{t("Type")}</th>
+                    <th scope="col">{t("Client")}</th>
+                    <th scope="col">{t("DESIGNER")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
+
                     <th scope="col"></th>
                   </tr>
                 </thead>

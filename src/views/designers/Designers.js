@@ -41,7 +41,7 @@ import EditUser from "./EditDesigner";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 import ViewUser from "./ViewDesigner";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 const Users = () => {
   const { t } = useTranslation();
 

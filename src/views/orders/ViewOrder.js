@@ -15,15 +15,17 @@ import {
   Col,
 } from "reactstrap";
 // core components
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
 const ViewOrder = ({ openModal, handleModal, order }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          View Order
+          {t("View Order")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -33,7 +35,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Client</label>
+                        <label className="form-control-label">
+                          {t("Client")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.client.name}
@@ -44,7 +48,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Designer</label>
+                        <label className="form-control-label">
+                          {t("Designer")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.tailor.name}
@@ -57,7 +63,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Name</label>
+                        <label className="form-control-label">
+                          {t("Name")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.name}
@@ -68,7 +76,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Gender</label>
+                        <label className="form-control-label">
+                          {t("Gender")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.gender}
@@ -81,7 +91,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Category</label>
+                        <label className="form-control-label">
+                          {t("Category")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.category}
@@ -92,7 +104,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Cut</label>
+                        <label className="form-control-label">{t("Cut")}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.cut}
@@ -106,7 +118,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Measurements
+                          {t("Measurements")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -118,7 +130,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Color</label>
+                        <label className="form-control-label">
+                          {t("Color")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.color}
@@ -131,7 +145,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Fabric</label>
+                        <label className="form-control-label">
+                          {t("Fabric")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.fabric}
@@ -143,7 +159,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
 
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Type</label>
+                        <label className="form-control-label">
+                          {t("Type")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.type}
@@ -158,7 +176,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     {" "}
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Address</label>
+                        <label className="form-control-label">
+                          {t("Address")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.delivery.address}
@@ -169,7 +189,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Date</label>
+                        <label className="form-control-label">
+                          {t("Date")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.delivery.date}
@@ -182,7 +204,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Country</label>
+                        <label className="form-control-label">
+                          {t("Country")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.delivery.country}
@@ -193,7 +217,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">City</label>
+                        <label className="form-control-label">
+                          {t("City")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.delivery.city}
@@ -206,7 +232,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Note</label>
+                        <label className="form-control-label">
+                          {t("Note")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.delivery.note}
@@ -218,7 +246,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Delivery Type
+                          {t("Delivery Type")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -233,7 +261,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Budget Type
+                          {t("Budget Type")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -246,7 +274,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Budget Note
+                          {t("Budget Note")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -259,7 +287,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Min Price</label>
+                        <label className="form-control-label">
+                          {t("Min Price")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.budget.min_price}
@@ -269,7 +299,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Max Price</label>
+                        <label className="form-control-label">
+                          {t("Max Price")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.budget.max_price}
@@ -283,7 +315,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Rating Count
+                          {t("Rating Count")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -295,7 +327,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          Rating Value
+                          {t("Rating Value")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -309,7 +341,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Attachment</label>
+                        <label className="form-control-label">
+                          {t("Attachment")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.attachment || "N/A"}
@@ -319,7 +353,9 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Status</label>
+                        <label className="form-control-label">
+                          {t("Status")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           value={order.status}
@@ -335,7 +371,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
           </Row>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={handleModal}>Cancel</Button>
+          <Button onClick={handleModal}>{t("Cancel")}</Button>
         </ModalFooter>
       </Modal>
     </>

@@ -38,23 +38,23 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user.name == "") {
-      return toast.error("Please enter user's name");
+      return toast.error(t("Please enter user's name"));
     }
 
     if (user.email == "") {
       return toast.error("Please enter email");
     }
     if (!(user.email.includes(".") && user.email.includes("@"))) {
-      return toast.error("Please enter a valid email");
+      return toast.error(t("Please enter a valid email"));
     }
     if (user.password == "") {
-      return toast.error("Password is required");
+      return toast.error(t("Password is required"));
     }
     if (user.password.length < 8) {
-      return toast.error("Passwords should be of atleast 8 letters");
+      return toast.error(t("Passwords should be of atleast 8 letters"));
     }
     if (user.phone == "") {
-      return toast.error("Contact no. is required");
+      return toast.error(t("Contact no. is required"));
     }
 
     api("post", "/clients/createByAdmin", user).then((res) => {

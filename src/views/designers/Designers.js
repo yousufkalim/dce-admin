@@ -114,7 +114,7 @@ const Users = () => {
 
   const handleDelete = (id) => {
     api("delete", `/tailors/${id}`).then(() => {
-      toast.success("Tailor deleted successfully");
+      toast.success(t("Designer deleted successfully"));
       getUsers();
     });
   };

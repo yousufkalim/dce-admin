@@ -80,7 +80,7 @@ const Users = () => {
   };
   const handleDelete = (id) => {
     api("delete", `/users/${id}`).then(() => {
-      toast.success("User deleted successfully");
+      toast.success(t("User deleted successfully"));
       getUsers();
     });
   };

@@ -52,12 +52,12 @@ const EditArticle = ({
 
     api("put", `/blogs/${blog._id}`, formData)
       .then((res) => {
-        toast.success("Article updated successfully");
+        toast.success(t("Article updated successfully"));
         getArticles();
         handleModal();
       })
       .catch(() => {
-        toast.error("An error occurred");
+        toast.error(t("An error occurred"));
       });
   };
 

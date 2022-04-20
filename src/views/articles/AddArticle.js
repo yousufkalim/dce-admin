@@ -47,12 +47,12 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
 
     api("post", "/blogs", formData)
       .then((res) => {
-        toast.success("Article added successfully");
+        toast.success(t("Article added successfully"));
         getArticles();
         handleModal();
       })
       .catch(() => {
-        toast.error("An error occurred");
+        toast.error(t("An error occurred"));
       });
   };
 

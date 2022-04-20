@@ -83,7 +83,7 @@ const Complaints = () => {
 
   const handleDelete = (id) => {
     api("delete", `/complaints/${id}`).then(() => {
-      toast.success("Complaint deleted successfully");
+      toast.success(t("Complaint deleted successfully"));
       getComplaints();
     });
   };

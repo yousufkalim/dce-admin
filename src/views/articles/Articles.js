@@ -82,11 +82,11 @@ const Articles = () => {
   const handleDelete = (id) => {
     api("delete", `/blogs/${id}`)
       .then(() => {
-        toast.success("Article deleted successfully");
+        toast.success(t("Article deleted successfully"));
         getArticles();
       })
       .catch(() => {
-        toast.error("An error occurred while deleting");
+        toast.error(t("An error occurred while deleting"));
       });
   };
 

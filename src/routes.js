@@ -71,7 +71,7 @@ var routes = [
   },
   {
     path: "/catalogs",
-    name: "Catalogs",
+    name: "Catalogues",
     icon: "ni ni-collection text-teal",
     component: Catalogs,
     layout: "/admin",

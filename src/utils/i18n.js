@@ -18,7 +18,7 @@ i18n
           Designers: "Designers",
           Orders: "Orders",
           Quotes: "Quotes",
-          Catalogs: "Catalogs",
+          Catalogues: "Catalogues",
           Complaints: "Complaints",
 
           //basic
@@ -28,7 +28,7 @@ i18n
           DASHBOARD: "DASHBOARD",
           ORDERS: "ORDERS",
           QUOTES: "QUOTES",
-          CATALOGS: "CATALOGS",
+          CATALOGUES: "CATALOGUES",
           COMPLAINTS: "COMPLAINTS",
           Save: "Save",
           Cancel: "Cancel",
@@ -134,7 +134,7 @@ i18n
           Price: "Price",
 
           //catalog
-          "View catalog": "View catalog",
+          "View catalogue": "View catalogue",
 
           //complaint
           "View Complaint": "View Complaint",
@@ -296,7 +296,7 @@ i18n
           Price: "Prix",
 
           //catalog
-          "View catalog": "Voir le catalogue",
+          "View catalogue": "Voir le catalogue",
 
           //complaint
           "View Complaint": "Voir la plainte",

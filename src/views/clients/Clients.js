@@ -112,10 +112,12 @@ const Users = () => {
     return openModal;
   };
   const handleDelete = (id) => {
-    api("delete", `/clients/${id}`).then(() => {
-      toast.success("User deleted successfully");
-      getUsers();
-    });
+    var a = window.confirm("Are you sure you want to delete?");
+    if (a)
+      api("delete", `/clients/${id}`).then(() => {
+        toast.success(t("User deleted successfully"));
+        getUsers();
+      });
   };
 
   return (

@@ -80,14 +80,16 @@ const Articles = () => {
   };
 
   const handleDelete = (id) => {
-    api("delete", `/blogs/${id}`)
-      .then(() => {
-        toast.success(t("Article deleted successfully"));
-        getArticles();
-      })
-      .catch(() => {
-        toast.error(t("An error occurred while deleting"));
-      });
+    var a = window.confirm("Are you sure you want to delete?");
+    if (a)
+      api("delete", `/blogs/${id}`)
+        .then(() => {
+          toast.success(t("Article deleted successfully"));
+          getArticles();
+        })
+        .catch(() => {
+          toast.error(t("An error occurred while deleting"));
+        });
   };
 
   return (

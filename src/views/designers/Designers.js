@@ -113,10 +113,12 @@ const Users = () => {
   };
 
   const handleDelete = (id) => {
-    api("delete", `/tailors/${id}`).then(() => {
-      toast.success(t("Designer deleted successfully"));
-      getUsers();
-    });
+    var a = window.confirm("Are you sure you want to delete?");
+    if (a)
+      api("delete", `/tailors/${id}`).then(() => {
+        toast.success(t("Designer deleted successfully"));
+        getUsers();
+      });
   };
 
   return (

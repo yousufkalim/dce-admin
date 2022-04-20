@@ -58,7 +58,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     }
 
     api("post", "/clients/createByAdmin", user).then((res) => {
-      toast.success("Client added successfully");
+      toast.success(t("Client added successfully"));
       getUsers();
       handleModal();
     });

@@ -107,6 +107,8 @@ i18n
           Designer: "Designer",
           Gender: "Gender",
           Category: "Category",
+          RATING: "RATING",
+
           Cut: "Cut",
           Measurements: "Measurements",
           Color: "Color",
@@ -288,7 +290,7 @@ i18n
           in_progress: "en cours",
           completed: "terminé",
           discarded: "mis au rebut",
-
+          RATING: "ÉVALUATION",
           //quotes
           "View Quote": "Voir le devis",
           ORDER: "COMMANDE",

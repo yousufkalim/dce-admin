@@ -149,6 +149,7 @@ const Users = () => {
                     <th scope="col">{t("Name")}</th>
                     <th scope="col">{t("Email")}</th>
                     <th scope="col">{t("Contact no")}</th>
+                    <th scope="col">{t("RATING")}</th>
                     <th scope="col">{t("City")}</th>
                     <th scope="col">{t("Country")}</th>
                     <th scope="col">{t("CREATED AT")}</th>
@@ -177,6 +178,11 @@ const Users = () => {
                         </td>
 
                         <td>{item.phone}</td>
+                        <td>
+                          {item.ratings.reduce((a, b) => a + b, 0) /
+                            item.ratings.length}
+                        </td>
+
                         <td>{item.city}</td>
                         <td>{item.country}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>

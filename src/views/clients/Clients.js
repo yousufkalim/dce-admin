@@ -89,6 +89,7 @@ const Users = () => {
         phone: item.phone,
         country: item.country,
         city: item.city,
+        active: item.active,
       });
     }
 
@@ -106,6 +107,7 @@ const Users = () => {
         phone: item.phone,
         country: item.country,
         city: item.city,
+        active: item.active,
       });
     }
     setViewModal((open) => !open);
@@ -212,6 +214,7 @@ const Users = () => {
                               >
                                 {t("Edit")}
                               </DropdownItem>
+
                               <DropdownItem
                                 href="#pablo"
                                 className="text-danger"

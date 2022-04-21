@@ -40,7 +40,6 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     if (user.name == "") {
       return toast.error(t("Please enter user's name"));
     }
-
     if (user.email == "") {
       return toast.error("Please enter email");
     }

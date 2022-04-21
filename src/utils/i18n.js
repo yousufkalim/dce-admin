@@ -108,7 +108,8 @@ i18n
           Gender: "Gender",
           Category: "Category",
           RATING: "RATING",
-
+          Block: "Block",
+          Unblock: "Unblock",
           Cut: "Cut",
           Measurements: "Measurements",
           Color: "Color",
@@ -333,6 +334,8 @@ i18n
           "Designer added successfully":
             "Le concepteur a été ajouté avec succès",
           "Designer deleted successfully": "Designer supprimé avec succès",
+          Block: "Bloc",
+          Unblock: "Débloquer",
         },
       },
     },

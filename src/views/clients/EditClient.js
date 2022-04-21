@@ -29,26 +29,26 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     e.preventDefault();
 
     if (user.name == "") {
-      return toast.error("Please enter user's name");
+      return toast.error(t("Please enter user's name"));
     }
 
     if (user.email == "") {
-      return toast.error("Please enter email");
+      return toast.error(t("Please enter email"));
     }
     if (!(user.email.includes(".") && user.email.includes("@"))) {
-      return toast.error("Please enter a valid email");
+      return toast.error(t("Please enter a valid email"));
     }
 
     if (user.password && user.password.length < 8) {
-      return toast.error("Passwords should be of atleast 8 letters");
+      return toast.error(t("Passwords should be of atleast 8 letters"));
     }
 
     if (user.phone == "") {
-      return toast.error("Contact no. is required");
+      return toast.error(t("Contact no. is required"));
     }
 
     api("put", `/clients/updateByAdmin/${user._id}`, user).then((res) => {
-      toast.success("user edited successfully");
+      toast.success(t("User edited successfully"));
       getUsers();
       handleModal();
     });

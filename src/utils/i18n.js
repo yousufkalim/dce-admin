@@ -18,7 +18,7 @@ i18n
           Designers: "Designers",
           Orders: "Orders",
           Quotes: "Quotes",
-          Catalogs: "Catalogs",
+          Catalogues: "Catalogues",
           Complaints: "Complaints",
 
           //basic
@@ -28,7 +28,7 @@ i18n
           DASHBOARD: "DASHBOARD",
           ORDERS: "ORDERS",
           QUOTES: "QUOTES",
-          CATALOGS: "CATALOGS",
+          CATALOGUES: "CATALOGUES",
           COMPLAINTS: "COMPLAINTS",
           Save: "Save",
           Cancel: "Cancel",
@@ -96,6 +96,7 @@ i18n
           "Edit a designer": "Edit a designer",
           "View designer": "View designer",
           EXPERIENCE: "EXPERIENCE",
+          "Designer edited successfully": "Designer edited successfully",
 
           //orders
           "View Order": "View Order",
@@ -106,6 +107,8 @@ i18n
           Designer: "Designer",
           Gender: "Gender",
           Category: "Category",
+          RATING: "RATING",
+
           Cut: "Cut",
           Measurements: "Measurements",
           Color: "Color",
@@ -133,7 +136,7 @@ i18n
           Price: "Price",
 
           //catalog
-          "View catalog": "View catalog",
+          "View catalogue": "View catalogue",
 
           //complaint
           "View Complaint": "View Complaint",
@@ -147,6 +150,26 @@ i18n
           // footer
           "Developed by": "Developed by",
           "- All rights reserved.": "- All rights reserved.",
+
+          //toasts
+          "Please enter user's name": "Please enter user's name",
+          "Article added successfully": "Article added successfully",
+          "An error occurred": "An error occurred",
+          "Article deleted successfully": "Article deleted successfully",
+          "An error occurred while deleting":
+            "An error occurred while deleting",
+          "Article updated successfully": "Article updated successfully",
+          "User deleted successfully": "User deleted successfully",
+          "Please enter a valid email": "Please enter a valid email",
+          "Password is required": "Password is required",
+          "Passwords should be of atleast 8 letters":
+            "Passwords should be of atleast 8 letters",
+          "Contact no. is required": "Contact no. is required",
+          "Client added successfully": "Client added successfully",
+          "User edited successfully": "User edited successfully",
+          "Complaint deleted successfully": "Complaint deleted successfully",
+          "Designer added successfully": "Designer added successfully",
+          "Designer deleted successfully": "Designer deleted successfully",
         },
       },
       fr: {
@@ -182,6 +205,7 @@ i18n
           "Since last month": "Depuis le mois dernier",
           "Since last week": "Depuis la semaine dernière",
           "Since yesterday": "Depuis hier",
+          "Designer edited successfully": "Designer édité avec succès",
 
           //article
           "Create Article": "Créer un article",
@@ -266,7 +290,7 @@ i18n
           in_progress: "en cours",
           completed: "terminé",
           discarded: "mis au rebut",
-
+          RATING: "ÉVALUATION",
           //quotes
           "View Quote": "Voir le devis",
           ORDER: "COMMANDE",
@@ -274,7 +298,7 @@ i18n
           Price: "Prix",
 
           //catalog
-          "View catalog": "Voir le catalogue",
+          "View catalogue": "Voir le catalogue",
 
           //complaint
           "View Complaint": "Voir la plainte",
@@ -288,6 +312,27 @@ i18n
           // footer
           "Developed by": "Développé par",
           "- All rights reserved.": "- Tous droits réservés.",
+
+          //toasts
+          "Please enter user's name": "Veuillez entrer le nom de l'utilisateur",
+          "Article added successfully": "Article ajouté avec succès",
+          "An error occurred": "Une erreur s'est produite",
+          "Article deleted successfully": "Article supprimé avec succès",
+          "An error occurred while deleting":
+            "Une erreur s'est produite lors de la suppression",
+          "Article updated successfully": "Article mis à jour avec succès",
+          "User deleted successfully": "Utilisateur supprimé avec succès",
+          "Please enter a valid email": "Veuillez entrer un email valide",
+          "Password is required": "Mot de passe requis",
+          "Passwords should be of atleast 8 letters":
+            "Les mots de passe doivent comporter au moins 8 lettres",
+          "Contact no. is required": "Le numéro de contact est requis",
+          "Client added successfully": "Client ajouté avec succès",
+          "User edited successfully": "Utilisateur modifié avec succès",
+          "Complaint deleted successfully": "Plainte supprimée avec succès",
+          "Designer added successfully":
+            "Le concepteur a été ajouté avec succès",
+          "Designer deleted successfully": "Designer supprimé avec succès",
         },
       },
     },

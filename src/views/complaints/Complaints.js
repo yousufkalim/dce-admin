@@ -82,10 +82,12 @@ const Complaints = () => {
   };
 
   const handleDelete = (id) => {
-    api("delete", `/complaints/${id}`).then(() => {
-      toast.success("Complaint deleted successfully");
-      getComplaints();
-    });
+    var a = window.confirm("Are you sure you want to delete?");
+    if (a)
+      api("delete", `/complaints/${id}`).then(() => {
+        toast.success(t("Complaint deleted successfully"));
+        getComplaints();
+      });
   };
 
   return (

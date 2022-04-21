@@ -36,6 +36,9 @@ import {
   Media,
 } from "reactstrap";
 import { useTranslation, Trans } from "react-i18next";
+import france from "../../assets/img/icons/common/france.png";
+import eng from "../../assets/img/icons/common/eng.png";
+
 const AdminNavbar = (props) => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
@@ -59,21 +62,35 @@ const AdminNavbar = (props) => {
             {t(props.brandText)}
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
-            <Button
-              className="languageButton"
-              onClick={() =>
-                changeLanguage(`${language == "en" ? "fr" : "en"}`)
-              }
-              style={{
-                backgroundColor: "inherit",
-                color: "white",
-                border: "none",
-                borderRadius: "30px",
-                boxShadow: "none",
-              }}
-            >
-              {language == "fr" ? "French" : "English"}
-            </Button>
+            <UncontrolledDropdown nav>
+              <DropdownToggle className="pr-0" nav>
+                <Media className="align-items-center">
+                  <Media className="ml-2 d-none d-lg-block">
+                    <span className="mb-0 text-sm font-weight-bold">
+                      Translation
+                    </span>
+                  </Media>
+                </Media>
+              </DropdownToggle>
+              <DropdownMenu className="dropdown-menu-arrow" right>
+                <DropdownItem
+                  href="#pablo"
+                  onClick={() => changeLanguage("fr")}
+                >
+                  <span>
+                    <img src={france} width="15%" alt="" /> &nbsp; French
+                  </span>
+                </DropdownItem>
+                <DropdownItem
+                  href="#pablo"
+                  onClick={() => changeLanguage("en")}
+                >
+                  <span>
+                    <img src={eng} width="15%" alt="" /> &nbsp; English
+                  </span>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
@@ -85,26 +102,6 @@ const AdminNavbar = (props) => {
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
-                {/* <DropdownItem className="noti-title" header tag="div">
-                  <h6 className="text-overflow m-0">Welcome!</h6>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-single-02" />
-                  <span>My profile</span>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-settings-gear-65" />
-                  <span>Settings</span>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-calendar-grid-58" />
-                  <span>Activity</span>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-support-16" />
-                  <span>Support</span>
-                </DropdownItem>
-                <DropdownItem divider /> */}
                 <DropdownItem href="#pablo" onClick={handleLogout}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>

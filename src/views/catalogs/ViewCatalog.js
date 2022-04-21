@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
 import {
@@ -26,7 +25,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          {t("View catalog")}
+          {t("View catalogue")}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -41,7 +40,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={catalog.tailor.name}
+                          value={catalog.tailor?.name}
                           name="tailor"
                           disabled
                         />
@@ -126,7 +125,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={catalog.rating.count}
+                          value={catalog.rating?.count}
                           disabled
                         />
                       </FormGroup>
@@ -138,7 +137,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={catalog.rating.value}
+                          value={catalog.rating?.value}
                           disabled
                         />
                       </FormGroup>

@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import api from "../../api";
 import { Select } from "antd";
 import {
   Modal,
@@ -41,7 +38,7 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={quote.tailor.name}
+                          value={quote.tailor?.name}
                           name="tailor"
                           disabled
                         />
@@ -54,7 +51,7 @@ const ViewQuote = ({ openModal, handleModal, quote }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={quote.order.name}
+                          value={quote.order?.name}
                           disabled
                         />
                       </FormGroup>

@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import api from "../../api";
 import { Select } from "antd";
 import {
   Modal,
@@ -40,7 +37,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.client.name}
+                          value={order.client?.name}
                           name="client"
                           disabled
                         />
@@ -53,7 +50,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.tailor.name}
+                          value={order.tailor?.name}
                           name="tailor"
                           disabled
                         />
@@ -181,7 +178,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.delivery.address}
+                          value={order.delivery?.address}
                           name="address"
                           disabled
                         />
@@ -194,7 +191,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.delivery.date}
+                          value={order.delivery?.date}
                           name="date"
                           disabled
                         />
@@ -209,7 +206,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.delivery.country}
+                          value={order.delivery?.country}
                           name="country"
                           disabled
                         />
@@ -222,7 +219,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.delivery.city}
+                          value={order.delivery?.city}
                           name="city"
                           disabled
                         />
@@ -237,7 +234,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.delivery.note}
+                          value={order.delivery?.note}
                           name="note"
                           disabled
                         />
@@ -250,7 +247,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.delivery.type}
+                          value={order.delivery?.type}
                           name="type"
                           disabled
                         />
@@ -265,7 +262,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.budget.type}
+                          value={order.budget?.type}
                           name="type"
                           disabled
                         />
@@ -278,7 +275,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.budget.note || "N/A"}
+                          value={order.budget?.note || "N/A"}
                           disabled
                         />
                       </FormGroup>
@@ -292,7 +289,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.budget.min_price}
+                          value={order.budget?.min_price}
                           disabled
                         />
                       </FormGroup>
@@ -304,7 +301,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.budget.max_price}
+                          value={order.budget?.max_price}
                           disabled
                         />
                       </FormGroup>
@@ -319,7 +316,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.rating.count}
+                          value={order.rating?.count}
                           disabled
                         />
                       </FormGroup>
@@ -331,7 +328,7 @@ const ViewOrder = ({ openModal, handleModal, order }) => {
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={order.rating.value}
+                          value={order.rating?.value}
                           disabled
                         />
                       </FormGroup>

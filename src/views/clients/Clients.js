@@ -112,10 +112,12 @@ const Users = () => {
     return openModal;
   };
   const handleDelete = (id) => {
-    api("delete", `/clients/${id}`).then(() => {
-      toast.success("User deleted successfully");
-      getUsers();
-    });
+    var a = window.confirm("Are you sure you want to delete?");
+    if (a)
+      api("delete", `/clients/${id}`).then(() => {
+        toast.success(t("User deleted successfully"));
+        getUsers();
+      });
   };
 
   return (
@@ -147,6 +149,7 @@ const Users = () => {
                     <th scope="col">{t("Name")}</th>
                     <th scope="col">{t("Email")}</th>
                     <th scope="col">{t("Contact no")}</th>
+                    <th scope="col">{t("RATING")}</th>
                     <th scope="col">{t("City")}</th>
                     <th scope="col">{t("Country")}</th>
                     <th scope="col">{t("CREATED AT")}</th>
@@ -175,6 +178,11 @@ const Users = () => {
                         </td>
 
                         <td>{item.phone}</td>
+                        <td>
+                          {item.ratings.reduce((a, b) => a + b, 0) /
+                            item.ratings.length}
+                        </td>
+
                         <td>{item.city}</td>
                         <td>{item.country}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>

@@ -27,8 +27,9 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     password: "",
     address: "",
     phone: "",
-    country: "",
+    zip_code: "",
     city: "",
+    role: "client",
   });
 
   const handleInput = (e) => {
@@ -198,15 +199,15 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          {t("Country")}
+                          {t("Zip Code")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder={"Enter user's country here"}
+                          placeholder={t("Enter Zip Code here")}
                           type="text"
-                          value={user.country}
-                          name="country"
+                          value={user.zip_code}
+                          name="zip_code"
                           onChange={handleInput}
                         />
                       </FormGroup>

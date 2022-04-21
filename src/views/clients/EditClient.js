@@ -177,14 +177,16 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Country</label>
+                        <label className="form-control-label">
+                          {t("Zip Code")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder="Enter user's country here"
+                          placeholder={t("Enter Zip Code here")}
                           type="text"
-                          value={user.country}
-                          name="country"
+                          value={user.zip_code}
+                          name="zip_code"
                           onChange={handleInput}
                         />
                       </FormGroup>

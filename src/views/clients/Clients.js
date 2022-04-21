@@ -60,7 +60,7 @@ const Users = () => {
     password: "",
     address: "",
     phone: "",
-    country: "",
+    zip_code: "",
     city: "",
   });
 
@@ -87,7 +87,7 @@ const Users = () => {
         email: item.email,
         address: item.address,
         phone: item.phone,
-        country: item.country,
+        zip_code: item.zip_code,
         city: item.city,
         active: item.active,
       });
@@ -105,7 +105,7 @@ const Users = () => {
         email: item.email,
         address: item.address,
         phone: item.phone,
-        country: item.country,
+        zip_code: item.zip_code,
         city: item.city,
         active: item.active,
       });
@@ -153,7 +153,7 @@ const Users = () => {
                     <th scope="col">{t("Contact no")}</th>
                     <th scope="col">{t("RATING")}</th>
                     <th scope="col">{t("City")}</th>
-                    <th scope="col">{t("Country")}</th>
+                    <th scope="col">{t("ZIP CODE")}</th>
                     <th scope="col">{t("CREATED AT")}</th>
                     <th scope="col" />
                   </tr>
@@ -186,7 +186,7 @@ const Users = () => {
                         </td>
 
                         <td>{item.city}</td>
-                        <td>{item.country}</td>
+                        <td>{item.zip_code}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
                         <td className="text-right">

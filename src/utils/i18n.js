@@ -129,6 +129,8 @@ i18n
           in_progress: "in_progress",
           completed: "completed",
           discarded: "discarded",
+          "Enter Zip Code here": "Enter Zip Code here",
+          "Zip Code": "Zip Code",
 
           //quotes
           "View Quote": "View Quote",
@@ -171,6 +173,7 @@ i18n
           "Complaint deleted successfully": "Complaint deleted successfully",
           "Designer added successfully": "Designer added successfully",
           "Designer deleted successfully": "Designer deleted successfully",
+          "ZIP CODE": "ZIP CODE",
         },
       },
       fr: {
@@ -336,6 +339,10 @@ i18n
           "Designer deleted successfully": "Designer supprimé avec succès",
           Block: "Bloc",
           Unblock: "Débloquer",
+          "Zip Code": "Code postal",
+          "ZIP CODE": "CODE POSTAL",
+
+          "Enter Zip Code here": "Entrez le code postal ici",
         },
       },
     },

@@ -16,9 +16,32 @@ import {
 } from "reactstrap";
 // core components
 import { useTranslation, Trans } from "react-i18next";
+import AddressInput from "components/Form/AddressInput";
 const { Option } = Select;
 
 const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
+  let [address, setAddress] = useState({
+    label: "",
+    city: "",
+  });
+  useEffect(() => {
+    setAddress(() => {
+      return {
+        label: user?.address,
+        city: user?.city,
+      };
+    });
+  }, []);
+  useEffect(() => {
+    if (address) {
+      setUser({
+        ...user,
+        address: address.label,
+        city: address?.city,
+        country: "france",
+      });
+    }
+  }, [address]);
   const { t } = useTranslation();
 
   const handleInput = (e) => {
@@ -46,7 +69,6 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     if (user.phone == "") {
       return toast.error(t("Contact no. is required"));
     }
-
     api("put", `/clients/updateByAdmin/${user._id}`, user).then((res) => {
       toast.success(t("User edited successfully"));
       getUsers();
@@ -146,15 +168,13 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     <Col lg="12" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">Address</label>
-                        <Input
-                          className="form-control-alternative text-default"
-                          required={true}
-                          placeholder="Enter user's address here"
-                          type="text"
-                          value={user.address}
-                          name="address"
-                          onChange={handleInput}
-                        />
+                        <FormGroup>
+                          <AddressInput
+                            label="Enter Address"
+                            address={address}
+                            setAddress={setAddress}
+                          />
+                        </FormGroup>
                       </FormGroup>
                     </Col>
                   </Row>
@@ -167,8 +187,9 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                           required={true}
                           placeholder="Enter user's city here"
                           type="text"
-                          value={user.city}
+                          value={address?.city}
                           name="city"
+                          readonly={address?.city}
                           onChange={handleInput}
                         />
                       </FormGroup>

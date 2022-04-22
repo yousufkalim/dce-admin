@@ -105,12 +105,12 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
-                          {t("Zip Code")}
+                          {t("Country")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={user.zip_code}
-                          name="zip_code"
+                          value={user.country}
+                          name="country"
                           disabled
                         />
                       </FormGroup>

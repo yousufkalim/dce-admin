@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
+import AddressInput from "components/Form/AddressInput";
 import {
   Modal,
   ModalBody,
@@ -30,6 +31,8 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     country: "",
     city: "",
   });
+
+  let [address, setAddress] = useState({});
 
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -63,9 +66,19 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
       handleModal();
     });
   };
-
+  useEffect(() => {
+    if (address) {
+      setUser({
+        ...user,
+        address: address.label,
+        city: address?.city,
+        country: "france",
+      });
+    }
+  }, [address]);
   return (
     <>
+      {console.log(address, "address")}
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
           {t("Add a designer")}
@@ -167,14 +180,10 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                         <label className="form-control-label">
                           {t("Address")}
                         </label>
-                        <Input
-                          className="form-control-alternative text-default"
-                          required={true}
-                          placeholder={t("Enter user's address here")}
-                          type="text"
-                          value={user.address}
-                          name="address"
-                          onChange={handleInput}
+                        <AddressInput
+                          label="Enter Address"
+                          address={address}
+                          setAddress={setAddress}
                         />
                       </FormGroup>
                     </Col>
@@ -191,6 +200,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           placeholder={t("Enter user's city here")}
                           type="text"
                           value={user.city}
+                          readonly={address?.city}
                           name="city"
                           onChange={handleInput}
                         />

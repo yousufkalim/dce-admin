@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
+import AddressInput from "components/Form/AddressInput";
 import { Select } from "antd";
 import {
   Modal,
@@ -20,7 +21,28 @@ const { Option } = Select;
 
 const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
   const { t } = useTranslation();
-
+  let [address, setAddress] = useState({
+    label: "",
+    city: "",
+  });
+  useEffect(() => {
+    setAddress(() => {
+      return {
+        label: user?.address,
+        city: user?.city,
+        country: "france",
+      };
+    });
+  }, []);
+  useEffect(() => {
+    if (address) {
+      setUser({
+        ...user,
+        address: address.label,
+        city: address?.city,
+      });
+    }
+  }, [address]);
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -151,17 +173,10 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="12" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Address")}
-                        </label>
-                        <Input
-                          className="form-control-alternative text-default"
-                          required={true}
-                          placeholder={t("Enter user's address here")}
-                          type="text"
-                          value={user.address}
-                          name="address"
-                          onChange={handleInput}
+                        <AddressInput
+                          label="Enter Address"
+                          address={address}
+                          setAddress={setAddress}
                         />
                       </FormGroup>
                     </Col>
@@ -179,6 +194,7 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                           type="text"
                           value={user.city}
                           name="city"
+                          readonly={address?.city}
                           onChange={handleInput}
                         />
                       </FormGroup>

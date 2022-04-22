@@ -116,6 +116,26 @@ const ViewClient = ({ openModal, handleModal, user }) => {
                       </FormGroup>
                     </Col>
                   </Row>
+                  <Row>
+                    <Col lg="12" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <div className="custom-control custom-control-alternative custom-checkbox mb-3">
+                          <input
+                            className="custom-control-input"
+                            id="customCheck5"
+                            type="checkbox"
+                            checked={!user.active}
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="customCheck5"
+                          >
+                            {t("Block")}
+                          </label>
+                        </div>
+                      </FormGroup>
+                    </Col>
+                  </Row>
                 </div>
               </Form>
             </Col>

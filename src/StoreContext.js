@@ -27,6 +27,7 @@ export function StoreProvider({ children }) {
     quotes: [],
     catalogs: [],
     articles: [],
+    statistics: {},
   });
 
   const updateStore = (data) => {
@@ -41,7 +42,9 @@ export function StoreProvider({ children }) {
   // Render
   return (
     <storeContext.Provider value={store}>
-      <storeUpdateContext.Provider value={updateStore}>{children}</storeUpdateContext.Provider>
+      <storeUpdateContext.Provider value={updateStore}>
+        {children}
+      </storeUpdateContext.Provider>
     </storeContext.Provider>
   );
 }

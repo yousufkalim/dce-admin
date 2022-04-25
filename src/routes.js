@@ -30,12 +30,9 @@ import { Redirect } from "react-router-dom";
 var routes = [
   {
     path: "/index",
-    // name: "Dashboard",
-    name: "Articles",
+    name: "Dashboard",
     icon: "ni ni-tv-2 text-red",
-    // component: Index,
-    component: Articles,
-
+    component: Index,
     layout: "/admin",
   },
   {

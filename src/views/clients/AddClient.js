@@ -71,7 +71,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
         ...user,
         address: address.label,
         city: address?.city,
-        country: "france",
+        country: "France",
       });
     }
   }, [address]);
@@ -212,7 +212,6 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           placeholder={"Enter user's country here"}
                           type="text"
                           value={user.country}
-                          readonly={address}
                           name="country"
                           onChange={handleInput}
                         />

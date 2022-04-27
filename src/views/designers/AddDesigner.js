@@ -72,7 +72,7 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
         ...user,
         address: address.label,
         city: address?.city,
-        country: "france",
+        country: "France",
       });
     }
   }, [address]);

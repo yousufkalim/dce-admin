@@ -24,6 +24,11 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     label: "",
     city: "",
   });
+  var validPhone =
+    /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
+  const arr = user.name.split(" ");
+  const last = arr.slice(1, 4).join(" ");
+
   useEffect(() => {
     setAddress(() => {
       return {
@@ -38,7 +43,9 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
         ...user,
         address: address.label,
         city: address?.city,
-        country: "france",
+        country: "France",
+        first_name: arr[0],
+        last_name: last,
       });
     }
   }, [address]);
@@ -53,8 +60,11 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (user.name == "") {
-      return toast.error(t("Please enter user's name"));
+    if (user.first_name == "") {
+      return toast.error(t("Please enter user's first name"));
+    }
+    if (user.last_name == "") {
+      return toast.error(t("Please enter user's last name"));
     }
 
     if (user.email == "") {
@@ -62,6 +72,10 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     }
     if (!(user.email.includes(".") && user.email.includes("@"))) {
       return toast.error(t("Please enter a valid email"));
+    }
+    let rPhone = user.phone;
+    if (!rPhone.match(validPhone)) {
+      return toast.error(t("Please enter a valid phone number"));
     }
 
     if (user.password && user.password.length < 8) {
@@ -71,6 +85,7 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     if (user.phone == "") {
       return toast.error(t("Contact no. is required"));
     }
+
     api("put", `/clients/updateByAdmin/${user._id}`, user).then((res) => {
       toast.success(t("User edited successfully"));
       getUsers();
@@ -95,14 +110,16 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                         <span style={{ color: "red" }}>
                           {user.name ? "" : "*"}{" "}
                         </span>
-                        <label className="form-control-label">Name</label>
+                        <label className="form-control-label">
+                          {t("First Name")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
                           placeholder="Enter user's name here"
                           type="text"
-                          value={user.name}
-                          name="name"
+                          value={user.first_name}
+                          name="first_name"
                           onChange={handleInput}
                         />
                       </FormGroup>
@@ -110,9 +127,32 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <span style={{ color: "red" }}>
+                          {user.name ? "" : "*"}{" "}
+                        </span>
+                        <label className="form-control-label">
+                          {t("Last Name")}
+                        </label>
+                        <Input
+                          className="form-control-alternative text-default"
+                          required={true}
+                          placeholder="Enter user's name here"
+                          type="text"
+                          value={user.last_name}
+                          name="last_name"
+                          onChange={handleInput}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <span style={{ color: "red" }}>
                           {user.email ? "" : "*"}{" "}
                         </span>
-                        <label className="form-control-label">Email</label>
+                        <label className="form-control-label">
+                          {t("Email")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
@@ -124,15 +164,13 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label
                           className="form-control-label"
                           htmlFor="input-password"
                         >
-                          Password
+                          {t("Password")}
                         </label>
                         <Input
                           className="form-control-alternative"
@@ -145,13 +183,15 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
+                  </Row>
+                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <span style={{ color: "red" }}>
                           {user.phone ? "" : "*"}{" "}
                         </span>
                         <label className="form-control-label">
-                          Contact no.
+                          {t("Contact no.")}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
@@ -161,15 +201,15 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                           value={user.phone}
                           name="phone"
                           onChange={handleInput}
-                          maxLength="11"
+                          maxLength="10"
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
-                    <Col lg="12" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Address</label>
+                        <label className="form-control-label">
+                          {t("Address")}
+                        </label>
                         <FormGroup>
                           <AddressInput
                             label="Enter Address"
@@ -183,7 +223,9 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">City</label>
+                        <label className="form-control-label">
+                          {t("City")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
@@ -198,7 +240,9 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">Country</label>
+                        <label className="form-control-label">
+                          {t("Country")}
+                        </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}

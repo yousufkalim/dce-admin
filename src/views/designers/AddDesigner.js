@@ -23,6 +23,8 @@ const { Option } = Select;
 const AddUser = ({ openModal, handleModal, getUsers }) => {
   const { t } = useTranslation();
   let [user, setUser] = useState({
+    first_name: "",
+    last_name: "",
     name: "",
     email: "",
     password: "",
@@ -33,15 +35,19 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
   });
 
   let [address, setAddress] = useState({});
-
+  var validPhone =
+    /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user.name == "") {
-      return toast.error(t("Please enter user's name"));
+    if (user.first_name == "") {
+      return toast.error(t("Please enter user's first name"));
+    }
+    if (user.last_name == "") {
+      return toast.error(t("Please enter user's last name"));
     }
 
     if (user.email == "") {
@@ -59,8 +65,16 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     if (user.phone == "") {
       return toast.error(t("Contact no. is required"));
     }
+    let rPhone = user.phone;
+    if (!rPhone.match(validPhone)) {
+      return toast.error(t("Please enter a valid phone number"));
+    }
+    const newUser = { ...user, name: user.first_name + " " + user.last_name };
 
-    api("post", "/tailors/createByAdmin", user).then((res) => {
+    delete newUser.first_name;
+    delete newUser.last_name;
+
+    api("post", "/tailors/createByAdmin", newUser).then((res) => {
       toast.success(t("Designer added successfully"));
       getUsers();
       handleModal();
@@ -94,21 +108,43 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                         <label className="form-control-label">
                           {" "}
                           <span style={{ color: "red" }}>
-                            {user.name ? "" : "*"}{" "}
+                            {user.first_name ? "" : "*"}{" "}
                           </span>
-                          {t("Name")}
+                          {t("First Name")}
                         </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder={t("Enter user's name here")}
+                          placeholder={t("Enter user's first name here")}
                           type="text"
-                          value={user.name}
-                          name="name"
+                          value={user.first_name}
+                          name="first_name"
                           onChange={handleInput}
                         />
                       </FormGroup>
                     </Col>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <label className="form-control-label">
+                          {" "}
+                          <span style={{ color: "red" }}>
+                            {user.last_name ? "" : "*"}{" "}
+                          </span>
+                          {t("Last Name")}
+                        </label>{" "}
+                        <Input
+                          className="form-control-alternative text-default"
+                          required={true}
+                          placeholder={t("Enter user's last name here")}
+                          type="text"
+                          value={user.last_name}
+                          name="last_name"
+                          onChange={handleInput}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
@@ -129,8 +165,6 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label
@@ -153,6 +187,8 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
+                  </Row>
+                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
@@ -169,17 +205,12 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           value={user.phone}
                           name="phone"
                           onChange={handleInput}
-                          maxLength="11"
+                          maxLength="10"
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
-                    <Col lg="12" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Address")}
-                        </label>
                         <AddressInput
                           label="Enter Address"
                           address={address}

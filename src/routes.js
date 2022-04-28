@@ -25,6 +25,7 @@ import Quotes from "views/quotes/Quotes";
 import Catalogs from "views/catalogs/Catalogs";
 import Articles from "views/articles/Articles";
 import Complaints from "views/complaints/Complaints";
+import { Redirect } from "react-router-dom";
 
 var routes = [
   {

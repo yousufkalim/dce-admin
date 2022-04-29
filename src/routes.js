@@ -25,6 +25,7 @@ import Quotes from "views/quotes/Quotes";
 import Catalogs from "views/catalogs/Catalogs";
 import Articles from "views/articles/Articles";
 import Complaints from "views/complaints/Complaints";
+import Chat from "views/Chat";
 
 var routes = [
   {
@@ -33,6 +34,20 @@ var routes = [
     icon: "ni ni-tv-2 text-red",
     component: Index,
     layout: "/admin",
+  },
+  {
+    path: "/login",
+    name: "Login",
+    icon: "ni ni-circle-08 text-pink",
+    component: Login,
+    layout: "/auth",
+  },
+  {
+    path: "/register",
+    name: "Register",
+    icon: "ni ni-key-25 text-info",
+    component: Register,
+    layout: "/auth",
   },
   {
     path: "/articles",
@@ -83,20 +98,12 @@ var routes = [
     component: Complaints,
     layout: "/admin",
   },
-
   {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-key-25 text-info",
-    component: Register,
-    layout: "/auth",
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-circle-08 text-pink",
-    component: Login,
-    layout: "/auth",
+    path: "/chats",
+    name: "Chats",
+    icon: "ni ni-folder-17 text-red",
+    component: Chat,
+    layout: "/admin",
   },
 ];
 export default routes;

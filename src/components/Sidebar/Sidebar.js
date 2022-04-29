@@ -72,6 +72,7 @@ const Sidebar = (props) => {
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
+      console.log(prop);
       if (prop.layout === "/admin") {
         return (
           <NavItem key={key}>
@@ -91,6 +92,7 @@ const Sidebar = (props) => {
   };
 
   const { bgColor, routes, logo } = props;
+
   let navbarBrandProps;
   if (logo && logo.innerLink) {
     navbarBrandProps = {

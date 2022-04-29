@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 import api from "api";
 import { Store, UpdateStore } from "StoreContext";
@@ -28,11 +28,14 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 
 import routes from "routes.js";
 
+import { initSocket } from "../utils/Auth";
+import SS from "../utils/services/socket.io/utils/state";
+
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
 
-  const { loggedIn } = Store();
+  const store = Store();
   const updateStore = UpdateStore();
 
   React.useEffect(() => {
@@ -50,9 +53,21 @@ const Admin = (props) => {
     });
   }, [location]);
 
+  useEffect(() => {
+    document.querySelector("html").style.scrollBehavior = "auto";
+    window.scroll({ top: 0 });
+    document.querySelector("html").style.scrollBehavior = "";
+    initSocket(updateStore);
+  }, [location.pathname]); // triggered on route change
+
+  useEffect(() => {
+    Object.assign(SS, store);
+    console.log(SS, `_SS_`);
+  }, [store]);
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin" && loggedIn) {
+      if (prop.layout === "/admin" && store.loggedIn) {
         return (
           <Route
             exact

@@ -182,7 +182,6 @@ const Users = () => {
                           {item.ratings.reduce((a, b) => a + b, 0) /
                             item.ratings.length}
                         </td>
-
                         <td>{item.city}</td>
                         <td>{item.country}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>

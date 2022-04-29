@@ -34,7 +34,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-
+import moment from "moment";
 // core components
 import AddUser from "./AddClient";
 import EditUser from "./EditClient";
@@ -45,7 +45,7 @@ import { useTranslation, Trans } from "react-i18next";
 
 const Users = () => {
   const { t } = useTranslation();
-
+  moment.locale("fr");
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -187,8 +187,7 @@ const Users = () => {
 
                         <td>{item.city}</td>
                         <td>{item.country}</td>
-                        <td>{new Date(item.createdAt).toDateString()}</td>
-
+                        <td>{moment(item.createdAt).format("LL")}</td>
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle

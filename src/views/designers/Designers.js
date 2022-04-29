@@ -182,7 +182,7 @@ const Users = () => {
                         <td>{item.experience}</td>
                         <td>
                           {item.ratings.reduce((a, b) => a + b, 0) /
-                            item.ratings.length}
+                            item.ratings.length || t("None")}
                         </td>
                         <td>{item.phone}</td>
                         <td>{item.city}</td>

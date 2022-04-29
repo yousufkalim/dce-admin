@@ -19,7 +19,10 @@ i18n
           Orders: "Orders",
           Quotes: "Quotes",
           Catalogues: "Catalogues",
+          None: "None",
           Complaints: "Complaints",
+          "Please enter a valid phone number":
+            "Please enter a valid phone number",
 
           //basic
           CLIENT: "CLIENT",
@@ -184,7 +187,7 @@ i18n
           Quotes: "Devis",
           Catalogs: "Catalogues",
           Complaints: "Plaintes",
-
+          None: "Aucune",
           //basic
           CLIENT: "CLIENT",
           DESIGNER: "COUTURIER",
@@ -242,6 +245,8 @@ i18n
           "Enter user's address here": "Entrez l'adresse de l'utilisateur ici",
           "Enter user's city here": "Entrez la ville de l'utilisateur ici",
           "Enter user's country here": "Saisissez ici le pays de l'utilisateur",
+          "Please enter a valid phone number":
+            "S'il vous plaît entrer un numéro de téléphone valide",
 
           Name: "Nom",
           Email: "E-mail",

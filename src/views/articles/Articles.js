@@ -122,8 +122,8 @@ const Articles = () => {
                     <th scope="col">{t("Title")}</th>
                     <th scope="col">{t("Description")}</th>
                     <th scope="col">{t("Status")}</th>
-                    <th scope="col">{t("Created At")}</th>
-                    <th scope="col">{t("Updated At")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
+                    <th scope="col">{t("UPDATED AT")}</th>
                     <th scope="col" />
                   </tr>
                 </thead>

@@ -31,12 +31,6 @@ const Header = () => {
   const { language } = i18n;
   const updateStore = UpdateStore();
   const { statistics } = Store();
-  const [stats, setStats] = useState({
-    totalClients: "",
-    totalDesigners: "",
-    totalOrders: "",
-    totalComplaint: "",
-  });
 
   const getStats = async () => {
     const data = await api("get", "/statistics");

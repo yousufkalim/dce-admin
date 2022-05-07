@@ -25,6 +25,11 @@ i18n
             "Please enter a valid phone number",
 
           //basic
+          WOMEN: "WOMEN",
+          MAN: "MAN",
+          CHILD: "CHILD",
+          Other: "Other",
+          accepted: "accepted",
           CLIENT: "CLIENT",
           DESIGNER: "DESIGNER",
           ARTICLES: "ARTICLES",
@@ -36,6 +41,7 @@ i18n
           Save: "Save",
           Cancel: "Cancel",
           Update: "Update",
+          rejected: "rejected",
 
           //dashboard/header data
           TRAFFIC: "TRAFFIC",
@@ -129,7 +135,7 @@ i18n
           Attachment: "Attachment",
           Status: "Status",
           pending: "pending",
-          in_progress: "in_progress",
+          in_progress: "In progress",
           completed: "completed",
           discarded: "discarded",
 
@@ -260,6 +266,8 @@ i18n
           "CONTACT NO": "N° DE TÉLÉPHONE",
           CITY: "VILLE",
           COUNTRY: "PAYS",
+          accepted: "accepté",
+          rejected: "rejeté",
 
           //designer
           "Add a designer": "Ajouter un couturier",
@@ -267,7 +275,10 @@ i18n
           "Edit a designer": "Modifier un couturier",
           "View designer": "Voir le couturier",
           EXPERIENCE: "EXPÉRIENCE",
-
+          WOMEN: "FEMMES",
+          MAN: "HOMME",
+          CHILD: "ENFANT",
+          Other: "Autre",
           //orders
           "View Order": "Voir la commande",
           CATEGORY: "CATÉGORIE",

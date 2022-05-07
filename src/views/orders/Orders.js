@@ -139,8 +139,8 @@ const Users = () => {
                             </Media>
                           </Media>
                         </th>
-                        <td title={item.category}>{item.category}</td>
-                        <td title={item.status}>{item.status}</td>
+                        <td title={item.category}>{t(item.category)}</td>
+                        <td title={item.status}>{t(item.status)}</td>
                         <td title={item.type}>{item.type}</td>
 
                         <td>{item.client?.name}</td>

@@ -148,7 +148,7 @@ const Users = () => {
                             ? item.description?.substring(0, 30) + "..."
                             : item.description}
                         </td>
-                        <td title={item.status}>{item.status}</td>
+                        <td title={item.status}>{t(item.status)}</td>
                         <td>{new Date(item.createdAt).toDateString()}</td>
 
                         <td className="text-right">

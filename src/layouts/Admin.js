@@ -57,12 +57,15 @@ const Admin = (props) => {
     document.querySelector("html").style.scrollBehavior = "auto";
     window.scroll({ top: 0 });
     document.querySelector("html").style.scrollBehavior = "";
-    initSocket(updateStore);
   }, [location.pathname]); // triggered on route change
 
   useEffect(() => {
+    initSocket(updateStore);
+  }, []);
+
+  useEffect(() => {
     Object.assign(SS, store);
-    console.log(SS, `_SS_`);
+    // console.log(SS, `_SS_`);
   }, [store]);
 
   const getRoutes = (routes) => {

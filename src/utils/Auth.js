@@ -8,7 +8,10 @@ import { io } from "socket.io-client";
 
 export const initSocket = (updateStore) => {
   const token = localStorage.getItem("token");
-  if (!SS.socket && token) {
+  console.log(SS.socket, "SS.socket");
+  console.log(token);
+  if (SS.socket == null && token) {
+    console.log("REINIT");
     const socket = io(process.env.REACT_APP_SOCKET_URL, {
       query: {
         token: `Bearer ${token}`,

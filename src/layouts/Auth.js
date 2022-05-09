@@ -27,15 +27,9 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 
 import routes from "routes.js";
 
-import { initSocket } from "../utils/Auth";
-import SS from "../utils/services/socket.io/utils/state";
-
 const Auth = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
-
-  const store = Store();
-  const updateStore = UpdateStore();
 
   React.useEffect(() => {
     document.body.classList.add("bg-default");
@@ -48,18 +42,6 @@ const Auth = (props) => {
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
-
-  useEffect(() => {
-    document.querySelector("html").style.scrollBehavior = "auto";
-    window.scroll({ top: 0 });
-    document.querySelector("html").style.scrollBehavior = "";
-    initSocket(updateStore);
-  }, [location.pathname]); // triggered on route change
-
-  useEffect(() => {
-    Object.assign(SS, store);
-    console.log(SS, `_SS_`);
-  }, [store]);
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {

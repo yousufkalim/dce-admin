@@ -69,12 +69,9 @@ const ChatHeader = ({}) => {
   const _loadChats = async () => {
     let response;
     try {
-      const body = {};
-      if (user.role == "client") {
-        body["client"] = user._id;
-      } else {
-        body["tailor"] = user._id;
-      }
+      const body = {
+        is_admin: true,
+      };
       response = await Api("post", `/chats/byQuery`, body);
       const chatsData = response.chats;
       updateStore({

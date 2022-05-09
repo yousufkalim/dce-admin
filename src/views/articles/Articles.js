@@ -46,7 +46,8 @@ import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 
 const Articles = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
 
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -55,11 +56,36 @@ const Articles = () => {
   const { articles } = Store();
   const history = useHistory();
   const updateStore = UpdateStore();
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
   useEffect(() => {
     getArticles();
   }, []);
 
+  const titleCase = (str) => {
+    var splitStr = str.toString().toLowerCase().split(" ");
+
+    for (var i = 0; i < splitStr.length; i++) {
+      // Assigning it back to the array
+      splitStr[i] =
+        splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    var split =
+      splitStr[0].substring(0, 3) +
+      " " +
+      splitStr[1] +
+      " " +
+      splitStr[2].substring(0, 3) +
+      " " +
+      splitStr[3];
+    // Returning the joined string
+    return split;
+  };
   const getArticles = async () => {
     const data = await api("get", "/blogs");
 
@@ -168,8 +194,27 @@ const Articles = () => {
                             {article.status}
                           </Badge>
                         </td>
-                        <td>{new Date(article.createdAt).toDateString()}</td>
-                        <td>{new Date(article.updatedAt).toDateString()}</td>
+                        {/* <td>{new Date(article.createdAt).toDateString()}</td> */}
+                        <td>
+                          {language == "fr"
+                            ? titleCase(
+                                new Date(article.createdAt).toLocaleDateString(
+                                  "fr-FR",
+                                  options
+                                )
+                              )
+                            : new Date(article.createdAt).toDateString()}
+                        </td>
+                        <td>
+                          {language == "fr"
+                            ? titleCase(
+                                new Date(article.updatedAt).toLocaleDateString(
+                                  "fr-FR",
+                                  options
+                                )
+                              )
+                            : new Date(article.updatedAt).toDateString()}
+                        </td>
 
                         <td className="text-right">
                           <UncontrolledDropdown>

@@ -30,7 +30,7 @@ import {
   Row,
 } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
+import moment from "moment";
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
@@ -38,7 +38,7 @@ import ViewCatalog from "./ViewCatalog";
 
 const Users = () => {
   const { t } = useTranslation();
-
+  moment.locale("fr");
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const { catalogs } = Store();
@@ -137,7 +137,7 @@ const Users = () => {
                             : item.description}
                         </td>
                         <td title={item.tailor?.name}>{item.tailor?.name}</td>
-                        <td>{new Date(item.createdAt).toDateString()}</td>
+                        <td>{moment(item.createdAt).format("LL")}</td>
                         <td className="text-right">
                           <i
                             className="fa fa-eye"

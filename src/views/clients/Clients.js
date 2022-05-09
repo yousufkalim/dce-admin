@@ -34,7 +34,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-
+import moment from "moment";
 // core components
 import AddUser from "./AddClient";
 import EditUser from "./EditClient";
@@ -45,7 +45,7 @@ import { useTranslation, Trans } from "react-i18next";
 
 const Users = () => {
   const { t } = useTranslation();
-
+  moment.locale("fr");
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -89,6 +89,7 @@ const Users = () => {
         phone: item.phone,
         country: item.country,
         city: item.city,
+        active: item.active,
       });
     }
 
@@ -106,6 +107,7 @@ const Users = () => {
         phone: item.phone,
         country: item.country,
         city: item.city,
+        active: item.active,
       });
     }
     setViewModal((open) => !open);
@@ -180,12 +182,11 @@ const Users = () => {
                         <td>{item.phone}</td>
                         <td>
                           {item.ratings.reduce((a, b) => a + b, 0) /
-                            item.ratings.length}
+                            item.ratings.length || t("None")}
                         </td>
                         <td>{item.city}</td>
                         <td>{item.country}</td>
-                        <td>{new Date(item.createdAt).toDateString()}</td>
-
+                        <td>{moment(item.createdAt).format("LL")}</td>
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle
@@ -211,6 +212,7 @@ const Users = () => {
                               >
                                 {t("Edit")}
                               </DropdownItem>
+
                               <DropdownItem
                                 href="#pablo"
                                 className="text-danger"

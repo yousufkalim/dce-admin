@@ -31,6 +31,7 @@ export function StoreProvider({ children }) {
     chats: [],
     chat: null,
     messages: [],
+    statistics: {},
   });
 
   const updateStore = (data) => {

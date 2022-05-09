@@ -36,7 +36,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-
+import moment from "moment";
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
@@ -44,7 +44,7 @@ import ViewComplaint from "./ViewComplaint";
 
 const Complaints = () => {
   const { t } = useTranslation();
-
+  moment.locale("fr");
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const { complaints } = Store();
@@ -137,8 +137,7 @@ const Complaints = () => {
                         <td title={item.reason}>{item.reason}</td>
                         <td title={item.details}>{item.details}</td>
                         <td title={item.attachment}>{item.attachment}</td>
-
-                        <td>{new Date(item.createdAt).toDateString()}</td>
+                        <td>{moment(item.createdAt).format("LL")}</td>
 
                         <td className="text-right">
                           <UncontrolledDropdown>

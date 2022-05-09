@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 import api from "api";
 import { Store, UpdateStore } from "StoreContext";
 import { useTranslation } from "react-i18next";
-
+import moment from "moment";
 import {
   Badge,
   Card,
@@ -44,7 +44,7 @@ import ViewQuote from "./ViewQuote";
 
 const Users = () => {
   const { t } = useTranslation();
-
+  moment.locale("fr");
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -149,8 +149,7 @@ const Users = () => {
                             : item.description}
                         </td>
                         <td title={item.status}>{item.status}</td>
-                        <td>{new Date(item.createdAt).toDateString()}</td>
-
+                        <td>{moment(item.createdAt).format("LL")}</td>
                         <td className="text-right">
                           <i
                             className="fa fa-eye"

@@ -44,6 +44,7 @@ import AddArticle from "./AddArticle";
 import EditArticle from "./EditArticle";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 const Articles = () => {
   const { t } = useTranslation();
@@ -55,7 +56,7 @@ const Articles = () => {
   const { articles } = Store();
   const history = useHistory();
   const updateStore = UpdateStore();
-
+  moment.locale("fr");
   useEffect(() => {
     getArticles();
   }, []);
@@ -121,8 +122,8 @@ const Articles = () => {
                     <th scope="col">{t("Title")}</th>
                     <th scope="col">{t("Description")}</th>
                     <th scope="col">{t("Status")}</th>
-                    <th scope="col">{t("Created At")}</th>
-                    <th scope="col">{t("Updated At")}</th>
+                    <th scope="col">{t("CREATED AT")}</th>
+                    <th scope="col">{t("UPDATED AT")}</th>
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -168,9 +169,8 @@ const Articles = () => {
                             {article.status}
                           </Badge>
                         </td>
-                        <td>{new Date(article.createdAt).toDateString()}</td>
-                        <td>{new Date(article.updatedAt).toDateString()}</td>
-
+                        <td>{moment(article.createdAt).format("LL")}</td>
+                        <td>{moment(article.updatedAt).format("LL")}</td>
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle
@@ -183,17 +183,6 @@ const Articles = () => {
                             >
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
-                            {/* <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem
-                              // onClick={() =>
-                              //   window
-                              //     .open(
-                              //       `https://passtotrip.com/blog/${article._id}`,
-                              //       "_blank"
-                              //     )
-                              //     .focus()
-                              // }
-                              > */}
                             <DropdownMenu className="dropdown-menu-arrow" right>
                               <DropdownItem>{t("View")}</DropdownItem>
 

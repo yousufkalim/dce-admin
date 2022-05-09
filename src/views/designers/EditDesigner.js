@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
+import AddressInput from "components/Form/AddressInput";
 import { Select } from "antd";
 import {
   Modal,
@@ -20,11 +21,41 @@ const { Option } = Select;
 
 const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
   const { t } = useTranslation();
+  let [address, setAddress] = useState({
+    label: "",
+    city: "",
+  });
+  const arr = user.name.split(" ");
+  const last = arr.slice(1, 4).join(" ");
 
+  var validPhone =
+    /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
+  useEffect(() => {
+    setAddress(() => {
+      return {
+        label: user?.address,
+        city: user?.city,
+        country: "France",
+      };
+    });
+  }, []);
+  useEffect(() => {
+    if (address) {
+      setUser({
+        ...user,
+        address: address.label,
+        city: address?.city,
+        first_name: arr[0],
+        last_name: last,
+      });
+    }
+  }, [address]);
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-
+  const handleBlock = () => {
+    setUser({ ...user, active: !user.active });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,7 +77,10 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
     if (user.phone == "") {
       return toast.error(t("Contact no. is required"));
     }
-
+    let rPhone = user.phone;
+    if (!rPhone.match(validPhone)) {
+      return toast.error(t("Please enter a valid phone number"));
+    }
     api("put", `/tailors/updateByAdmin/${user._id}`, user).then((res) => {
       toast.success(t("Designer edited successfully"));
       getUsers();
@@ -68,31 +102,55 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                   <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.name ? "" : "*"}{" "}
-                        </span>
                         <label className="form-control-label">
-                          {t("Name")}
-                        </label>
+                          {" "}
+                          <span style={{ color: "red" }}>
+                            {user.first_name ? "" : "*"}{" "}
+                          </span>
+                          {t("First Name")}
+                        </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder={t("Enter user's name here")}
+                          placeholder={t("Enter user's first name here")}
                           type="text"
-                          value={user.name}
-                          name="name"
+                          value={user.first_name}
+                          name="first_name"
                           onChange={handleInput}
                         />
                       </FormGroup>
                     </Col>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.email ? "" : "*"}{" "}
-                        </span>
                         <label className="form-control-label">
+                          {" "}
+                          <span style={{ color: "red" }}>
+                            {user.last_name ? "" : "*"}{" "}
+                          </span>
+                          {t("Last Name")}
+                        </label>{" "}
+                        <Input
+                          className="form-control-alternative text-default"
+                          required={true}
+                          placeholder={t("Enter user's last name here")}
+                          type="text"
+                          value={user.last_name}
+                          name="last_name"
+                          onChange={handleInput}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <label className="form-control-label">
+                          {" "}
+                          <span style={{ color: "red" }}>
+                            {user.email ? "" : "*"}{" "}
+                          </span>
                           {t("Email")}
-                        </label>
+                        </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
@@ -104,14 +162,15 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label
                           className="form-control-label"
                           htmlFor="input-password"
                         >
+                          <span style={{ color: "red" }}>
+                            {user.password ? "" : "*"}{" "}
+                          </span>
                           {t("Password")}
                         </label>
                         <Input
@@ -125,12 +184,14 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
+                  </Row>
+                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <span style={{ color: "red" }}>
-                          {user.phone ? "" : "*"}{" "}
-                        </span>
                         <label className="form-control-label">
+                          <span style={{ color: "red" }}>
+                            {user.phone ? "" : "*"}{" "}
+                          </span>{" "}
                           {t("Contact no.")}
                         </label>
                         <Input
@@ -141,25 +202,16 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                           value={user.phone}
                           name="phone"
                           onChange={handleInput}
-                          maxLength="11"
+                          maxLength="10"
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
-                    <Col lg="12" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Address")}
-                        </label>
-                        <Input
-                          className="form-control-alternative text-default"
-                          required={true}
-                          placeholder={t("Enter user's address here")}
-                          type="text"
-                          value={user.address}
-                          name="address"
-                          onChange={handleInput}
+                        <AddressInput
+                          label="Enter Address"
+                          address={address}
+                          setAddress={setAddress}
                         />
                       </FormGroup>
                     </Col>
@@ -177,6 +229,7 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                           type="text"
                           value={user.city}
                           name="city"
+                          // readonly={address?.city}
                           onChange={handleInput}
                         />
                       </FormGroup>
@@ -195,6 +248,27 @@ const EditUser = ({ openModal, handleModal, user, setUser, getUsers }) => {
                           name="country"
                           onChange={handleInput}
                         />
+                      </FormGroup>
+                    </Col>
+                  </Row>{" "}
+                  <Row>
+                    <Col lg="12" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <div className="custom-control custom-control-alternative custom-checkbox mb-3">
+                          <input
+                            className="custom-control-input"
+                            id="customCheck5"
+                            type="checkbox"
+                            checked={!user.active}
+                            onChange={handleBlock}
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="customCheck5"
+                          >
+                            {t("Block")}
+                          </label>
+                        </div>
                       </FormGroup>
                     </Col>
                   </Row>

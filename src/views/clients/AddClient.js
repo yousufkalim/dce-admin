@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import api from "../../api";
 import { Select } from "antd";
@@ -17,19 +17,25 @@ import {
 } from "reactstrap";
 // core components
 import { useTranslation, Trans } from "react-i18next";
+import AddressInput from "components/Form/AddressInput";
 const { Option } = Select;
 
 const AddUser = ({ openModal, handleModal, getUsers }) => {
   const { t } = useTranslation();
   let [user, setUser] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
-    address: "",
     phone: "",
     country: "",
+    address: "",
     city: "",
+    role: "client",
   });
+  var validPhone =
+    /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
+  let [address, setAddress] = useState({});
 
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -37,10 +43,13 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user.name == "") {
-      return toast.error(t("Please enter user's name"));
-    }
 
+    if (user.first_name == "") {
+      return toast.error(t("Please enter user's first name"));
+    }
+    if (user.last_name == "") {
+      return toast.error(t("Please enter user's last name"));
+    }
     if (user.email == "") {
       return toast.error("Please enter email");
     }
@@ -56,14 +65,29 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
     if (user.phone == "") {
       return toast.error(t("Contact no. is required"));
     }
-
-    api("post", "/clients/createByAdmin", user).then((res) => {
+    let rPhone = user.phone;
+    if (!rPhone.match(validPhone)) {
+      return toast.error(t("Please enter a valid phone number"));
+    }
+    const newUser = { ...user, name: user.first_name + " " + user.last_name };
+    delete newUser.first_name;
+    delete newUser.last_name;
+    api("post", "/clients/createByAdmin", newUser).then((res) => {
       toast.success(t("Client added successfully"));
       getUsers();
       handleModal();
     });
   };
-
+  useEffect(() => {
+    if (address) {
+      setUser({
+        ...user,
+        address: address.label,
+        city: address?.city,
+        country: "France",
+      });
+    }
+  }, [address]);
   return (
     <>
       <Modal isOpen={openModal} size="xl" centered>
@@ -81,21 +105,43 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                         <label className="form-control-label">
                           {" "}
                           <span style={{ color: "red" }}>
-                            {user.name ? "" : "*"}{" "}
+                            {user.first_name ? "" : "*"}{" "}
                           </span>
-                          {t("Name")}
+                          {t("First Name")}
                         </label>{" "}
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder={t("Enter user's name here")}
+                          placeholder={t("Enter user's first name here")}
                           type="text"
-                          value={user.name}
-                          name="name"
+                          value={user.first_name}
+                          name="first_name"
                           onChange={handleInput}
                         />
                       </FormGroup>
                     </Col>
+                    <Col lg="6" style={{ margin: "auto" }}>
+                      <FormGroup>
+                        <label className="form-control-label">
+                          {" "}
+                          <span style={{ color: "red" }}>
+                            {user.last_name ? "" : "*"}{" "}
+                          </span>
+                          {t("Last Name")}
+                        </label>{" "}
+                        <Input
+                          className="form-control-alternative text-default"
+                          required={true}
+                          placeholder={t("Enter user's last name here")}
+                          type="text"
+                          value={user.last_name}
+                          name="last_name"
+                          onChange={handleInput}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
@@ -116,8 +162,6 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label
@@ -140,6 +184,8 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                         />
                       </FormGroup>
                     </Col>
+                  </Row>
+                  <Row>
                     <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
                         <label className="form-control-label">
@@ -156,25 +202,16 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           value={user.phone}
                           name="phone"
                           onChange={handleInput}
-                          maxLength="11"
+                          maxLength="10"
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-                  <Row>
-                    <Col lg="12" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: "auto" }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Address")}
-                        </label>
-                        <Input
-                          className="form-control-alternative text-default"
-                          required={true}
-                          placeholder={t("Enter user's address here")}
-                          type="text"
-                          value={user.address}
-                          name="address"
-                          onChange={handleInput}
+                        <AddressInput
+                          label="Enter Address"
+                          address={address}
+                          setAddress={setAddress}
                         />
                       </FormGroup>
                     </Col>
@@ -190,8 +227,9 @@ const AddUser = ({ openModal, handleModal, getUsers }) => {
                           required={true}
                           placeholder={t("Enter user's city here")}
                           type="text"
-                          value={user.city}
+                          value={address?.city}
                           name="city"
+                          readonly={address?.city}
                           onChange={handleInput}
                         />
                       </FormGroup>

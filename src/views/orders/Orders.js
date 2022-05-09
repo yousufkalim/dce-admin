@@ -34,6 +34,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
+import moment from "moment";
 
 // core components
 import Header from "components/Headers/Header.js";
@@ -43,6 +44,7 @@ import { useTranslation } from "react-i18next";
 
 const Users = () => {
   const { t } = useTranslation();
+  moment.locale("fr");
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -104,10 +106,6 @@ const Users = () => {
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
                   <h3 className="mb-0">{t("Orders")}</h3>
-                  {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
-                    <i className="ni ni-fat-add"></i>
-                    Add designer
-                  </Button> */}
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
@@ -145,7 +143,7 @@ const Users = () => {
 
                         <td>{item.client?.name}</td>
                         <td>{item.tailor?.name}</td>
-                        <td>{new Date(item.createdAt).toDateString()}</td>
+                        <td>{moment(item.createdAt).format("LL")}</td>
 
                         <td className="text-right">
                           <i

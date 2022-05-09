@@ -18,13 +18,27 @@
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import { useState, useEffect } from "react";
+
 import "./Header.css";
 import { useTranslation, Trans } from "react-i18next";
+import api from "api";
+import { UpdateStore, Store } from "StoreContext";
+import { Clients } from "views/clients/Clients";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
+  const updateStore = UpdateStore();
+  const { statistics } = Store();
 
+  const getStats = async () => {
+    const data = await api("get", "/statistics");
+    updateStore({ statistics: data.statistics });
+  };
+  useEffect(() => {
+    getStats();
+  }, []);
   return (
     <>
       <div className="header bg-gradient-custom pb-8 pt-5 pt-md-8">
@@ -41,10 +55,10 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          {t("TRAFFIC")}
+                          {t("CLIENTS")}
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          350,897
+                          {statistics.clients}
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -53,14 +67,7 @@ const Header = () => {
                         </div>
                       </Col>
                     </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-success mr-2">
-                        <i className="fa fa-arrow-up" /> 3.48%
-                      </span>{" "}
-                      <span className="text-nowrap">
-                        {t("Since last month")}
-                      </span>
-                    </p>
+                    <p className="mt-3 mb-0 text-muted text-sm"></p>
                   </CardBody>
                 </Card>
               </Col>
@@ -73,9 +80,12 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          {t("CLICKS")}
+                          {t("DESIGNERS")}
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">2,356</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          {" "}
+                          {statistics.designers}
+                        </span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -83,14 +93,7 @@ const Header = () => {
                         </div>
                       </Col>
                     </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-danger mr-2">
-                        <i className="fas fa-arrow-down" /> 3.48%
-                      </span>{" "}
-                      <span className="text-nowrap">
-                        {t("Since last week")}
-                      </span>
-                    </p>
+                    <p className="mt-3 mb-0 text-muted text-sm"></p>
                   </CardBody>
                 </Card>
               </Col>
@@ -103,9 +106,12 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          {t("VIEWS")}
+                          {t("ORDERS")}
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">924</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          {" "}
+                          {statistics.orders}
+                        </span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -113,14 +119,7 @@ const Header = () => {
                         </div>
                       </Col>
                     </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-warning mr-2">
-                        <i className="fas fa-arrow-down" /> 1.10%
-                      </span>{" "}
-                      <span className="text-nowrap">
-                        {t("Since yesterday")}
-                      </span>
-                    </p>
+                    <p className="mt-3 mb-0 text-muted text-sm"></p>
                   </CardBody>
                 </Card>
               </Col>
@@ -133,9 +132,12 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          {t("PERFORMANCE")}
+                          {t("COMPLAINTS")}
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">49,65%</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          {" "}
+                          {statistics.complaints}
+                        </span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -143,14 +145,7 @@ const Header = () => {
                         </div>
                       </Col>
                     </Row>
-                    <p className="mt-3 mb-0 text-muted text-sm">
-                      <span className="text-success mr-2">
-                        <i className="fas fa-arrow-up" /> 12%
-                      </span>{" "}
-                      <span className="text-nowrap">
-                        {t("Since last month")}
-                      </span>
-                    </p>
+                    <p className="mt-3 mb-0 text-muted text-sm"></p>
                   </CardBody>
                 </Card>
               </Col>

@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { Store, UpdateStore } from "../../StoreContext";
 
 import assetsURL from "../../utils/Assets";
-import { getUser } from "../../utils/Auth";
 
 const ChatHeader = ({}) => {
   const { t } = useTranslation();
@@ -26,7 +25,6 @@ const ChatHeader = ({}) => {
     return store.chat?.tailor ?? store.chat?.client;
   };
 
-  const user = getUser();
   const receiver = getReceiver();
 
   const receiverCheckIn = new Date(receiver.check_in);

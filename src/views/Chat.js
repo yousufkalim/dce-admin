@@ -62,7 +62,7 @@ const ChatScreen = () => {
       };
 
       response = await Api("post", `/chats/byQuery`, body);
-      const chatsData = response.data.chats;
+      const chatsData = response.chats;
       updateStore({
         chats: chatsData,
         chat: chatsData[0],
@@ -79,7 +79,7 @@ const ChatScreen = () => {
       response = await Api("post", `/messages/byQuery`, {
         chat: chatID,
       });
-      const messagesData = response.data.messages;
+      const messagesData = response.messages;
       updateStore({
         messages: messagesData,
       });

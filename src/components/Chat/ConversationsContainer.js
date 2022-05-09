@@ -3,7 +3,6 @@ import UserSVG from "../../assets/dummy.jpeg";
 import WritingSVG from "../../assets/writing.svg";
 
 import { Store, UpdateStore } from "../../StoreContext";
-import { getUser } from "../../utils/Auth";
 import { useTranslation } from "react-i18next";
 
 import Api from "../../api/index";
@@ -32,7 +31,6 @@ const ConversationListTile = (props) => {
     return props?.tailor ?? props?.client;
   };
 
-  const user = getUser();
   const receiver = getReceiver();
 
   const receiverCheckIn = new Date(receiver.check_in);
@@ -46,7 +44,7 @@ const ConversationListTile = (props) => {
       response = await Api("post", `/messages/byQuery`, {
         chat: props._id,
       });
-      const messagesData = response.data.messages;
+      const messagesData = response.messages;
       updateStore({
         chat: props,
         messages: messagesData,

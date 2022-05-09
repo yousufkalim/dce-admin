@@ -59,8 +59,8 @@ const SendMessage = ({}) => {
 
       response = await Api("post", "/assets", body);
 
-      if (response?.data?.success) {
-        const asset = response.data.file;
+      if (response.success) {
+        const asset = response.file;
 
         store.socket.emit("send_message", {
           type: type,
@@ -79,11 +79,7 @@ const SendMessage = ({}) => {
   const [iconsToggle, setIconsToggle] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [Open, setOpen] = useState(false);
-  const [values, setvalues] = useState({
-    video: "",
-    image: "",
-    file: "",
-  });
+
   const ToggleIcon = () => {
     setIconsToggle(!iconsToggle);
   };

@@ -30,7 +30,7 @@ const _getMessages = async (chatID) => {
     response = await Api("post", `/messages/byQuery`, {
       chat: chatID,
     });
-    const messagesData = response.data.messages ?? [];
+    const messagesData = response.messages ?? [];
     return messagesData;
   } catch (e) {
     console.trace(e);

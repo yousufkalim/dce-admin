@@ -22,6 +22,8 @@ const ConversationsContainer = (props) => {
 };
 
 const ConversationListTile = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { t } = useTranslation();
 
   const store = Store();

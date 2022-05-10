@@ -34,8 +34,14 @@ import {
   Col,
 } from "reactstrap";
 
+import { handleLogin } from "../utils/Auth";
+import { Store, UpdateStore } from "../StoreContext";
+
 const Login = () => {
   let [user, setUser] = useState({});
+
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -43,7 +49,7 @@ const Login = () => {
 
   const handleSubmit = () => {
     api("post", "/admins/login", user).then((res) => {
-      localStorage.setItem("token", res.token);
+      handleLogin(res.token, res.admin, updateStore);
       window.location = "/admin/index";
     });
   };

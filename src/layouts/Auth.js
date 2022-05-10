@@ -15,8 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import { Store, UpdateStore } from "StoreContext";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
 

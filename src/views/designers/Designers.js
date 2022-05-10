@@ -184,7 +184,6 @@ const Users = () => {
                             ? item.email?.substring(0, 30) + "..."
                             : item.email}
                         </td>
-
                         <td>{item.experience}</td>
                         <td>
                           {item.ratings.reduce((a, b) => a + b, 0) /

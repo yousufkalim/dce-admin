@@ -35,8 +35,14 @@ import {
   Col,
 } from "reactstrap";
 
+import { handleLogin } from "../utils/Auth";
+import { Store, UpdateStore } from "../StoreContext";
+
 const Register = () => {
   let [user, setUser] = useState({});
+
+  const store = Store();
+  const updateStore = UpdateStore();
 
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -53,6 +59,7 @@ const Register = () => {
       api("post", "/admins", user).then((res) => {
         setUser({ name: "", email: "", password: "", confirmPassword: "" });
         toast.success("Account created successfully");
+        handleLogin(res.token, res.admin, updateStore);
       });
     }
   };

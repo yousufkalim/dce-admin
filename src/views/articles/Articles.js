@@ -44,11 +44,10 @@ import AddArticle from "./AddArticle";
 import EditArticle from "./EditArticle";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
-import moment from "moment";
-
+import { titleCase } from "components/dateFormat";
 const Articles = () => {
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
 
@@ -56,7 +55,12 @@ const Articles = () => {
   const { articles } = Store();
   const history = useHistory();
   const updateStore = UpdateStore();
-  moment.locale("fr");
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   useEffect(() => {
     getArticles();
   }, []);
@@ -166,11 +170,29 @@ const Articles = () => {
                         <td>
                           <Badge color="" className="badge-dot mr-4">
                             <i className="bg-success" />
-                            {article.status}
+                            {t(article.status)}
                           </Badge>
                         </td>
-                        <td>{moment(article.createdAt).format("LL")}</td>
-                        <td>{moment(article.updatedAt).format("LL")}</td>
+                        <td>
+                          {language == "fr"
+                            ? titleCase(
+                                new Date(article.createdAt).toLocaleDateString(
+                                  "fr-FR",
+                                  options
+                                )
+                              )
+                            : new Date(article.createdAt).toDateString()}
+                        </td>
+                        <td>
+                          {language == "fr"
+                            ? titleCase(
+                                new Date(article.updatedAt).toLocaleDateString(
+                                  "fr-FR",
+                                  options
+                                )
+                              )
+                            : new Date(article.updatedAt).toDateString()}
+                        </td>
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle

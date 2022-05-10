@@ -41,10 +41,17 @@ import moment from "moment";
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 import ViewComplaint from "./ViewComplaint";
+import { titleCase } from "components/dateFormat";
 
 const Complaints = () => {
-  const { t } = useTranslation();
-  moment.locale("fr");
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const { complaints } = Store();
@@ -137,7 +144,18 @@ const Complaints = () => {
                         <td title={item.reason}>{item.reason}</td>
                         <td title={item.details}>{item.details}</td>
                         <td title={item.attachment}>{item.attachment}</td>
-                        <td>{moment(item.createdAt).format("LL")}</td>
+
+                        <td>
+                          {" "}
+                          {language == "fr"
+                            ? titleCase(
+                                new Date(item.createdAt).toLocaleDateString(
+                                  "fr-FR",
+                                  options
+                                )
+                              )
+                            : new Date(item.createdAt).toDateString()}
+                        </td>
 
                         <td className="text-right">
                           <UncontrolledDropdown>

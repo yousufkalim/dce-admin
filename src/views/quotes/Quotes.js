@@ -41,10 +41,17 @@ import {
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
 import ViewQuote from "./ViewQuote";
+import { titleCase } from "components/dateFormat";
 
 const Users = () => {
-  const { t } = useTranslation();
-  moment.locale("fr");
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -148,8 +155,18 @@ const Users = () => {
                             ? item.description?.substring(0, 30) + "..."
                             : item.description}
                         </td>
-                        <td title={item.status}>{item.status}</td>
-                        <td>{moment(item.createdAt).format("LL")}</td>
+                        <td title={item.status}>{t(item.status)}</td>
+                        <td>
+                          {" "}
+                          {language == "fr"
+                            ? titleCase(
+                                new Date(item.createdAt).toLocaleDateString(
+                                  "fr-FR",
+                                  options
+                                )
+                              )
+                            : new Date(item.createdAt).toDateString()}
+                        </td>
                         <td className="text-right">
                           <i
                             className="fa fa-eye"

@@ -34,7 +34,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import moment from "moment";
+import { titleCase } from "components/dateFormat";
 
 // core components
 import AddUser from "./AddDesigner";
@@ -44,8 +44,14 @@ import { toast } from "react-toastify";
 import ViewUser from "./ViewDesigner";
 import { useTranslation } from "react-i18next";
 const Users = () => {
-  const { t } = useTranslation();
-  moment.locale("fr");
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -186,7 +192,16 @@ const Users = () => {
                         </td>
                         <td>{item.phone}</td>
                         <td>{item.city}</td>
-                        <td>{moment(item.createdAt).format("LL")}</td>
+                        <td>
+                          {language == "fr"
+                            ? titleCase(
+                                new Date(item.createdAt).toLocaleDateString(
+                                  "fr-FR",
+                                  options
+                                )
+                              )
+                            : new Date(item.createdAt).toDateString()}
+                        </td>
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle

@@ -190,7 +190,6 @@ const Users = () => {
                           {item.ratings.reduce((a, b) => a + b, 0) /
                             item.ratings.length || t("None")}
                         </td>
-                        {console.log(item.ratings)}
                         <td>{item.phone}</td>
                         <td>{item.city}</td>
                         <td>
@@ -203,7 +202,6 @@ const Users = () => {
                               )
                             : new Date(item.createdAt).toDateString()}
                         </td>
-
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle

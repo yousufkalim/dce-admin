@@ -34,7 +34,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-
+import moment from "moment";
 // core components
 import AddUser from "./AddClient";
 import EditUser from "./EditClient";
@@ -204,7 +204,6 @@ const Users = () => {
                               )
                             : new Date(item.createdAt).toDateString()}
                         </td>
-
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle

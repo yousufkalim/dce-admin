@@ -61,7 +61,6 @@ const Articles = () => {
     month: "long",
     day: "numeric",
   };
-
   useEffect(() => {
     getArticles();
   }, []);
@@ -194,7 +193,6 @@ const Articles = () => {
                               )
                             : new Date(article.updatedAt).toDateString()}
                         </td>
-
                         <td className="text-right">
                           <UncontrolledDropdown>
                             <DropdownToggle
@@ -207,17 +205,6 @@ const Articles = () => {
                             >
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
-                            {/* <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem
-                              // onClick={() =>
-                              //   window
-                              //     .open(
-                              //       `https://passtotrip.com/blog/${article._id}`,
-                              //       "_blank"
-                              //     )
-                              //     .focus()
-                              // }
-                              > */}
                             <DropdownMenu className="dropdown-menu-arrow" right>
                               <DropdownItem>{t("View")}</DropdownItem>
 

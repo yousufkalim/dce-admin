@@ -36,7 +36,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-
+import moment from "moment";
 // core components
 import Header from "components/Headers/Header.js";
 import { toast } from "react-toastify";
@@ -52,7 +52,6 @@ const Complaints = () => {
     month: "long",
     day: "numeric",
   };
-
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const { complaints } = Store();

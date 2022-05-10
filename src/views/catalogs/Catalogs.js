@@ -46,7 +46,6 @@ const Users = () => {
     month: "long",
     day: "numeric",
   };
-
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const { catalogs } = Store();

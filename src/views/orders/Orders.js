@@ -34,6 +34,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
+import moment from "moment";
 
 // core components
 import Header from "components/Headers/Header.js";
@@ -112,10 +113,6 @@ const Users = () => {
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
                   <h3 className="mb-0">{t("Orders")}</h3>
-                  {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
-                    <i className="ni ni-fat-add"></i>
-                    Add designer
-                  </Button> */}
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import UserSVG from "../../assets/dummy.jpeg";
-import WritingSVG from "../../assets/writing.svg";
+import React, { useState } from 'react';
+import UserSVG from '../../assets/dummy.jpeg';
+// import WritingSVG from '../../assets/writing.svg';
 
-import { Store, UpdateStore } from "../../StoreContext";
-import { useTranslation } from "react-i18next";
+import { Store, UpdateStore } from '../../StoreContext';
+import { useTranslation } from 'react-i18next';
 
-import Api from "../../api/index";
-import assetsURL from "../../utils/Assets";
+import Api from '../../api/index';
+import assetsURL from '../../utils/Assets';
 
 const ConversationsContainer = (props) => {
   const store = Store();
-  const updateStore = UpdateStore();
+  // const updateStore = UpdateStore();
 
   return (
     <>
@@ -26,7 +26,7 @@ const ConversationListTile = (props) => {
 
   const { t } = useTranslation();
 
-  const store = Store();
+  // const store = Store();
   const updateStore = UpdateStore();
 
   const getReceiver = () => {
@@ -35,15 +35,15 @@ const ConversationListTile = (props) => {
 
   const receiver = getReceiver();
 
-  const receiverCheckIn = new Date(receiver.check_in);
+  const receiverCheckIn = new Date(receiver?.check_in);
   const receiverCheckOut = new Date(receiver.check_out);
 
-  receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
+  receiver.status = receiverCheckIn > receiverCheckOut ? 'online' : 'offline';
 
   const handleSelect = async () => {
     let response;
     try {
-      response = await Api("post", `/messages/byQuery`, {
+      response = await Api('post', `/messages/byQuery`, {
         chat: props._id,
       });
       const messagesData = response.messages;
@@ -61,17 +61,17 @@ const ConversationListTile = (props) => {
     <>
       <div
         style={{
-          padding: "24px",
-          background: "#ffffff",
-          borderRadius: "10px",
-          marginBottom: "10px",
-          cursor: "pointer",
+          padding: '24px',
+          background: '#ffffff',
+          borderRadius: '10px',
+          marginBottom: '10px',
+          cursor: 'pointer',
         }}
         onClick={handleSelect}
       >
         <div className="parent">
           <div className="card-user">
-            {props.status === "online" ? (
+            {props.status === 'online' ? (
               <div className="online">
                 <div className="online-white">
                   <div className="online-green"> </div>
@@ -81,9 +81,9 @@ const ConversationListTile = (props) => {
             <img
               className="image_container"
               style={{
-                height: "50pt",
-                width: "50pt",
-                marginRight: "20px",
+                height: '50pt',
+                width: '50pt',
+                marginRight: '20px',
               }}
               src={receiver?.avatar ? assetsURL(receiver.avatar) : UserSVG}
             />
@@ -95,11 +95,11 @@ const ConversationListTile = (props) => {
                 ) : null} */}
                 <p
                   style={{
-                    color: receiver.status == "online" ? "#149E7A" : "#cc8e9c",
+                    color: receiver.status == 'online' ? '#149E7A' : '#cc8e9c',
                   }}
                   className="status"
                 >
-                  {t(receiver.status)}{" "}
+                  {t(receiver.status)}{' '}
                 </p>
               </div>
             </div>

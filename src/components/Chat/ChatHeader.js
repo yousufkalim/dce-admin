@@ -28,8 +28,8 @@ const ChatHeader = ({}) => {
 
   const receiver = getReceiver();
 
-  const receiverCheckIn = new Date(receiver.check_in);
-  const receiverCheckOut = new Date(receiver.check_out);
+  const receiverCheckIn = new Date(receiver?.check_in);
+  const receiverCheckOut = new Date(receiver?.check_out);
 
   receiver.status = receiverCheckIn > receiverCheckOut ? "online" : "offline";
 

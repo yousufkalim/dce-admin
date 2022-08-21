@@ -16,10 +16,10 @@
 
 */
 // reactstrap components
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import api from "api";
-import { Store, UpdateStore } from "StoreContext";
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import api from 'api';
+import { Store, UpdateStore } from 'StoreContext';
 import {
   Badge,
   Card,
@@ -33,41 +33,43 @@ import {
   Table,
   Container,
   Row,
-} from "reactstrap";
-import moment from "moment";
+} from 'reactstrap';
+import moment from 'moment';
 
 // core components
-import Header from "components/Headers/Header.js";
-import { toast } from "react-toastify";
-import ViewOrder from "./ViewOrder";
-import { useTranslation } from "react-i18next";
-import { titleCase } from "components/dateFormat";
+import Header from 'components/Headers/Header.js';
+import { toast } from 'react-toastify';
+import ViewOrder from './ViewOrder';
+import { useTranslation } from 'react-i18next';
+import { titleCase } from 'components/dateFormat';
 
 const Users = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
   var options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   };
+  const [dropDownItem, setDropDownItem] = useState('all');
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
 
-  const { orders } = Store();
+  const { orders, store } = Store();
+  const [temporders, setTempOrders] = useState(['']);
   const updateStore = UpdateStore();
   const history = useHistory();
   const [user, setUser] = useState({
-    _id: "",
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-    number: "",
-    country: "",
-    city: "",
+    _id: '',
+    name: '',
+    email: '',
+    password: '',
+    address: '',
+    number: '',
+    country: '',
+    city: '',
   });
 
   useEffect(() => {
@@ -75,9 +77,21 @@ const Users = () => {
   }, []);
 
   const getUsers = async () => {
-    const data = await api("get", "/orders");
-
+    const data = await api('get', '/orders');
     updateStore({ orders: data.orders });
+    setTempOrders(data.orders);
+  };
+
+  const filterOrders = (e) => {
+    e.preventDefault();
+
+    setDropDownItem(e.target.name);
+    if (e.target.name === 'all') {
+      return setTempOrders(orders);
+    }
+    const filterData = orders.filter((o) => o.status === e.target.name);
+
+    setTempOrders(filterData);
   };
 
   const handleModal = () => {
@@ -95,8 +109,8 @@ const Users = () => {
   };
 
   const handleDelete = (id) => {
-    api("delete", `/users/${id}`).then(() => {
-      toast.success(t("User deleted successfully"));
+    api('delete', `/users/${id}`).then(() => {
+      toast.success(t('User deleted successfully'));
       getUsers();
     });
   };
@@ -112,34 +126,67 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">{t("Orders")}</h3>
+                  <h3 className="mb-0">{t('Orders')}</h3>
+                  <div>
+                    <UncontrolledDropdown>
+                      <DropdownToggle
+                        color="danger"
+                        name
+                        href="#pablo"
+                        role="button"
+                        caret
+                        size="md"
+                        style={{
+                          textTransform: 'capitalize',
+                        }}
+                      >
+                        {/* {dropDownItem} */}
+                        {t(dropDownItem)}
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem name="all" onClick={filterOrders}>
+                          All
+                        </DropdownItem>
+                        <DropdownItem name="pending" onClick={filterOrders}>
+                          Pending
+                        </DropdownItem>
+                        <DropdownItem name="completed" onClick={filterOrders}>
+                          Completed
+                        </DropdownItem>
+                        <DropdownItem name="discarded" onClick={filterOrders}>
+                          Discard
+                        </DropdownItem>
+                        <DropdownItem name="in_progress" onClick={filterOrders}>
+                          In Progress
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </div>
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">{t("Name")}</th>
-                    <th scope="col">{t("CATEGORY")}</th>
-                    <th scope="col">{t("Status")}</th>
-                    <th scope="col">{t("Type")}</th>
-                    <th scope="col">{t("Client")}</th>
-                    <th scope="col">{t("DESIGNER")}</th>
-                    <th scope="col">{t("CREATED AT")}</th>
+                    <th scope="col">{t('Name')}</th>
+                    <th scope="col">{t('CATEGORY')}</th>
+                    <th scope="col">{t('Status')}</th>
+                    <th scope="col">{t('Type')}</th>
+                    <th scope="col">{t('Client')}</th>
+                    <th scope="col">{t('DESIGNER')}</th>
+                    <th scope="col">{t('CREATED AT')}</th>
 
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {orders?.map((item) => {
+                  {temporders?.map((item) => {
                     return (
                       <tr>
                         <th scope="row">
                           <Media className="align-items-center">
                             <Media>
                               <span className="mb-0 text-sm" title={item.name}>
-                                {item.name?.length > 30
-                                  ? item.name?.substring(0, 30) + "..."
-                                  : item.name}
+                                {item.name?.length > 30 ? item?.name?.substring(0, 30) + '...' : item.name}
                               </span>
                             </Media>
                           </Media>
@@ -151,22 +198,13 @@ const Users = () => {
                         <td>{item.client?.name}</td>
                         <td>{item.tailor?.name}</td>
                         <td>
-                          {language == "fr"
-                            ? titleCase(
-                                new Date(item.createdAt).toLocaleDateString(
-                                  "fr-FR",
-                                  options
-                                )
-                              )
+                          {language == 'fr'
+                            ? titleCase(new Date(item.createdAt).toLocaleDateString('fr-FR', options))
                             : new Date(item.createdAt).toDateString()}
                         </td>
 
                         <td className="text-right">
-                          <i
-                            className="fa fa-eye"
-                            style={{ cursor: "pointer" }}
-                            onClick={() => handleViewModal(item)}
-                          />
+                          <i className="fa fa-eye" style={{ cursor: 'pointer' }} onClick={() => handleViewModal(item)} />
                         </td>
                       </tr>
                     );
@@ -176,13 +214,7 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {viewModal && (
-          <ViewOrder
-            openModal={viewModal}
-            handleModal={handleViewModal}
-            order={user}
-          />
-        )}
+        {viewModal && <ViewOrder openModal={viewModal} handleModal={handleViewModal} order={user} />}
       </Container>
     </>
   );

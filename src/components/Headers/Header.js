@@ -17,14 +17,14 @@
 */
 
 // reactstrap components
-import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
-import { useState, useEffect } from "react";
+import { Card, CardBody, CardTitle, Container, Row, Col } from 'reactstrap';
+import { useState, useEffect } from 'react';
 
-import "./Header.css";
-import { useTranslation, Trans } from "react-i18next";
-import api from "api";
-import { UpdateStore, Store } from "StoreContext";
-import { Clients } from "views/clients/Clients";
+import './Header.css';
+import { useTranslation, Trans } from 'react-i18next';
+import api from 'api';
+import { UpdateStore, Store } from 'StoreContext';
+import { Clients } from 'views/clients/Clients';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -33,7 +33,7 @@ const Header = () => {
   const { statistics } = Store();
 
   const getStats = async () => {
-    const data = await api("get", "/statistics");
+    const data = await api('get', '/statistics');
     updateStore({ statistics: data.statistics });
   };
   useEffect(() => {
@@ -51,15 +51,10 @@ const Header = () => {
                   <CardBody>
                     <Row>
                       <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          {t("CLIENTS")}
+                        <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
+                          {t('CLIENTS')}
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">
-                          {statistics.clients}
-                        </span>
+                        <span className="h2 font-weight-bold mb-0">{statistics.clients}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -76,16 +71,10 @@ const Header = () => {
                   <CardBody>
                     <Row>
                       <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          {t("DESIGNERS")}
+                        <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
+                          {t('DESIGNERS')}
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">
-                          {" "}
-                          {statistics.designers}
-                        </span>
+                        <span className="h2 font-weight-bold mb-0"> {statistics.designers}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -102,22 +91,22 @@ const Header = () => {
                   <CardBody>
                     <Row>
                       <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          {t("ORDERS")}
+                        <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
+                          {t('ORDERS')}
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">
-                          {" "}
-                          {statistics.orders}
-                        </span>
+                        <span className="h2 font-weight-bold mb-0"> {statistics.orders}</span>
                       </div>
-                      <Col className="col-auto">
+                      <div className="col">
+                        <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
+                          {t('EARNING')}
+                        </CardTitle>
+                        <span className="h2 font-weight-bold mb-0"> {statistics.totalBudget}</span>
+                      </div>
+                      {/* <Col className="col-auto">
                         <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
                           <i className="fas fa-users" />
                         </div>
-                      </Col>
+                      </Col> */}
                     </Row>
                     <p className="mt-3 mb-0 text-muted text-sm"></p>
                   </CardBody>
@@ -128,16 +117,10 @@ const Header = () => {
                   <CardBody>
                     <Row>
                       <div className="col">
-                        <CardTitle
-                          tag="h5"
-                          className="text-uppercase text-muted mb-0"
-                        >
-                          {t("COMPLAINTS")}
+                        <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
+                          {t('COMPLAINTS')}
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">
-                          {" "}
-                          {statistics.complaints}
-                        </span>
+                        <span className="h2 font-weight-bold mb-0"> {statistics.complaints}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-info text-white rounded-circle shadow">

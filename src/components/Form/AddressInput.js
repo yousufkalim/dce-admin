@@ -1,6 +1,6 @@
-import { useState } from "react";
-import axios from "axios";
-import Autocomplete from "react-autocomplete";
+import { useState } from 'react';
+import axios from 'axios';
+import Autocomplete from 'react-autocomplete';
 
 function AddressInput({ label, address, setAddress }) {
   let [addresses, setAddresses] = useState([]);
@@ -8,23 +8,16 @@ function AddressInput({ label, address, setAddress }) {
   // Get All Address in drop down List from API
   const getAllAddress = async (e) => {
     setAddress({ ...address, label: e.target.value });
-    let res = await fetch(
-      `https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`,
-      {
-        method: "GET",
-      }
-    );
+    let res = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${e.target.value}&type=housenumber&autocomplete=1`, {
+      method: 'GET',
+    });
     res = await res.json();
     var addressToSet = []; // //debugger;
     for (var i = 0; i < res?.features?.length; i++) {
       addressToSet.push({
         id: i,
         label: res?.features[i].properties.label,
-        label2: `${
-          res?.features[i].properties.label +
-          "," +
-          res?.features[i].properties.context
-        }`,
+        label2: `${res?.features[i].properties.label + ',' + res?.features[i].properties.context}`,
         city: res?.features[i].properties.city,
         PostalCode: res?.features[i].properties.postcode,
         lat: res?.features[i].geometry.coordinates[1],
@@ -59,21 +52,18 @@ function AddressInput({ label, address, setAddress }) {
     } else {
       setAddress({
         ...address,
-        address: "",
-        zip_code: "",
-        lat: "",
-        long: "",
-        city: "",
+        address: '',
+        zip_code: '',
+        lat: '',
+        long: '',
+        city: '',
       });
     }
   };
 
   return (
     <>
-      <label
-        className="form-control-label"
-        htmlFor={`input-address-${label.split(" ").join("")}`}
-      >
+      <label className="form-control-label" htmlFor={`input-address-${label.split(' ').join('')}`}>
         {label}
       </label>
 
@@ -85,12 +75,12 @@ function AddressInput({ label, address, setAddress }) {
         onChange={getAllAddress}
         onSelect={handleAddressSelect}
         // Custom styling
-        wrapperStyle={{ display: "block" }}
+        wrapperStyle={{ display: 'block' }}
         renderInput={(props) => {
           return (
             <input
               className="form-control form-control-alternative"
-              id={`input-address-${label.split(" ").join("")}`}
+              id={`input-address-${label.split(' ').join('')}`}
               placeholder={label}
               {...props}
             />
@@ -103,7 +93,7 @@ function AddressInput({ label, address, setAddress }) {
                 ...style,
                 ...this.menuStyle,
                 zIndex: 1,
-                marginTop: "5px",
+                marginTop: '5px',
               }}
               children={items}
             />
@@ -112,8 +102,8 @@ function AddressInput({ label, address, setAddress }) {
         renderItem={(item, isHighlighted) => (
           <div
             style={{
-              background: isHighlighted ? "lightgray" : "white",
-              padding: "10px",
+              background: isHighlighted ? 'lightgray' : 'white',
+              padding: '10px',
             }}
           >
             {item.label}

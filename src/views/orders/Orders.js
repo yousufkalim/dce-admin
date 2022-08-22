@@ -84,7 +84,6 @@ const Users = () => {
 
   const filterOrders = (e) => {
     e.preventDefault();
-
     setDropDownItem(e.target.name);
     if (e.target.name === 'all') {
       return setTempOrders(orders);
@@ -117,6 +116,7 @@ const Users = () => {
 
   return (
     <>
+      {console.log(dropDownItem, 'dropDownItem')}
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
@@ -140,24 +140,23 @@ const Users = () => {
                           textTransform: 'capitalize',
                         }}
                       >
-                        {/* {dropDownItem} */}
                         {t(dropDownItem)}
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem name="all" onClick={filterOrders}>
-                          All
+                          {t('All')}
                         </DropdownItem>
                         <DropdownItem name="pending" onClick={filterOrders}>
-                          Pending
+                          {t('Pending')}
                         </DropdownItem>
                         <DropdownItem name="completed" onClick={filterOrders}>
-                          Completed
+                          {t('Completed')}
                         </DropdownItem>
                         <DropdownItem name="discarded" onClick={filterOrders}>
-                          Discard
+                          {t('Discarded')}
                         </DropdownItem>
                         <DropdownItem name="in_progress" onClick={filterOrders}>
-                          In Progress
+                          {t('In Progress')}
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
@@ -186,7 +185,7 @@ const Users = () => {
                           <Media className="align-items-center">
                             <Media>
                               <span className="mb-0 text-sm" title={item.name}>
-                                {item.name?.length > 30 ? item?.name?.substring(0, 30) + '...' : item.name}
+                                {item?.name?.length > 30 ? item?.name?.substring(0, 30) + '...' : item.name}
                               </span>
                             </Media>
                           </Media>
@@ -195,14 +194,13 @@ const Users = () => {
                         <td title={item.status}>{t(item.status)}</td>
                         <td title={item.type}>{item.type}</td>
 
-                        <td>{item.client?.name}</td>
-                        <td>{item.tailor?.name}</td>
+                        <td>{item?.client?.name}</td>
+                        <td>{item?.tailor?.name}</td>
                         <td>
                           {language == 'fr'
-                            ? titleCase(new Date(item.createdAt).toLocaleDateString('fr-FR', options))
+                            ? new Date(item?.createdAt).toLocaleDateString('fr-FR', options)
                             : new Date(item.createdAt).toDateString()}
                         </td>
-
                         <td className="text-right">
                           <i className="fa fa-eye" style={{ cursor: 'pointer' }} onClick={() => handleViewModal(item)} />
                         </td>

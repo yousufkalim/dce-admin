@@ -16,11 +16,12 @@
 
 */
 // reactstrap components
-import { useState, useEffect } from "react";
-import api from "api";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import api from 'api';
+import { useHistory } from 'react-router-dom';
+import { assetsUrl } from 'config';
 
-import { Store, UpdateStore } from "StoreContext";
+import { Store, UpdateStore } from 'StoreContext';
 import {
   Badge,
   Card,
@@ -36,15 +37,15 @@ import {
   Container,
   Row,
   UncontrolledTooltip,
-} from "reactstrap";
-import { useTranslation } from "react-i18next";
+} from 'reactstrap';
+import { useTranslation } from 'react-i18next';
 
 // core components
-import AddArticle from "./AddArticle";
-import EditArticle from "./EditArticle";
-import Header from "components/Headers/Header.js";
-import { toast } from "react-toastify";
-import { titleCase } from "components/dateFormat";
+import AddArticle from './AddArticle';
+import EditArticle from './EditArticle';
+import Header from 'components/Headers/Header.js';
+import { toast } from 'react-toastify';
+import { titleCase } from 'components/dateFormat';
 const Articles = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
@@ -56,17 +57,17 @@ const Articles = () => {
   const history = useHistory();
   const updateStore = UpdateStore();
   var options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   };
   useEffect(() => {
     getArticles();
   }, []);
 
   const getArticles = async () => {
-    const data = await api("get", "/blogs");
+    const data = await api('get', '/blogs');
 
     if (data) {
       updateStore({ articles: data });
@@ -85,15 +86,15 @@ const Articles = () => {
   };
 
   const handleDelete = (id) => {
-    var a = window.confirm("Are you sure you want to delete?");
+    var a = window.confirm('Are you sure you want to delete?');
     if (a)
-      api("delete", `/blogs/${id}`)
+      api('delete', `/blogs/${id}`)
         .then(() => {
-          toast.success(t("Article deleted successfully"));
+          toast.success(t('Article deleted successfully'));
           getArticles();
         })
         .catch(() => {
-          toast.error(t("An error occurred while deleting"));
+          toast.error(t('An error occurred while deleting'));
         });
   };
 
@@ -108,26 +109,21 @@ const Articles = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">{t("Articles")}</h3>
-                  <Button
-                    color="primary"
-                    href="#pablo"
-                    onClick={handleModal}
-                    size="md"
-                  >
+                  <h3 className="mb-0">{t('Articles')}</h3>
+                  <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
-                    {t("Add Article")}
+                    {t('Add Article')}
                   </Button>
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">{t("Title")}</th>
-                    <th scope="col">{t("Description")}</th>
-                    <th scope="col">{t("Status")}</th>
-                    <th scope="col">{t("CREATED AT")}</th>
-                    <th scope="col">{t("UPDATED AT")}</th>
+                    <th scope="col">{t('Title')}</th>
+                    <th scope="col">{t('Description')}</th>
+                    <th scope="col">{t('Status')}</th>
+                    <th scope="col">{t('CREATED AT')}</th>
+                    <th scope="col">{t('UPDATED AT')}</th>
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -137,35 +133,20 @@ const Articles = () => {
                       <tr>
                         <th scope="row">
                           <Media className="align-items-center">
-                            <a
-                              className="avatar rounded-circle mr-3"
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <img
-                                alt="Article"
-                                src={
-                                  process.env.REACT_APP_SERVER_MEDIA_URL +
-                                  article.blog_images
-                                }
-                              />
+                            <a className="avatar rounded-circle mr-3" href="#pablo" onClick={(e) => e.preventDefault()}>
+                              <img alt="Article" src={assetsUrl + article.blog_images} />
                             </a>
                             <Media>
-                              <span
-                                className="mb-0 text-sm"
-                                title={article.blog_title}
-                              >
+                              <span className="mb-0 text-sm" title={article.blog_title}>
                                 {article.blog_title?.length > 30
-                                  ? article.blog_title?.substring(0, 30) + "..."
+                                  ? article.blog_title?.substring(0, 30) + '...'
                                   : article.blog_title}
                               </span>
                             </Media>
                           </Media>
                         </th>
                         <td title={article.blog_desc}>
-                          {article.blog_desc?.length > 30
-                            ? article.blog_desc?.substring(0, 30) + "..."
-                            : article.blog_desc}
+                          {article.blog_desc?.length > 30 ? article.blog_desc?.substring(0, 30) + '...' : article.blog_desc}
                         </td>
                         <td>
                           <Badge color="" className="badge-dot mr-4">
@@ -174,23 +155,13 @@ const Articles = () => {
                           </Badge>
                         </td>
                         <td>
-                          {language == "fr"
-                            ? titleCase(
-                                new Date(article.createdAt).toLocaleDateString(
-                                  "fr-FR",
-                                  options
-                                )
-                              )
+                          {language == 'fr'
+                            ? titleCase(new Date(article.createdAt).toLocaleDateString('fr-FR', options))
                             : new Date(article.createdAt).toDateString()}
                         </td>
                         <td>
-                          {language == "fr"
-                            ? titleCase(
-                                new Date(article.updatedAt).toLocaleDateString(
-                                  "fr-FR",
-                                  options
-                                )
-                              )
+                          {language == 'fr'
+                            ? titleCase(new Date(article.updatedAt).toLocaleDateString('fr-FR', options))
                             : new Date(article.updatedAt).toDateString()}
                         </td>
                         <td className="text-right">
@@ -206,20 +177,13 @@ const Articles = () => {
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem>{t("View")}</DropdownItem>
+                              <DropdownItem>{t('View')}</DropdownItem>
 
-                              <DropdownItem
-                                href="#pablo"
-                                onClick={() => handleEditModal(article)}
-                              >
-                                {t("Edit")}
+                              <DropdownItem href="#pablo" onClick={() => handleEditModal(article)}>
+                                {t('Edit')}
                               </DropdownItem>
-                              <DropdownItem
-                                href="#pablo"
-                                className="text-danger"
-                                onClick={() => handleDelete(article._id)}
-                              >
-                                {"Delete"}
+                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(article._id)}>
+                                {'Delete'}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
@@ -288,13 +252,7 @@ const Articles = () => {
           </div>
         </Row>
 
-        {openModal && (
-          <AddArticle
-            openModal={openModal}
-            handleModal={handleModal}
-            getArticles={getArticles}
-          />
-        )}
+        {openModal && <AddArticle openModal={openModal} handleModal={handleModal} getArticles={getArticles} />}
         {editModal && (
           <EditArticle
             openModal={editModal}

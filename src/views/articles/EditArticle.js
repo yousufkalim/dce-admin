@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import MyUploadAdapter from "utils/MyUploadAdapter";
-import api from "../../api";
-import { useTranslation } from "react-i18next";
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import MyUploadAdapter from 'utils/MyUploadAdapter';
+import api from '../../api';
+import { useTranslation } from 'react-i18next';
 
 import {
   Modal,
@@ -17,8 +17,8 @@ import {
   Input,
   Row,
   Col,
-  Label,
-} from "reactstrap";
+  Label
+} from 'reactstrap';
 // core components
 
 const EditArticle = ({
@@ -26,7 +26,7 @@ const EditArticle = ({
   handleModal,
   blog,
   setBlog,
-  getArticles,
+  getArticles
 }) => {
   const { t } = useTranslation();
 
@@ -50,14 +50,14 @@ const EditArticle = ({
       formData.append(property, blog[property]);
     }
 
-    api("put", `/blogs/${blog._id}`, formData)
+    api('put', `/blogs/${blog._id}`, formData)
       .then((res) => {
-        toast.success(t("Article updated successfully"));
+        toast.success(t('Article updated successfully'));
         getArticles();
         handleModal();
       })
       .catch(() => {
-        toast.error(t("An error occurred"));
+        toast.error(t('An error occurred'));
       });
   };
 
@@ -65,7 +65,7 @@ const EditArticle = ({
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          {t("Edit Article")}
+          {t('Edit Article')}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -73,18 +73,18 @@ const EditArticle = ({
               <Form>
                 <div className="pl-lg-4">
                   <Row>
-                    <Col lg="9" style={{ margin: "auto" }}>
+                    <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
                         <label
                           className="form-control-label"
                           htmlFor="input-fname"
                         >
-                          {t("Title")}
+                          {t('Title')}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
                           required={true}
-                          placeholder={t("Enter tile here")}
+                          placeholder={t('Enter tile here')}
                           type="text"
                           value={blog.blog_title}
                           name="blog_title"
@@ -94,17 +94,17 @@ const EditArticle = ({
                     </Col>
                   </Row>
                   <Row>
-                    <Col lg="9" style={{ margin: "auto" }}>
+                    <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
                         <label
                           className="form-control-label"
                           htmlFor="input-lname"
                         >
-                          {t("Description")}
+                          {t('Description')}
                         </label>
                         <Input
                           className="form-control-alternative text-default"
-                          placeholder={t("Enter description here...")}
+                          placeholder={t('Enter description here...')}
                           type="textarea"
                           value={blog.blog_desc}
                           name="blog_desc"
@@ -116,13 +116,13 @@ const EditArticle = ({
                   </Row>
                   {/* <div className="pl-lg-4"> */}
                   <Row>
-                    <Col lg="9" style={{ margin: "auto" }}>
+                    <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
                         <label
                           className="form-control-label"
                           htmlFor="input-image"
                         >
-                          {t("Featured image")} <i className="ni ni-album-2" />
+                          {t('Featured image')} <i className="ni ni-album-2" />
                         </label>
                         <Input
                           className="form-control-file form"
@@ -135,20 +135,20 @@ const EditArticle = ({
                   </Row>
                   {/* </div> */}
                   <Row>
-                    <Col lg="9" style={{ margin: "auto" }}>
+                    <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
                         <label
                           className="form-control-label"
                           htmlFor="input-lname"
                         >
-                          {t("Article")}
+                          {t('Article')}
                         </label>
                         <CKEditor
                           editor={ClassicEditor}
                           data={blog.blog_content}
                           onReady={(editor) => {
                             editor.plugins.get(
-                              "FileRepository"
+                              'FileRepository'
                             ).createUploadAdapter = (loader) => {
                               return new MyUploadAdapter(loader);
                             };
@@ -158,7 +158,7 @@ const EditArticle = ({
                             setBlog((prev) => {
                               return {
                                 ...prev,
-                                blog_content: data,
+                                blog_content: data
                               };
                             });
                           }}
@@ -167,7 +167,7 @@ const EditArticle = ({
                     </Col>
                   </Row>
                   <Row>
-                    <Col lg="9" style={{ margin: "auto" }}>
+                    <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
                         <div className="custom-control custom-control-alternative custom-checkbox mb-3">
                           <input
@@ -182,7 +182,7 @@ const EditArticle = ({
                             className="custom-control-label"
                             htmlFor="customCheck5"
                           >
-                            {t("Featured")}
+                            {t('Featured')}
                           </label>
                         </div>
                       </FormGroup>
@@ -195,9 +195,9 @@ const EditArticle = ({
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSubmit}>
-            {t("Publish")}
+            {t('Publish')}
           </Button>
-          <Button onClick={handleModal}>{t("Cancel")}</Button>
+          <Button onClick={handleModal}>{t('Cancel')}</Button>
         </ModalFooter>
       </Modal>
     </>

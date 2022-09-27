@@ -36,7 +36,7 @@ import {
   Table,
   Container,
   Row,
-  UncontrolledTooltip,
+  UncontrolledTooltip
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -60,7 +60,7 @@ const Articles = () => {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: 'numeric'
   };
   useEffect(() => {
     getArticles();
@@ -110,7 +110,12 @@ const Articles = () => {
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
                   <h3 className="mb-0">{t('Articles')}</h3>
-                  <Button color="primary" href="#pablo" onClick={handleModal} size="md">
+                  <Button
+                    color="primary"
+                    href="#pablo"
+                    onClick={handleModal}
+                    size="md"
+                  >
                     <i className="ni ni-fat-add"></i>
                     {t('Add Article')}
                   </Button>
@@ -133,11 +138,21 @@ const Articles = () => {
                       <tr>
                         <th scope="row">
                           <Media className="align-items-center">
-                            <a className="avatar rounded-circle mr-3" href="#pablo" onClick={(e) => e.preventDefault()}>
-                              <img alt="Article" src={assetsUrl + article.blog_images} />
+                            <a
+                              className="avatar rounded-circle mr-3"
+                              href="#pablo"
+                              onClick={(e) => e.preventDefault()}
+                            >
+                              <img
+                                alt="Article"
+                                src={assetsUrl + article.blog_images}
+                              />
                             </a>
                             <Media>
-                              <span className="mb-0 text-sm" title={article.blog_title}>
+                              <span
+                                className="mb-0 text-sm"
+                                title={article.blog_title}
+                              >
                                 {article.blog_title?.length > 30
                                   ? article.blog_title?.substring(0, 30) + '...'
                                   : article.blog_title}
@@ -146,7 +161,9 @@ const Articles = () => {
                           </Media>
                         </th>
                         <td title={article.blog_desc}>
-                          {article.blog_desc?.length > 30 ? article.blog_desc?.substring(0, 30) + '...' : article.blog_desc}
+                          {article.blog_desc?.length > 30
+                            ? article.blog_desc?.substring(0, 30) + '...'
+                            : article.blog_desc}
                         </td>
                         <td>
                           <Badge color="" className="badge-dot mr-4">
@@ -156,12 +173,22 @@ const Articles = () => {
                         </td>
                         <td>
                           {language == 'fr'
-                            ? titleCase(new Date(article.createdAt).toLocaleDateString('fr-FR', options))
+                            ? titleCase(
+                                new Date(article.createdAt).toLocaleDateString(
+                                  'fr-FR',
+                                  options
+                                )
+                              )
                             : new Date(article.createdAt).toDateString()}
                         </td>
                         <td>
                           {language == 'fr'
-                            ? titleCase(new Date(article.updatedAt).toLocaleDateString('fr-FR', options))
+                            ? titleCase(
+                                new Date(article.updatedAt).toLocaleDateString(
+                                  'fr-FR',
+                                  options
+                                )
+                              )
                             : new Date(article.updatedAt).toDateString()}
                         </td>
                         <td className="text-right">
@@ -179,10 +206,17 @@ const Articles = () => {
                             <DropdownMenu className="dropdown-menu-arrow" right>
                               <DropdownItem>{t('View')}</DropdownItem>
 
-                              <DropdownItem href="#pablo" onClick={() => handleEditModal(article)}>
+                              <DropdownItem
+                                href="#pablo"
+                                onClick={() => handleEditModal(article)}
+                              >
                                 {t('Edit')}
                               </DropdownItem>
-                              <DropdownItem href="#pablo" className="text-danger" onClick={() => handleDelete(article._id)}>
+                              <DropdownItem
+                                href="#pablo"
+                                className="text-danger"
+                                onClick={() => handleDelete(article._id)}
+                              >
                                 {'Delete'}
                               </DropdownItem>
                             </DropdownMenu>
@@ -252,7 +286,13 @@ const Articles = () => {
           </div>
         </Row>
 
-        {openModal && <AddArticle openModal={openModal} handleModal={handleModal} getArticles={getArticles} />}
+        {openModal && (
+          <AddArticle
+            openModal={openModal}
+            handleModal={handleModal}
+            getArticles={getArticles}
+          />
+        )}
         {editModal && (
           <EditArticle
             openModal={editModal}

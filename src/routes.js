@@ -33,77 +33,77 @@ var routes = [
     name: 'Dashboard',
     icon: 'ni ni-tv-2 text-red',
     component: Index,
-    layout: '/admin',
+    layout: '/admin'
   },
   {
     path: '/login',
     name: 'Login',
     icon: 'ni ni-circle-08 text-pink',
     component: Login,
-    layout: '/auth',
+    layout: '/auth'
   },
   {
     path: '/register',
     name: 'Register',
     icon: 'ni ni-key-25 text-info',
     component: Register,
-    layout: '/auth',
+    layout: '/auth'
   },
-  // {
-  //   path: "/articles",
-  //   name: "Articles",
-  //   icon: "ni ni-single-copy-04 text-red",
-  //   component: Articles,
-  //   layout: "/admin",
-  // },
+  {
+    path: '/articles',
+    name: 'Articles',
+    icon: 'ni ni-single-copy-04 text-red',
+    component: Articles,
+    layout: '/admin'
+  },
   {
     path: '/clients',
     name: 'Clients',
     icon: 'ni ni-single-02 text-primary',
     component: Clients,
-    layout: '/admin',
+    layout: '/admin'
   },
   {
     path: '/designers',
     name: 'Designers',
     icon: 'ni ni-palette text-orange',
     component: Designers,
-    layout: '/admin',
+    layout: '/admin'
   },
   {
     path: '/orders',
     name: 'Orders',
     icon: 'ni ni-shop text-green',
     component: Orders,
-    layout: '/admin',
+    layout: '/admin'
   },
   {
     path: '/quotes',
     name: 'Quotes',
     icon: 'ni ni-paper-diploma text-yellow',
     component: Quotes,
-    layout: '/admin',
+    layout: '/admin'
   },
   {
     path: '/catalogs',
     name: 'Catalogues',
     icon: 'ni ni-collection text-teal',
     component: Catalogs,
-    layout: '/admin',
+    layout: '/admin'
   },
   {
     path: '/complaints',
     name: 'Complaints',
     icon: 'ni ni-folder-17 text-red',
     component: Complaints,
-    layout: '/admin',
+    layout: '/admin'
   },
   {
     path: '/chats',
     name: 'Chats',
     icon: 'ni ni-folder-17 text-red',
     component: Chat,
-    layout: '/admin',
-  },
+    layout: '/admin'
+  }
 ];
 export default routes;

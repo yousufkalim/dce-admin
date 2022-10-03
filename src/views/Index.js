@@ -77,7 +77,7 @@ const Index = props => {
                       href="#pablo"
                       onClick={e => e.preventDefault()}
                       size="sm">
-                      See all
+                      {t('See all')}
                     </Button>
                   </div>
                 </Row>
@@ -85,10 +85,10 @@ const Index = props => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
+                    <th scope="col">{t('Page name')}</th>
+                    <th scope="col">{t('Visitors')}</th>
+                    <th scope="col">{t('Unique users')}</th>
+                    <th scope="col">{t('Bounce rate')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -149,7 +149,7 @@ const Index = props => {
                       href="#pablo"
                       onClick={e => e.preventDefault()}
                       size="sm">
-                      See all
+                      {t('See all')}
                     </Button>
                   </div>
                 </Row>
@@ -157,8 +157,8 @@ const Index = props => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
+                    <th scope="col">{t('Referral')}</th>
+                    <th scope="col">{t('Visitors')}</th>
                     <th scope="col" />
                   </tr>
                 </thead>

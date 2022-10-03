@@ -16,35 +16,27 @@
 
 */
 // reactstrap components
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import api from "api";
-import { Store, UpdateStore } from "StoreContext";
-import {
-  Badge,
-  Card,
-  CardHeader,
-  Media,
-  Table,
-  Container,
-  Row,
-} from "reactstrap";
-import { useTranslation } from "react-i18next";
-import { titleCase } from "components/dateFormat";
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import api from 'api';
+import { Store, UpdateStore } from 'StoreContext';
+import { Badge, Card, CardHeader, Media, Table, Container, Row } from 'reactstrap';
+import { useTranslation } from 'react-i18next';
+import { titleCase } from 'components/dateFormat';
 
 // core components
-import Header from "components/Headers/Header.js";
-import { toast } from "react-toastify";
-import ViewCatalog from "./ViewCatalog";
+import Header from 'components/Headers/Header.js';
+import { toast } from 'react-toastify';
+import ViewCatalog from './ViewCatalog';
 
 const Users = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
   var options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   };
   const [openModal, setOpenModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -52,14 +44,14 @@ const Users = () => {
   const updateStore = UpdateStore();
   const history = useHistory();
   const [user, setUser] = useState({
-    _id: "",
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-    number: "",
-    country: "",
-    city: "",
+    _id: '',
+    name: '',
+    email: '',
+    password: '',
+    address: '',
+    number: '',
+    country: '',
+    city: ''
   });
 
   useEffect(() => {
@@ -67,27 +59,27 @@ const Users = () => {
   }, []);
 
   const getUsers = async () => {
-    const data = await api("get", "/catalogs");
+    const data = await api('get', '/catalogs');
 
     updateStore({ catalogs: data.catalogs });
   };
 
   const handleModal = () => {
-    setOpenModal((open) => !open);
+    setOpenModal(open => !open);
     return openModal;
   };
 
-  const handleViewModal = (item) => {
+  const handleViewModal = item => {
     if (item) {
       setUser(item);
     }
 
-    setViewModal((open) => !open);
+    setViewModal(open => !open);
     return openModal;
   };
-  const handleDelete = (id) => {
-    api("delete", `/users/${id}`).then(() => {
-      toast.success(t("User deleted successfully"));
+  const handleDelete = id => {
+    api('delete', `/users/${id}`).then(() => {
+      toast.success(t('User deleted successfully'));
       getUsers();
     });
   };
@@ -103,7 +95,7 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">{t("Catalogues")}</h3>
+                  <h3 className="mb-0">{t('Catalogues')}</h3>
                   {/* <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
                     Add designer
@@ -113,17 +105,17 @@ const Users = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">{t("Name")}</th>
-                    <th scope="col">{t("Category")}</th>
-                    <th scope="col">{t("Price")}</th>
-                    <th scope="col">{t("Description")}</th>
-                    <th scope="col">{t("Designer")}</th>
-                    <th scope="col">{t("CREATED AT")}</th>
+                    <th scope="col">{t('Name')}</th>
+                    <th scope="col">{t('Category')}</th>
+                    <th scope="col">{t('Price')}</th>
+                    <th scope="col">{t('Description')}</th>
+                    <th scope="col">{t('Designer')}</th>
+                    <th scope="col">{t('CREATED AT')}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {catalogs?.map((item) => {
+                  {catalogs?.map(item => {
                     return (
                       <tr>
                         <th scope="row">
@@ -135,29 +127,26 @@ const Users = () => {
                             </Media>
                           </Media>
                         </th>
-                        <td title={item.category}>{item.category}</td>
+                        <td title={t(item.category)}>{t(item.category)}</td>
 
                         <td>{item.price}</td>
                         <td title={item.description}>
                           {item.description?.length > 30
-                            ? item.description?.substring(0, 30) + "..."
+                            ? item.description?.substring(0, 30) + '...'
                             : item.description}
                         </td>
                         <td title={item.tailor?.name}>{item.tailor?.name}</td>
                         <td>
-                          {language == "fr"
+                          {language == 'fr'
                             ? titleCase(
-                                new Date(item.createdAt).toLocaleDateString(
-                                  "fr-FR",
-                                  options
-                                )
+                                new Date(item.createdAt).toLocaleDateString('fr-FR', options)
                               )
                             : new Date(item.createdAt).toDateString()}
                         </td>
                         <td className="text-right">
                           <i
                             className="fa fa-eye"
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: 'pointer' }}
                             onClick={() => handleViewModal(item)}
                           />
                         </td>
@@ -170,11 +159,7 @@ const Users = () => {
           </div>
         </Row>
         {viewModal && (
-          <ViewCatalog
-            openModal={viewModal}
-            handleModal={handleViewModal}
-            catalog={user}
-          />
+          <ViewCatalog openModal={viewModal} handleModal={handleViewModal} catalog={user} />
         )}
       </Container>
     </>

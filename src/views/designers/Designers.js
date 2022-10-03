@@ -16,10 +16,10 @@
 
 */
 // reactstrap components
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import api from "api";
-import { Store, UpdateStore } from "StoreContext";
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import api from 'api';
+import { Store, UpdateStore } from 'StoreContext';
 import {
   Badge,
   Card,
@@ -32,25 +32,25 @@ import {
   Media,
   Table,
   Container,
-  Row,
-} from "reactstrap";
-import { titleCase } from "components/dateFormat";
+  Row
+} from 'reactstrap';
+import { titleCase } from 'components/dateFormat';
 
 // core components
-import AddUser from "./AddDesigner";
-import EditUser from "./EditDesigner";
-import Header from "components/Headers/Header.js";
-import { toast } from "react-toastify";
-import ViewUser from "./ViewDesigner";
-import { useTranslation } from "react-i18next";
+import AddUser from './AddDesigner';
+import EditUser from './EditDesigner';
+import Header from 'components/Headers/Header.js';
+import { toast } from 'react-toastify';
+import ViewUser from './ViewDesigner';
+import { useTranslation } from 'react-i18next';
 const Users = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
   var options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   };
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -60,14 +60,14 @@ const Users = () => {
   const updateStore = UpdateStore();
   const history = useHistory();
   const [user, setUser] = useState({
-    _id: "",
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-    phone: "",
-    country: "",
-    city: "",
+    _id: '',
+    name: '',
+    email: '',
+    password: '',
+    address: '',
+    phone: '',
+    country: '',
+    city: ''
   });
 
   useEffect(() => {
@@ -75,17 +75,17 @@ const Users = () => {
   }, []);
 
   const getUsers = async () => {
-    const data = await api("get", "/tailors");
+    const data = await api('get', '/tailors');
 
     updateStore({ designers: data.users });
   };
 
   const handleModal = () => {
-    setOpenModal((open) => !open);
+    setOpenModal(open => !open);
     return openModal;
   };
 
-  const handleEditModal = (item) => {
+  const handleEditModal = item => {
     if (item) {
       setUser({
         _id: item._id,
@@ -94,15 +94,15 @@ const Users = () => {
         address: item.address,
         phone: item.phone,
         country: item.country,
-        city: item.city,
+        city: item.city
       });
     }
 
-    setEditModal((open) => !open);
+    setEditModal(open => !open);
     return openModal;
   };
 
-  const handleViewModal = (item) => {
+  const handleViewModal = item => {
     if (item) {
       setUser({
         _id: item._id,
@@ -111,19 +111,19 @@ const Users = () => {
         address: item.address,
         phone: item.phone,
         country: item.country,
-        city: item.city,
+        city: item.city
       });
     }
 
-    setViewModal((open) => !open);
+    setViewModal(open => !open);
     return openModal;
   };
 
-  const handleDelete = (id) => {
-    var a = window.confirm("Are you sure you want to delete?");
+  const handleDelete = id => {
+    var a = window.confirm('Are you sure you want to delete?');
     if (a)
-      api("delete", `/tailors/${id}`).then(() => {
-        toast.success(t("Designer deleted successfully"));
+      api('delete', `/tailors/${id}`).then(() => {
+        toast.success(t('Designer deleted successfully'));
         getUsers();
       });
   };
@@ -139,33 +139,28 @@ const Users = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <div className="d-flex justify-content-between ">
-                  <h3 className="mb-0">{t("Designers")}</h3>
-                  <Button
-                    color="primary"
-                    href="#pablo"
-                    onClick={handleModal}
-                    size="md"
-                  >
+                  <h3 className="mb-0">{t('Designers')}</h3>
+                  <Button color="primary" href="#pablo" onClick={handleModal} size="md">
                     <i className="ni ni-fat-add"></i>
-                    {t("Add designer")}
+                    {t('Add designer')}
                   </Button>
                 </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">{t("Name")}</th>
-                    <th scope="col">{t("Email")}</th>
-                    <th scope="col">{t("EXPERIENCE")}</th>
-                    <th scope="col">{t("RATING")}</th>
-                    <th scope="col">{t("Contact no.")}</th>
-                    <th scope="col">{t("City")}</th>
-                    <th scope="col">{t("CREATED AT")}</th>
+                    <th scope="col">{t('Name')}</th>
+                    <th scope="col">{t('Email')}</th>
+                    <th scope="col">{t('EXPERIENCE')}</th>
+                    <th scope="col">{t('RATING')}</th>
+                    <th scope="col">{t('Contact no.')}</th>
+                    <th scope="col">{t('City')}</th>
+                    <th scope="col">{t('CREATED AT')}</th>
                     <th scope="col" />
                   </tr>
                 </thead>
                 <tbody>
-                  {designers?.map((item) => {
+                  {designers?.map(item => {
                     return (
                       <tr>
                         <th scope="row">
@@ -173,7 +168,7 @@ const Users = () => {
                             <Media>
                               <span className="mb-0 text-sm" title={item.name}>
                                 {item.name?.length > 30
-                                  ? item.name?.substring(0, 30) + "..."
+                                  ? item.name?.substring(0, 30) + '...'
                                   : item.name}
                               </span>
                             </Media>
@@ -181,23 +176,20 @@ const Users = () => {
                         </th>
                         <td title={item.email}>
                           {item.email?.length > 30
-                            ? item.email?.substring(0, 30) + "..."
+                            ? item.email?.substring(0, 30) + '...'
                             : item.email}
                         </td>
                         <td>{item.experience}</td>
                         <td>
-                          {item.ratings.reduce((a, b) => a + b, 0) /
-                            item.ratings.length || t("None")}
+                          {item.ratings.reduce((a, b) => a + b, 0) / item.ratings.length ||
+                            t('None')}
                         </td>
                         <td>{item.phone}</td>
                         <td>{item.city}</td>
                         <td>
-                          {language == "fr"
+                          {language == 'fr'
                             ? titleCase(
-                                new Date(item.createdAt).toLocaleDateString(
-                                  "fr-FR",
-                                  options
-                                )
+                                new Date(item.createdAt).toLocaleDateString('fr-FR', options)
                               )
                             : new Date(item.createdAt).toDateString()}
                         </td>
@@ -209,28 +201,21 @@ const Users = () => {
                               role="button"
                               size="sm"
                               color=""
-                              onClick={(e) => e.preventDefault()}
-                            >
+                              onClick={e => e.preventDefault()}>
                               <i className="fas fa-ellipsis-v" />
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                              <DropdownItem
-                                onClick={() => handleViewModal(item)}
-                              >
-                                {t("View")}
+                              <DropdownItem onClick={() => handleViewModal(item)}>
+                                {t('View')}
                               </DropdownItem>
-                              <DropdownItem
-                                href="#pablo"
-                                onClick={() => handleEditModal(item)}
-                              >
-                                {t("Edit")}
+                              <DropdownItem href="#pablo" onClick={() => handleEditModal(item)}>
+                                {t('Edit')}
                               </DropdownItem>
                               <DropdownItem
                                 href="#pablo"
                                 className="text-danger"
-                                onClick={() => handleDelete(item._id)}
-                              >
-                                {t("Delete")}
+                                onClick={() => handleDelete(item._id)}>
+                                {t('Delete')}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
@@ -298,19 +283,9 @@ const Users = () => {
             </Card>
           </div>
         </Row>
-        {viewModal && (
-          <ViewUser
-            openModal={viewModal}
-            handleModal={handleViewModal}
-            user={user}
-          />
-        )}
+        {viewModal && <ViewUser openModal={viewModal} handleModal={handleViewModal} user={user} />}
         {openModal && (
-          <AddUser
-            openModal={openModal}
-            handleModal={handleModal}
-            getUsers={getUsers}
-          />
+          <AddUser openModal={openModal} handleModal={handleModal} getUsers={getUsers} />
         )}
         {editModal && (
           <EditUser

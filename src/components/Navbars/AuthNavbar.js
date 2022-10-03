@@ -15,7 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -26,10 +28,12 @@ import {
   Nav,
   Container,
   Row,
-  Col,
-} from "reactstrap";
+  Col
+} from 'reactstrap';
 
 const AdminNavbar = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
@@ -39,7 +43,7 @@ const AdminNavbar = () => {
               alt="..."
               src={require("../../assets/img/brand/passtotrip.png").default}
             /> */}
-            <strong>Admin Panel</strong>
+            <strong>{t('Admin Panel')}</strong>
           </NavbarBrand>
           <button className="navbar-toggler" id="navbar-collapse-main">
             <span className="navbar-toggler-icon" />
@@ -51,10 +55,7 @@ const AdminNavbar = () => {
                   <Link to="/">
                     <img
                       alt="..."
-                      src={
-                        require("../../assets/img/brand/argon-react.png")
-                          .default
-                      }
+                      src={require('../../assets/img/brand/argon-react.png').default}
                     />
                   </Link>
                 </Col>
@@ -68,19 +69,15 @@ const AdminNavbar = () => {
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink
-                  className="nav-link-icon"
-                  to="/auth/register"
-                  tag={Link}
-                >
+                <NavLink className="nav-link-icon" to="/auth/register" tag={Link}>
                   <i className="ni ni-circle-08" />
-                  <span className="nav-link-inner--text">Register</span>
+                  <span className="nav-link-inner--text">{t('Register')}</span>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
                   <i className="ni ni-key-25" />
-                  <span className="nav-link-inner--text">Login</span>
+                  <span className="nav-link-inner--text">{t('Login')}</span>
                 </NavLink>
               </NavItem>
             </Nav>

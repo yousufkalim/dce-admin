@@ -15,26 +15,26 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useEffect } from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
-import { Store, UpdateStore } from "StoreContext";
+import React, { useState, useEffect } from 'react';
+import { useLocation, Route, Switch, Redirect } from 'react-router-dom';
+import { Store, UpdateStore } from 'StoreContext';
 // reactstrap components
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col } from 'reactstrap';
 
 // core components
-import AuthNavbar from "components/Navbars/AuthNavbar.js";
-import AuthFooter from "components/Footers/AuthFooter.js";
+import AuthNavbar from 'components/Navbars/AuthNavbar.js';
+import AuthFooter from 'components/Footers/AuthFooter.js';
 
-import routes from "routes.js";
+import routes from 'routes.js';
 
-const Auth = (props) => {
+const Auth = props => {
   const mainContent = React.useRef(null);
   const location = useLocation();
 
   React.useEffect(() => {
-    document.body.classList.add("bg-default");
+    document.body.classList.add('bg-default');
     return () => {
-      document.body.classList.remove("bg-default");
+      document.body.classList.remove('bg-default');
     };
   }, []);
   React.useEffect(() => {
@@ -43,16 +43,10 @@ const Auth = (props) => {
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-  const getRoutes = (routes) => {
+  const getRoutes = routes => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/auth") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
+      if (prop.layout === '/auth') {
+        return <Route path={prop.layout + prop.path} component={prop.component} key={key} />;
       } else {
         return null;
       }
@@ -80,12 +74,8 @@ const Auth = (props) => {
               version="1.1"
               viewBox="0 0 2560 100"
               x="0"
-              y="0"
-            >
-              <polygon
-                className="fill-default"
-                points="2560 0 2560 100 0 100"
-              />
+              y="0">
+              <polygon className="fill-default" points="2560 0 2560 100 0 100" />
             </svg>
           </div>
         </div>

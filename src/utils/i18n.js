@@ -16,7 +16,9 @@ i18n
           EARNING: 'EARNING',
           Articles: 'Articles',
           Clients: 'Clients',
+          DESIGNERS: 'DESIGNERS',
           Designers: 'Designers',
+          Designer: 'Designer',
           Orders: 'Orders',
           Quotes: 'Quotes',
           Catalogues: 'Catalogues',
@@ -188,12 +190,65 @@ i18n
           Completed: 'Completed',
           'In Progress': 'In Progress',
           Discarded: 'Discarded',
-        },
+          // changes
+          'Page visits': 'Page visits',
+          'Social traffic': 'Social traffic',
+          'First Name': 'First Name',
+          'Last Name': 'Last Name',
+          'Page name': 'Page name',
+          Visitors: 'Visitors',
+          'Unique users': 'Unique users',
+          'Bounce rate': 'Bounce rate',
+          Referral: 'Referral',
+          'See all': 'See all',
+          Logout: 'Logout',
+          Translation: 'Translation',
+          'Another action': 'Another action',
+          'Something else here': 'Something else here',
+          Welcome: 'Welcome',
+          'My profile': 'My profile',
+          Settings: 'Settings',
+          Activity: 'Activity',
+          Support: 'Support',
+          Search: 'Search',
+          women: 'women',
+          man: 'man',
+          child: 'child',
+          other: 'Autre',
+          Register: 'Register',
+          'Admin Panel': 'Admin Panel',
+          Publish: 'Publish'
+        }
       },
       fr: {
         translations: {
+          // changes
+          Publish: 'Publier',
+          'Admin Panel': "panneau d'administration",
+          Register: "S'inscrire",
+          Search: 'Chercher',
+          Support: 'Soutien',
+          Activity: 'Activité',
+          Settings: 'Réglages',
+          'My profile': 'Mon profil',
+          Welcome: 'Welcome',
+          'Something else here': "Quelque chose d'autre ici",
+          'Another action': 'Une autre opération',
+          Translation: 'Traduction',
+          Logout: 'Se déconnecter',
+          'See all': 'Voir tout',
+          Referral: 'RÉFÉRENCE',
+          'Bounce rate': 'Taux de rebond',
+          'Unique users': 'Utilisateurs uniques',
+          Visitors: 'Visiteurs',
+          'Page name': 'Nom de la page',
+          'Last Name': 'Nom',
+          'First Name': 'Prénom',
+          'Page visits': 'Visites de pages',
+          'Social traffic': 'Trafic social',
+
           // sidebar
-          EARNING: 'REVENUS',
+          EARNING: 'CA Brut',
           completed: 'complété',
           discarded: 'annulé',
           in_progress: 'en cours',
@@ -208,7 +263,10 @@ i18n
           Pending: 'en attendant',
           Articles: 'Articles',
           Clients: 'Clients',
-          Designers: 'Couturiers',
+          Designers: 'Professionnels',
+          Designer: 'Professionnel',
+          DESIGNERS: 'Professionnels',
+
           Orders: 'Commandes',
           Quotes: 'Devis',
           Catalogs: 'Catalogues',
@@ -270,7 +328,8 @@ i18n
           "Enter user's address here": "Entrez l'adresse de l'utilisateur ici",
           "Enter user's city here": "Entrez la ville de l'utilisateur ici",
           "Enter user's country here": "Saisissez ici le pays de l'utilisateur",
-          'Please enter a valid phone number': "S'il vous plaît entrer un numéro de téléphone valide",
+          'Please enter a valid phone number':
+            "S'il vous plaît entrer un numéro de téléphone valide",
 
           Name: 'Nom',
           Email: 'E-mail',
@@ -288,15 +347,19 @@ i18n
           rejected: 'rejeté',
 
           //designer
-          'Add a designer': 'Ajouter un couturier',
-          'Add designer': 'Ajouter un couturier',
+          'Add a designer': 'Ajouter un professionnel',
+          'Add designer': 'Ajouter un professionnel',
           'Edit a designer': 'Modifier un couturier',
           'View designer': 'Voir le couturier',
           EXPERIENCE: 'EXPÉRIENCE',
           WOMEN: 'FEMMES',
+          women: 'femmes',
           MAN: 'HOMME',
+          man: 'homme',
           CHILD: 'ENFANT',
+          child: 'enfant',
           Other: 'Autre',
+          other: 'Autre',
           //orders
           'View Order': 'Voir la commande',
           CATEGORY: 'CATÉGORIE',
@@ -359,7 +422,8 @@ i18n
           'User deleted successfully': "L'utilisateur a été supprimé avec succès",
           'Please enter a valid email': 'Veuillez entrer un email valide',
           'Password is required': 'Mot de passe requis',
-          'Passwords should be of atleast 8 letters': 'Le mots de passe doit comporter au moins 8 lettres',
+          'Passwords should be of atleast 8 letters':
+            'Le mots de passe doit comporter au moins 8 lettres',
           'Contact no. is required': 'Le numéro de téléphone est requis',
           'Client added successfully': 'Le client a été ajouté avec succès',
           'User edited successfully': "L'utilisateur a été modifié avec succès",
@@ -367,9 +431,9 @@ i18n
           'Designer added successfully': 'Le couturier a été ajouté avec succès',
           'Designer deleted successfully': 'Le couturier a été supprimé avec succès',
           Block: 'Bloquer',
-          Unblock: 'Débloquer',
-        },
-      },
+          Unblock: 'Débloquer'
+        }
+      }
     },
 
     fallbackLng: 'fr',
@@ -381,8 +445,8 @@ i18n
 
     keySeparator: false, // we use content as keys
     interpolation: {
-      escapeValue: false,
-    },
+      escapeValue: false
+    }
   });
 
 export default i18n;

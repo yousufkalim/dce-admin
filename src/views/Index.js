@@ -15,13 +15,13 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { useState } from "react";
+import { useState } from 'react';
 // node.js library that concatenates classes (strings)
-import classnames from "classnames";
+import classnames from 'classnames';
 // javascipt plugin for creating charts
-import Chart from "chart.js";
+import Chart from 'chart.js';
 // react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar } from 'react-chartjs-2';
 // reactstrap components
 import {
   Button,
@@ -35,22 +35,19 @@ import {
   Table,
   Container,
   Row,
-  Col,
-} from "reactstrap";
+  Col
+} from 'reactstrap';
 
 // core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2,
-} from "variables/charts.js";
+import { chartOptions, parseOptions, chartExample1, chartExample2 } from 'variables/charts.js';
 
-import Header from "components/Headers/Header.js";
+import Header from 'components/Headers/Header.js';
+import { useTranslation } from 'react-i18next';
 
-const Index = (props) => {
+const Index = props => {
   const [activeNav, setActiveNav] = useState(1);
-  const [chartExample1Data, setChartExample1Data] = useState("data1");
+  const [chartExample1Data, setChartExample1Data] = useState('data1');
+  const { t } = useTranslation();
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
@@ -59,7 +56,7 @@ const Index = (props) => {
   const toggleNavs = (e, index) => {
     e.preventDefault();
     setActiveNav(index);
-    setChartExample1Data("data" + index);
+    setChartExample1Data('data' + index);
   };
   return (
     <>
@@ -72,16 +69,15 @@ const Index = (props) => {
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">Page visits</h3>
+                    <h3 className="mb-0">{t('Page visits')}</h3>
                   </div>
                   <div className="col text-right">
                     <Button
                       color="primary"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
+                      onClick={e => e.preventDefault()}
+                      size="sm">
+                      {t('See all')}
                     </Button>
                   </div>
                 </Row>
@@ -89,10 +85,10 @@ const Index = (props) => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
+                    <th scope="col">{t('Page name')}</th>
+                    <th scope="col">{t('Visitors')}</th>
+                    <th scope="col">{t('Unique users')}</th>
+                    <th scope="col">{t('Bounce rate')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -109,8 +105,7 @@ const Index = (props) => {
                     <td>3,985</td>
                     <td>319</td>
                     <td>
-                      <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                      46,53%
+                      <i className="fas fa-arrow-down text-warning mr-3" /> 46,53%
                     </td>
                   </tr>
                   <tr>
@@ -118,8 +113,7 @@ const Index = (props) => {
                     <td>3,513</td>
                     <td>294</td>
                     <td>
-                      <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                      36,49%
+                      <i className="fas fa-arrow-down text-warning mr-3" /> 36,49%
                     </td>
                   </tr>
                   <tr>
@@ -135,8 +129,7 @@ const Index = (props) => {
                     <td>1,795</td>
                     <td>190</td>
                     <td>
-                      <i className="fas fa-arrow-down text-danger mr-3" />{" "}
-                      46,53%
+                      <i className="fas fa-arrow-down text-danger mr-3" /> 46,53%
                     </td>
                   </tr>
                 </tbody>
@@ -148,16 +141,15 @@ const Index = (props) => {
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">Social traffic</h3>
+                    <h3 className="mb-0">{t('Social traffic')}</h3>
                   </div>
                   <div className="col text-right">
                     <Button
                       color="primary"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
+                      onClick={e => e.preventDefault()}
+                      size="sm">
+                      {t('See all')}
                     </Button>
                   </div>
                 </Row>
@@ -165,8 +157,8 @@ const Index = (props) => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
+                    <th scope="col">{t('Referral')}</th>
+                    <th scope="col">{t('Visitors')}</th>
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -178,11 +170,7 @@ const Index = (props) => {
                       <div className="d-flex align-items-center">
                         <span className="mr-2">60%</span>
                         <div>
-                          <Progress
-                            max="100"
-                            value="60"
-                            barClassName="bg-gradient-danger"
-                          />
+                          <Progress max="100" value="60" barClassName="bg-gradient-danger" />
                         </div>
                       </div>
                     </td>
@@ -194,11 +182,7 @@ const Index = (props) => {
                       <div className="d-flex align-items-center">
                         <span className="mr-2">70%</span>
                         <div>
-                          <Progress
-                            max="100"
-                            value="70"
-                            barClassName="bg-gradient-success"
-                          />
+                          <Progress max="100" value="70" barClassName="bg-gradient-success" />
                         </div>
                       </div>
                     </td>
@@ -222,11 +206,7 @@ const Index = (props) => {
                       <div className="d-flex align-items-center">
                         <span className="mr-2">75%</span>
                         <div>
-                          <Progress
-                            max="100"
-                            value="75"
-                            barClassName="bg-gradient-info"
-                          />
+                          <Progress max="100" value="75" barClassName="bg-gradient-info" />
                         </div>
                       </div>
                     </td>
@@ -238,11 +218,7 @@ const Index = (props) => {
                       <div className="d-flex align-items-center">
                         <span className="mr-2">30%</span>
                         <div>
-                          <Progress
-                            max="100"
-                            value="30"
-                            barClassName="bg-gradient-warning"
-                          />
+                          <Progress max="100" value="30" barClassName="bg-gradient-warning" />
                         </div>
                       </div>
                     </td>

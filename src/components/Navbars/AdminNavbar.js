@@ -15,8 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { Link } from "react-router-dom";
-import { Store } from "StoreContext";
+import { Link } from 'react-router-dom';
+import { Store } from 'StoreContext';
 // reactstrap components
 import {
   DropdownMenu,
@@ -33,22 +33,22 @@ import {
   Navbar,
   Nav,
   Container,
-  Media,
-} from "reactstrap";
-import { useTranslation, Trans } from "react-i18next";
-import france from "../../assets/img/icons/common/france.png";
-import eng from "../../assets/img/icons/common/eng.png";
+  Media
+} from 'reactstrap';
+import { useTranslation, Trans } from 'react-i18next';
+import france from '../../assets/img/icons/common/france.png';
+import eng from '../../assets/img/icons/common/eng.png';
 
-const AdminNavbar = (props) => {
+const AdminNavbar = props => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
-  const changeLanguage = (lng) => {
+  const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
   const { user } = Store();
   const handleLogout = () => {
-    localStorage.setItem("token", "");
-    window.location = "/auth/login";
+    localStorage.setItem('token', '');
+    window.location = '/auth/login';
   };
 
   return (
@@ -57,8 +57,7 @@ const AdminNavbar = (props) => {
         <Container fluid>
           <Link
             className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-            to="/admin/index"
-          >
+            to="/admin/index">
             {t(props.brandText)}
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
@@ -66,25 +65,17 @@ const AdminNavbar = (props) => {
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
                   <Media className="ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-weight-bold">
-                      Translation
-                    </span>
+                    <span className="mb-0 text-sm font-weight-bold">{t('Translation')}</span>
                   </Media>
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
-                <DropdownItem
-                  href="#pablo"
-                  onClick={() => changeLanguage("fr")}
-                >
+                <DropdownItem href="#pablo" onClick={() => changeLanguage('fr')}>
                   <span>
                     <img src={france} width="15%" alt="" /> &nbsp; French
                   </span>
                 </DropdownItem>
-                <DropdownItem
-                  href="#pablo"
-                  onClick={() => changeLanguage("en")}
-                >
+                <DropdownItem href="#pablo" onClick={() => changeLanguage('en')}>
                   <span>
                     <img src={eng} width="15%" alt="" /> &nbsp; English
                   </span>
@@ -95,16 +86,14 @@ const AdminNavbar = (props) => {
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
                   <Media className="ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-weight-bold">
-                      {user?.name}
-                    </span>
+                    <span className="mb-0 text-sm font-weight-bold">{user?.name}</span>
                   </Media>
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
                 <DropdownItem href="#pablo" onClick={handleLogout}>
                   <i className="ni ni-user-run" />
-                  <span>Logout</span>
+                  <span>{t('Logout')}</span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

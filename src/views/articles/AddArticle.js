@@ -25,7 +25,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
   const { t } = useTranslation();
   let [blog, setBlog] = useState({ is_featured: false });
 
-  const handleFileChange = (e) => {
+  const handleFileChange = e => {
     setBlog({ ...blog, blog_images: e.target.files[0] });
   };
 
@@ -33,11 +33,11 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
     setBlog({ ...blog, is_featured: !blog.is_featured });
   };
 
-  const handleInput = (e) => {
+  const handleInput = e => {
     setBlog({ ...blog, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const formData = new FormData();
 
@@ -46,7 +46,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
     }
 
     api('post', '/blogs', formData)
-      .then((res) => {
+      .then(res => {
         toast.success(t('Article added successfully'));
         getArticles();
         handleModal();
@@ -70,10 +70,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-fname"
-                        >
+                        <label className="form-control-label" htmlFor="input-fname">
                           {t('Title')}
                         </label>
                         <Input
@@ -91,10 +88,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-lname"
-                        >
+                        <label className="form-control-label" htmlFor="input-lname">
                           {t('Description')}
                         </label>
                         <Input
@@ -113,10 +107,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-image"
-                        >
+                        <label className="form-control-label" htmlFor="input-image">
                           {t('Featured image')} <i className="ni ni-album-2" />
                         </label>
                         <Input
@@ -132,25 +123,20 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                   <Row>
                     <Col lg="9" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-lname"
-                        >
+                        <label className="form-control-label" htmlFor="input-lname">
                           {t('Article')}
                         </label>
                         <CKEditor
                           editor={ClassicEditor}
                           data={blog.blog_content}
-                          onReady={(editor) => {
-                            editor.plugins.get(
-                              'FileRepository'
-                            ).createUploadAdapter = (loader) => {
+                          onReady={editor => {
+                            editor.plugins.get('FileRepository').createUploadAdapter = loader => {
                               return new MyUploadAdapter(loader);
                             };
                           }}
                           onChange={(event, editor) => {
                             const data = editor.getData();
-                            setBlog((prev) => {
+                            setBlog(prev => {
                               return {
                                 ...prev,
                                 blog_content: data
@@ -173,10 +159,7 @@ const AddArticle = ({ openModal, handleModal, getArticles }) => {
                             checked={blog.is_featured}
                             onChange={handleFeatured}
                           />
-                          <label
-                            className="custom-control-label"
-                            htmlFor="customCheck5"
-                          >
+                          <label className="custom-control-label" htmlFor="customCheck5">
                             {t('Featured')}
                           </label>
                         </div>

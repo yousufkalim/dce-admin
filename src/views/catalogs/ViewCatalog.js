@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import api from "../../api";
-import { Select } from "antd";
+import { useEffect, useState } from 'react';
+import api from '../../api';
+import { Select } from 'antd';
 import {
   Modal,
   ModalBody,
@@ -11,10 +11,10 @@ import {
   Form,
   Input,
   Row,
-  Col,
-} from "reactstrap";
+  Col
+} from 'reactstrap';
 // core components
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const { Option } = Select;
 
@@ -25,7 +25,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
     <>
       <Modal isOpen={openModal} size="xl" centered>
         <ModalHeader charCode="X" toggle={handleModal}>
-          {t("View catalogue")}
+          {t('View catalogue')}
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -33,11 +33,9 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
               <Form>
                 <div className="pl-lg-4">
                   <Row>
-                    <Col lg="6" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Designer")}
-                        </label>
+                        <label className="form-control-label">{t('Designer')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.tailor?.name}
@@ -46,11 +44,9 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="6" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Category")}
-                        </label>
+                        <label className="form-control-label">{t('Category')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.category}
@@ -61,11 +57,9 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                     </Col>
                   </Row>
                   <Row>
-                    <Col lg="6" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Name")}
-                        </label>
+                        <label className="form-control-label">{t('Name')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.name}
@@ -74,11 +68,9 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="6" style={{ margin: "auto" }}>
+                    {/* <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Gender")}
-                        </label>
+                        <label className="form-control-label">{t('Gender')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.gender}
@@ -86,28 +78,23 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                           disabled
                         />
                       </FormGroup>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col lg="6" style={{ margin: "auto" }}>
+                    </Col> */}
+                    <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Attachment")}
-                        </label>
+                        <label className="form-control-label">{t('Attachment')}</label>
                         <Input
                           className="form-control-alternative text-default"
-                          value={catalog.attachment || "N/A"}
+                          value={catalog.attachment || 'N/A'}
                           disabled
                         />
                       </FormGroup>
                     </Col>
+                  </Row>
 
-                    <Col lg="6" style={{ margin: "auto" }}>
+                  <Row>
+                    <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Price")}
-                        </label>
+                        <label className="form-control-label">{t('Price')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.price}
@@ -115,14 +102,9 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-
-                  <Row>
-                    <Col lg="6" style={{ margin: "auto" }}>
+                    <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Rating Count")}
-                        </label>
+                        <label className="form-control-label">{t('Rating Count')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.rating?.count}
@@ -130,11 +112,12 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="6" style={{ margin: "auto" }}>
+                  </Row>
+
+                  <Row>
+                    <Col lg="6" style={{ margin: 'auto' }}>
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Rating Value")}
-                        </label>
+                        <label className="form-control-label">{t('Rating Value')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.rating?.value}
@@ -142,14 +125,9 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
                         />
                       </FormGroup>
                     </Col>
-                  </Row>
-
-                  <Row>
                     <Col lg="6">
                       <FormGroup>
-                        <label className="form-control-label">
-                          {t("Description")}
-                        </label>
+                        <label className="form-control-label">{t('Description')}</label>
                         <Input
                           className="form-control-alternative text-default"
                           value={catalog.description}
@@ -165,7 +143,7 @@ const ViewCatalog = ({ openModal, handleModal, catalog }) => {
           </Row>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={handleModal}>{t("Cancel")}</Button>
+          <Button onClick={handleModal}>{t('Cancel')}</Button>
         </ModalFooter>
       </Modal>
     </>

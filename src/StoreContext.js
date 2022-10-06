@@ -27,6 +27,7 @@ export function StoreProvider({ children }) {
     quotes: [],
     catalogs: [],
     articles: [],
+    contact:[],
     socket: null,
     chats: [],
     chat: null,

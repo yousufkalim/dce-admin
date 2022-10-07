@@ -24,6 +24,7 @@ import Orders from 'views/orders/Orders';
 import Quotes from 'views/quotes/Quotes';
 import Catalogs from 'views/catalogs/Catalogs';
 import Articles from 'views/articles/Articles';
+import Contact from 'views/contact/Contact';
 import Complaints from 'views/complaints/Complaints';
 import Chat from 'views/Chat';
 
@@ -54,6 +55,13 @@ var routes = [
     name: 'Articles',
     icon: 'ni ni-single-copy-04 text-red',
     component: Articles,
+    layout: '/admin'
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    icon: 'ni ni-single-copy-04 text-red',
+    component: Contact,
     layout: '/admin'
   },
   {

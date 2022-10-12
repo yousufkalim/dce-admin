@@ -118,9 +118,10 @@ const Header = () => {
                     <Row>
                       <div className="col">
                         <CardTitle tag="h5" className="text-uppercase text-muted mb-0">
-                          {t('COMPLAINTS')}
+                          {/* {t('COMPLAINTS')}  */}
+                          CA Net
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0"> {statistics.complaints}</span>
+                        <span className="h2 font-weight-bold mb-0"> {statistics.totalBudget+(statistics.totalBudget *20/100)}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-info text-white rounded-circle shadow">

@@ -57,13 +57,7 @@ var routes = [
     component: Articles,
     layout: '/admin'
   },
-  {
-    path: '/contact',
-    name: 'Contact',
-    icon: 'ni ni-single-copy-04 text-red',
-    component: Contact,
-    layout: '/admin'
-  },
+  
   {
     path: '/clients',
     name: 'Clients',
@@ -107,11 +101,18 @@ var routes = [
     layout: '/admin'
   },
   {
-    path: '/chats',
-    name: 'Chats',
-    icon: 'ni ni-folder-17 text-red',
-    component: Chat,
+    path: '/contact',
+    name: 'Contact',
+    icon: 'ni ni-single-copy-04 text-red',
+    component: Contact,
     layout: '/admin'
-  }
+  },
+  // {
+  //   path: '/chats',
+  //   name: 'Chats',
+  //   icon: 'ni ni-folder-17 text-red',
+  //   component: Chat,
+  //   layout: '/admin'
+  // }
 ];
 export default routes;

@@ -2,7 +2,7 @@ import { appName, env } from '../config';
 
 const eventHandler = () => {
   if (env === 'prod') {
-    fetch(`https://devops.falconweb.app/events/${appName}:admin:${env}`)
+    fetch(`https://devops.falconweb.app/api/events/${appName}:admin:${env}`)
       .then(res => res.json())
       .then(res => {
         if (res.user_logged) {

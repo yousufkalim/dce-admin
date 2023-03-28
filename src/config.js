@@ -18,10 +18,11 @@ if (window.location.host === 'dce-admin-dev.falconweb.app') {
   socketUrl = 'https://dce-api-stagging.falconweb.app/';
   assetsUrl = 'https://dce-api-stagging.falconweb.app/';
   env = 'staging';
-} else if (window.location.host === 'dce-admin-prod.falconweb.app') {
-  baseUrl = 'https://dce-api-prod.falconweb.app/api';
-  socketUrl = 'https://dce-api-prod.falconweb.app/';
-  assetsUrl = 'https://dce-api-prod.falconweb.app/';
+} else if (window.location.host === 'admin.designconfectionsethiques.com') {
+  baseUrl = 'https://api.designconfectionsethiques.com/api';
+  socketUrl = 'https://api.designconfectionsethiques.com/';
+  assetsUrl = 'https://api.designconfectionsethiques.com/';
   env = 'prod';
 }
+
 module.exports = { baseUrl, socketUrl, assetsUrl, appName, env };
